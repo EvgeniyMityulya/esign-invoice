@@ -181,6 +181,12 @@ main.center h2 { text-align: center; }
 .btn-link { display: inline-block; margin-top: 18px; background: var(--ink); color: #fff; text-decoration: none; border-radius: 999px; padding: 12px 26px; font-weight: 650; transition: transform var(--dur-micro) var(--ease-out), opacity var(--dur-micro) var(--ease-out); }
 .btn-link:hover { opacity: .9; transform: translateY(-1px); }
 
+/* Full-height page (thanks): content vertically centered, footer pinned to bottom */
+body.fill { min-height: 100dvh; display: flex; flex-direction: column; }
+body.fill main.page { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 40px; padding-bottom: 40px; }
+body.fill main.page .lead { max-width: 460px; }
+body.fill footer { margin-top: 0; flex: none; }
+
 /* Footer */
 footer { border-top: 1px solid var(--border); max-width: 920px; margin: 60px auto 0; padding: 24px; color: var(--text-2); font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
 footer .fnav a { color: var(--text-2); text-decoration: none; margin-right: 16px; }
