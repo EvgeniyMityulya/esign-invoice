@@ -13,6 +13,7 @@
   --dur-micro: 150ms;
   --dur-comp: 300ms;
   --dur-section: 560ms;
+  interpolate-size: allow-keywords; /* enables height:auto transitions (FAQ open/close) */
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -37,7 +38,9 @@ body {
     .showcase, .closing, .card {
       animation: pageup linear both;
       animation-timeline: view();
-      animation-range: entry 2% cover 26%;
+      /* complete during entry — elements near the page bottom can't reach a
+         "cover %" (no scroll room left), which left them stuck invisible */
+      animation-range: entry 0% entry 80%;
     }
   }
   /* Fallback for browsers without scroll timelines: gentle load fade */
@@ -147,8 +150,14 @@ main.center h2 { text-align: center; }
 .faq summary .chev { flex: none; width: 18px; height: 18px; color: var(--text-2); transition: transform var(--dur-comp) var(--ease-out); }
 .faq details[open] summary .chev { transform: rotate(180deg); }
 .faq .a { padding: 0 4px 16px; margin: 0; color: var(--text-2); font-size: 15px; }
-.faq details[open] .a { animation: reveal var(--dur-comp) var(--ease-out); }
-@keyframes reveal { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+/* Smooth open AND close (was open-only). Modern CSS; older browsers fall back to instant. */
+.faq details::details-content {
+  opacity: 0; height: 0; overflow: clip;
+  transition: opacity var(--dur-comp) var(--ease-out), height var(--dur-comp) var(--ease-out), content-visibility var(--dur-comp);
+  transition-behavior: allow-discrete;
+}
+.faq details[open]::details-content { opacity: 1; height: auto; }
+@media (prefers-reduced-motion: reduce) { .faq details::details-content { transition: none; } }
 
 /* Contact form */
 .form { max-width: 460px; margin: 16px 0 8px; }
@@ -166,6 +175,12 @@ main.center h2 { text-align: center; }
 .or-sep::before, .or-sep::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 .form .note { font-size: 14px; color: var(--text-2); margin: 0; text-align: center; }
 
+/* Thanks page (after form submit) */
+.sent-check { width: 64px; height: 64px; margin: 4px auto 22px; border-radius: 999px; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; }
+.sent-check svg { width: 30px; height: 30px; }
+.btn-link { display: inline-block; margin-top: 18px; background: var(--ink); color: #fff; text-decoration: none; border-radius: 999px; padding: 12px 26px; font-weight: 650; transition: transform var(--dur-micro) var(--ease-out), opacity var(--dur-micro) var(--ease-out); }
+.btn-link:hover { opacity: .9; transform: translateY(-1px); }
+
 /* Footer */
 footer { border-top: 1px solid var(--border); max-width: 920px; margin: 60px auto 0; padding: 24px; color: var(--text-2); font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
 footer .fnav a { color: var(--text-2); text-decoration: none; margin-right: 16px; }
@@ -173,3 +188,35 @@ footer .fnav a:hover { color: var(--text); }
 footer .spacer { flex: 1; }
 
 @media (max-width: 520px) { .hero { padding-top: 52px; } .bar nav a { margin-left: 14px; } }
+
+/* Mobile burger navigation (pure CSS, no JS) */
+.navtoggle { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.burger { display: none; }
+@media (max-width: 560px) {
+  .bar .wrap { position: relative; flex-wrap: nowrap; }
+  .bar .brand { font-size: 15px; white-space: nowrap; }
+  .burger {
+    display: inline-flex; align-items: center; justify-content: center; flex: none;
+    width: 36px; height: 36px; margin-left: auto; border-radius: 9px;
+    color: var(--text); cursor: pointer;
+    transition: background var(--dur-micro, .15s) var(--ease-out, ease);
+  }
+  .burger:hover { background: #F2F2F1; }
+  .burger svg {
+    width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;
+  }
+  .navtoggle:focus-visible ~ .burger { outline: 2px solid #17181C; outline-offset: 2px; }
+  .bar nav {
+    position: absolute; top: calc(100% + 1px); left: 0; right: 0;
+    display: flex; flex-direction: column; padding: 4px 24px 12px;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--border);
+    opacity: 0; transform: translateY(-6px); pointer-events: none;
+    transition: opacity var(--dur-comp, .28s) var(--ease-out, ease), transform var(--dur-comp, .28s) var(--ease-out, ease);
+  }
+  .navtoggle:checked ~ nav { opacity: 1; transform: none; pointer-events: auto; }
+  .bar nav a { margin: 0; padding: 12px 2px; font-size: 16px; }
+  .bar nav a + a { border-top: 1px solid var(--border); }
+}
+@media (prefers-reduced-motion: reduce) { .bar nav, .burger svg { transition: none; } }
