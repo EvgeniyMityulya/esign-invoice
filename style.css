@@ -57,7 +57,15 @@ body {
 }
 .bar .wrap { max-width: 920px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 11px; }
 .bar .logo { width: 30px; height: 30px; border-radius: 8px; }
-.bar .brand { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin: 0; flex: 1; }
+.bar .brand { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+/* Icon and wordmark are one target back to the home page. */
+.bar .home {
+  display: flex; align-items: center; gap: 11px; flex: 1;
+  color: inherit; text-decoration: none; border-radius: 10px;
+  transition: opacity var(--dur-micro) var(--ease-out);
+}
+.bar .home:hover { opacity: .68; }
+.bar .home:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 .bar nav a { color: var(--text-2); text-decoration: none; margin-left: 20px; font-size: 14.5px; transition: color var(--dur-micro) var(--ease-out); }
 .bar nav a:hover { color: var(--text); }
 .bar nav a.active { color: var(--text); font-weight: 620; }
@@ -106,6 +114,41 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .screen .sigcap { font-size: 10px; color: var(--text-2); }
 .screen .signed { position: absolute; right: 14px; bottom: 16px; display: inline-flex; align-items: center; gap: 5px; background: #17181C; color: #fff; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px; }
 .showcase .cap { margin-top: 22px; color: var(--text-2); font-size: 15px; }
+
+/* Real screens, three across. Scrolls sideways on a phone rather than
+   shrinking three devices down to thumbnails. */
+.gallery { max-width: 1020px; margin: 76px auto 0; padding: 0 24px; }
+.gallery h2 {
+  font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; text-align: center;
+}
+.gallery .sub { margin: 0 0 34px; color: var(--text-2); text-align: center; font-size: 15px; }
+.gallery .rail {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; align-items: start;
+}
+.gallery figure { margin: 0; text-align: center; }
+.gallery .frame {
+  border-radius: 34px; padding: 9px;
+  background: linear-gradient(160deg, #2B2C33, #17181C);
+  box-shadow: 0 22px 50px rgba(20, 21, 24, .26);
+}
+.gallery img { width: 100%; display: block; border-radius: 26px; }
+.gallery figcaption {
+  margin-top: 15px; font-size: 14.5px; font-weight: 620; color: var(--text);
+}
+.gallery figcaption span { display: block; font-weight: 400; color: var(--text-2); font-size: 13.5px; }
+
+@media (max-width: 760px) {
+  .gallery { padding: 0; }
+  .gallery h2, .gallery .sub { padding: 0 24px; }
+  .gallery .rail {
+    grid-template-columns: repeat(3, 68vw);
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 0 24px 6px; gap: 18px;
+    scrollbar-width: none;
+  }
+  .gallery .rail::-webkit-scrollbar { display: none; }
+  .gallery figure { scroll-snap-align: center; }
+}
 /* real screenshot: replace .screen contents with <img src="./shots/sign.png" style="width:100%;display:block"> */
 
 /* Bento features (6 cards) */
