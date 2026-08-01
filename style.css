@@ -33,7 +33,7 @@ body {
 
   /* Below the fold: reveal as it scrolls into view (zero-JS, per-item stagger by row) */
   @supports (animation-timeline: view()) {
-    .closing, .card, .zrow {
+    .closing, .zrow {
       animation: pageup linear both;
       animation-timeline: view();
       /* complete during entry — elements near the page bottom can't reach a
@@ -43,7 +43,7 @@ body {
   }
   /* Fallback for browsers without scroll timelines: gentle load fade */
   @supports not (animation-timeline: view()) {
-    .bento { animation: pageup var(--dur-section) var(--ease-out) both; animation-delay: 120ms; }
+    .zig { animation: pageup var(--dur-section) var(--ease-out) both; animation-delay: 120ms; }
   }
 }
 
@@ -84,37 +84,29 @@ h1 {
 .store-badge img { display: block; width: 168px; height: auto; }
 .store-badge:hover { transform: translateY(-1px); }
 .store-badge:active { transform: scale(.985); transition-duration: 90ms; }
-.card:active { transform: translateY(0) scale(.995); }
 
 /* Focus-visible rings (accessibility) */
 a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 7px;
 }
 
-/* App screens on a dark band: keyword chips, then a full-bleed slide belt */
-.screens { background: #141819; margin-top: 72px; padding: 54px 0 52px; overflow: hidden; }
-.screens h2 { color: #fff; font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; text-align: center; padding: 0 24px; }
-.screens .sub { color: #A2A4AB; margin: 0 0 20px; text-align: center; font-size: 15px; padding: 0 24px; }
-
-/* Keyword chips: one place, plain text, not controls */
-.kwords { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 640px; margin: 0 auto; padding: 0 24px 28px; }
-.kword {
-  font-size: 13px; font-weight: 620; letter-spacing: -0.006em; color: #C9CBD1;
-  border: 1px solid rgba(255,255,255,.17); border-radius: 999px; padding: 6px 14px;
-}
+/* App screens on a dark band: a compact full-bleed slide belt */
+.screens { background: #141819; margin-top: 64px; padding: 38px 0 36px; overflow: hidden; }
+.screens h2 { color: #fff; font-size: 24px; letter-spacing: -0.02em; margin: 0 0 4px; text-align: center; padding: 0 24px; }
+.screens .sub { color: #A2A4AB; margin: 0 0 22px; text-align: center; font-size: 14.5px; padding: 0 24px; }
 
 /* Slow endless belt across the full viewport. The rail carries the same
    vertical gradient as the slide artwork (#2C2C34 → #212226 → #141819), so
    the slides melt into one continuous strip instead of reading as boxes.
    Hover pauses the belt and spotlights one slide, click opens it large. */
 .srail {
-  overflow: hidden; padding: 22px 0;
+  overflow: hidden; padding: 18px 0;
   background: linear-gradient(180deg, #2C2C34, #212226 50%, #141819);
 }
 .strack { display: flex; width: max-content; }
-.sgroup { display: flex; gap: 16px; padding-right: 16px; }
+.sgroup { display: flex; gap: 14px; padding-right: 14px; }
 .srail img {
-  width: clamp(264px, 19vw, 352px); height: auto; border-radius: 26px;
+  width: clamp(190px, 13.5vw, 250px); height: auto; border-radius: 20px;
   border: 1px solid rgba(255,255,255,.10);
   transition: transform var(--dur-comp) var(--ease-out), opacity var(--dur-comp) var(--ease-out), box-shadow var(--dur-comp) var(--ease-out);
   cursor: zoom-in;
@@ -132,7 +124,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .srail::-webkit-scrollbar { display: none; }
   .sgroup { padding: 0 24px 0 24px; }
   .sgroup[aria-hidden="true"] { display: none; }
-  .srail img { width: min(272px, 62vw); scroll-snap-align: center; }
+  .srail img { width: min(230px, 56vw); scroll-snap-align: center; }
 }
 
 /* Lightbox for a closer look at one slide */
@@ -167,8 +159,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .lb-prev { left: 8px; } .lb-next { right: 8px; } .lb-x { top: 8px; right: 8px; background: rgba(20,21,24,.55); }
 }
 
-/* Alternating feature rows on dark panels, artwork cut from the slides */
-.zig { max-width: 928px; margin: 72px auto 0; padding: 0 24px; display: grid; gap: 18px; }
+/* Alternating feature rows on dark panels */
+.zig { max-width: 928px; margin: 58px auto 0; padding: 0 24px; display: grid; gap: 18px; }
 .zrow {
   display: grid; grid-template-columns: 1.05fr .95fr; align-items: center;
   background: linear-gradient(160deg, #1E1F24, #141819); color: #fff;
@@ -177,30 +169,35 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 }
 .ztext { padding: 40px 38px; }
 .ztag {
-  display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .14em;
-  text-transform: uppercase; color: #8B8E96; margin-bottom: 12px;
+  display: inline-block; font-size: 12px; font-weight: 660; letter-spacing: .07em;
+  text-transform: uppercase; color: #D6D8DC; margin-bottom: 16px;
+  border: 1px solid rgba(255,255,255,.20); border-radius: 999px; padding: 6px 14px;
 }
-.ztext h3 { font-size: 22px; font-weight: 760; letter-spacing: -0.02em; margin: 0 0 10px; text-wrap: balance; }
-.ztext p { margin: 0; color: #A2A4AB; font-size: 15px; line-height: 1.6; }
+.ztext h3 { font-size: 25px; font-weight: 770; letter-spacing: -0.022em; margin: 0 0 12px; text-wrap: balance; }
+.ztext p { margin: 0; color: #A2A4AB; font-size: 15px; line-height: 1.65; }
+.ztext p strong { color: #fff; font-weight: 680; }
 .zart {
   position: relative; align-self: stretch; min-height: 300px;
   display: flex; align-items: center; justify-content: center;
 }
+/* Wide elliptical glow, like light falling behind the object */
 .zart::before {
-  content: ""; position: absolute; width: 290px; height: 290px; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255,255,255,.11), transparent);
+  content: ""; position: absolute; width: 78%; height: 190px; border-radius: 50%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.16), rgba(255,255,255,.05) 55%, transparent 78%);
 }
 .zart img {
   position: relative; width: min(225px, 56%); height: auto;
   filter: drop-shadow(0 26px 34px rgba(0,0,0,.5));
+  will-change: transform;
 }
 @keyframes zfloat {
-  from { transform: translateY(7px) rotate(-1.5deg); }
-  to { transform: translateY(-9px) rotate(1.5deg); }
+  0%, 100% { transform: translateY(9px); }
+  50% { transform: translateY(-11px); }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .zart img { animation: zfloat 5.5s var(--ease-in-out) infinite alternate; }
-  .zrow.rev .zart img { animation-duration: 6.5s; }
+  .zart img { animation: zfloat 7s var(--ease-in-out) infinite; }
+  .zig .zrow:nth-child(2) .zart img { animation-duration: 8.2s; animation-delay: -2.6s; }
+  .zig .zrow:nth-child(3) .zart img { animation-duration: 7.6s; animation-delay: -4.1s; }
 }
 .zrow.rev .ztext { order: 2; }
 .zrow.rev .zart { order: 1; }
@@ -213,15 +210,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .zart::before { width: 220px; height: 220px; }
   .zart img { width: 168px; }
 }
-
-/* Bento features (6 cards) */
-.bento { max-width: 880px; margin: 60px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 13px; }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 15px; padding: 20px; box-shadow: 0 1px 2px rgba(20,21,24,.03); transition: box-shadow var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
-.card:hover { box-shadow: 0 8px 22px rgba(20,21,24,.07); transform: translateY(-2px); }
-.card .chip { width: 36px; height: 36px; border-radius: 10px; background: #F4F4F3; display: flex; align-items: center; justify-content: center; margin-bottom: 13px; }
-.card .chip svg { width: 20px; height: 20px; color: var(--ink); }
-.card h3 { font-size: 16px; font-weight: 730; margin: 0 0 4px; letter-spacing: -0.014em; }
-.card p { margin: 0; color: var(--text-2); font-size: 14px; line-height: 1.5; }
 
 .closing { max-width: 720px; margin: 52px auto 0; padding: 0 24px; text-align: center; color: var(--text-2); font-size: 15px; }
 
