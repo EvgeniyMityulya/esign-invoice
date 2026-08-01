@@ -118,12 +118,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .spill.is-on { background: #fff; color: #17181C; border-color: #fff; }
 .spill:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .srail {
-  display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
+  display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory;
   max-width: 1020px; margin: 0 auto; padding: 4px 24px 10px; scrollbar-width: none;
 }
 .srail::-webkit-scrollbar { display: none; }
 .srail img {
-  flex: none; width: min(300px, 72vw); height: auto; border-radius: 22px;
+  flex: none; width: min(248px, 60vw); height: auto; border-radius: 26px;
   scroll-snap-align: center; border: 1px solid rgba(255,255,255,.09);
   box-shadow: 0 18px 44px rgba(0,0,0,.42);
 }
@@ -220,7 +220,7 @@ footer .spacer { flex: 1; }
 .burger { display: none; }
 @media (max-width: 560px) {
   .bar .wrap { position: relative; flex-wrap: nowrap; }
-  .bar .brand { font-size: 15px; white-space: nowrap; }
+  .bar .brand { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .burger {
     display: inline-flex; align-items: center; justify-content: center; flex: none;
     width: 36px; height: 36px; margin-left: auto; border-radius: 9px;
