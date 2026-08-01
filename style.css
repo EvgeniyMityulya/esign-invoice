@@ -24,8 +24,6 @@ body {
 }
 .amp { font-weight: 700; color: inherit; }
 
-/* Smooth cross-page transitions between nav links */
-@view-transition { navigation: auto; }
 @keyframes pageup { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -93,40 +91,53 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 7px;
 }
 
-/* Feature tags */
-.tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 26px auto 0; max-width: 540px; }
-.tag { font-size: 13px; font-weight: 600; color: #3A3C42; border: 1px solid var(--border); border-radius: 8px; padding: 6px 13px; background: #FCFCFB; }
-
-/* App screens on a dark band: pill switcher on top, snap-scroll rail below */
-.screens { background: #17181C; margin-top: 72px; padding: 54px 0 58px; }
+/* App screens on a dark band: keyword chips, then a full-bleed slide belt */
+.screens { background: #17181C; margin-top: 72px; padding: 54px 0 58px; overflow: hidden; }
 .screens h2 { color: #fff; font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; text-align: center; padding: 0 24px; }
-.screens .sub { color: #A2A4AB; margin: 0 0 24px; text-align: center; font-size: 15px; padding: 0 24px; }
-.spills {
-  display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
-  max-width: 1020px; margin: 0 auto; padding: 2px 24px 20px;
+.screens .sub { color: #A2A4AB; margin: 0 0 20px; text-align: center; font-size: 15px; padding: 0 24px; }
+
+/* Keyword chips: one place, plain text, not controls */
+.kwords { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 640px; margin: 0 auto; padding: 0 24px 28px; }
+.kword {
+  font-size: 13px; font-weight: 620; letter-spacing: -0.006em; color: #C9CBD1;
+  border: 1px solid rgba(255,255,255,.17); border-radius: 999px; padding: 6px 14px;
 }
-.spills::-webkit-scrollbar { display: none; }
-@media (min-width: 900px) { .spills { flex-wrap: wrap; justify-content: center; } }
-.spill {
-  flex: none; font: inherit; font-size: 13.5px; font-weight: 620; letter-spacing: -0.006em;
-  color: #C9CBD1; background: transparent; border: 1px solid rgba(255,255,255,.17);
-  border-radius: 999px; padding: 7px 15px; cursor: pointer;
-  transition: color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
-}
-.spill:hover { color: #fff; border-color: rgba(255,255,255,.36); }
-.spill:active { transform: scale(.96); transition-duration: 90ms; }
-.spill.is-on { background: #fff; color: #17181C; border-color: #fff; }
-.spill:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-.srail {
-  display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory;
-  max-width: 1020px; margin: 0 auto; padding: 4px 24px 10px; scrollbar-width: none;
-}
-.srail::-webkit-scrollbar { display: none; }
+
+/* Slow endless belt across the full viewport; hovering pauses it and
+   spotlights one slide, click opens it large */
+.srail { overflow: hidden; padding: 6px 0 4px; }
+.strack { display: flex; width: max-content; }
+.sgroup { display: flex; gap: 16px; padding-right: 16px; }
 .srail img {
-  flex: none; width: min(248px, 60vw); height: auto; border-radius: 26px;
-  scroll-snap-align: center; border: 1px solid rgba(255,255,255,.09);
-  box-shadow: 0 18px 44px rgba(0,0,0,.42);
+  width: min(272px, 62vw); height: auto; border-radius: 26px;
+  border: 1px solid rgba(255,255,255,.09); box-shadow: 0 18px 44px rgba(0,0,0,.42);
+  transition: transform var(--dur-comp) var(--ease-out), opacity var(--dur-comp) var(--ease-out);
+  cursor: zoom-in;
 }
+@keyframes beltscroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .strack { animation: beltscroll 60s linear infinite; }
+  .srail:hover .strack { animation-play-state: paused; }
+  .srail:hover img { opacity: .38; }
+  .srail img:hover { opacity: 1; transform: scale(1.045); }
+}
+/* Touch or reduced motion: a plain swipeable rail, single set of slides */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .srail { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .srail::-webkit-scrollbar { display: none; }
+  .sgroup { padding: 0 24px 0 24px; }
+  .sgroup[aria-hidden="true"] { display: none; }
+  .srail img { scroll-snap-align: center; }
+}
+
+/* Lightbox for a closer look at one slide */
+.lightbox {
+  position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center;
+  padding: 26px; cursor: zoom-out; background: rgba(10,10,12,.78);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.lightbox[hidden] { display: none; }
+.lightbox img { max-height: 90vh; max-width: 92vw; width: auto; height: auto; border-radius: 26px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
 
 /* Bento features (6 cards) */
 .bento { max-width: 880px; margin: 60px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 13px; }

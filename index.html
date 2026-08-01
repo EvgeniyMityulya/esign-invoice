@@ -7,7 +7,7 @@
 <meta name="description" content="Inko is an invoice maker and eSign app for iPhone. Create invoices and estimates, sign any document, and send it in seconds. No account, nothing leaves your device.">
 <meta name="apple-itunes-app" content="app-id=6788092513">
 <link rel="icon" href="./favicon.png">
-<link rel="stylesheet" href="./style.css?v=2">
+<link rel="stylesheet" href="./style.css?v=3">
 </head>
 <body>
 <div class="bar">
@@ -35,40 +35,48 @@
   <a class="store-badge" href="https://apps.apple.com/app/id6788092513?itsct=apps_box_badge&amp;itscg=30200" aria-label="Download on the App Store">
     <img src="./appstore-badge.svg" alt="Download on the App Store" width="168" height="56">
   </a>
-
-  <div class="tags">
-    <span class="tag">eSign</span>
-    <span class="tag">Invoices</span>
-    <span class="tag">Estimates</span>
-    <span class="tag">Reports</span>
-    <span class="tag">Scan</span>
-  </div>
 </section>
 
 <section class="screens">
   <h2>See it in action</h2>
   <p class="sub">Invoices, estimates, and signatures, all on your iPhone.</p>
-  <div class="spills" role="tablist" aria-label="App screens">
-    <button class="spill is-on" data-i="0">Invoices</button>
-    <button class="spill" data-i="1">All in one</button>
-    <button class="spill" data-i="2">eSign</button>
-    <button class="spill" data-i="3">Send</button>
-    <button class="spill" data-i="4">Get paid</button>
-    <button class="spill" data-i="5">Statuses</button>
-    <button class="spill" data-i="6">Scan</button>
-    <button class="spill" data-i="7">Reports</button>
+  <div class="kwords">
+    <span class="kword">Invoice maker</span>
+    <span class="kword">eSign</span>
+    <span class="kword">Estimates</span>
+    <span class="kword">Signature scanner</span>
+    <span class="kword">QR payments</span>
+    <span class="kword">Income reports</span>
   </div>
   <div class="srail">
-    <img src="./slides/1.jpg" alt="Invoice maker and estimates, an invoice preview with template picker" width="720" height="1564">
-    <img src="./slides/2.jpg" alt="Your business in one app, invoices, estimates, signing, QR payments, reports" width="720" height="1564" loading="lazy">
-    <img src="./slides/3.jpg" alt="eSign any document in one tap, placing a signature on an invoice" width="720" height="1564" loading="lazy">
-    <img src="./slides/4.jpg" alt="Send or print right away from the share sheet" width="720" height="1564" loading="lazy">
-    <img src="./slides/5.jpg" alt="Get paid by QR codes for PayPal, Stripe and Revolut" width="720" height="1564" loading="lazy">
-    <img src="./slides/6.jpg" alt="Invoice list with unpaid, overdue and paid statuses" width="720" height="1564" loading="lazy">
-    <img src="./slides/7.jpg" alt="Scan a paper signature with the camera in one shot" width="720" height="1564" loading="lazy">
-    <img src="./slides/8.jpg" alt="Income reports by quarter with a yearly chart" width="720" height="1564" loading="lazy">
+    <div class="strack">
+      <div class="sgroup">
+        <img src="./slides/1.jpg" alt="Invoice maker and estimates, an invoice preview with template picker" width="720" height="1564">
+        <img src="./slides/2.jpg" alt="Your business in one app, invoices, estimates, signing, QR payments, reports" width="720" height="1564">
+        <img src="./slides/3.jpg" alt="eSign any document in one tap, placing a signature on an invoice" width="720" height="1564">
+        <img src="./slides/4.jpg" alt="Send or print right away from the share sheet" width="720" height="1564">
+        <img src="./slides/5.jpg" alt="Get paid by QR codes for PayPal, Stripe and Revolut" width="720" height="1564">
+        <img src="./slides/6.jpg" alt="Invoice list with unpaid, overdue and paid statuses" width="720" height="1564">
+        <img src="./slides/7.jpg" alt="Scan a paper signature with the camera in one shot" width="720" height="1564">
+        <img src="./slides/8.jpg" alt="Income reports by quarter with a yearly chart" width="720" height="1564">
+      </div>
+      <div class="sgroup" aria-hidden="true">
+        <img src="./slides/1.jpg" alt="" width="720" height="1564" loading="lazy">
+        <img src="./slides/2.jpg" alt="" width="720" height="1564" loading="lazy">
+        <img src="./slides/3.jpg" alt="" width="720" height="1564" loading="lazy">
+        <img src="./slides/4.jpg" alt="" width="720" height="1564" loading="lazy">
+        <img src="./slides/5.jpg" alt="" width="720" height="1564" loading="lazy">
+        <img src="./slides/6.jpg" alt="" width="720" height="1564" loading="lazy">
+        <img src="./slides/7.jpg" alt="" width="720" height="1564" loading="lazy">
+        <img src="./slides/8.jpg" alt="" width="720" height="1564" loading="lazy">
+      </div>
+    </div>
   </div>
 </section>
+
+<div class="lightbox" hidden>
+  <img src="" alt="App screen, enlarged">
+</div>
 
 <section class="bento">
   <div class="card">
@@ -117,31 +125,19 @@
 </footer>
 <script>
 (function () {
-  var rail = document.querySelector('.srail');
-  if (!rail) return;
-  var slides = [].slice.call(rail.children);
-  var pills = [].slice.call(document.querySelectorAll('.spill'));
-  var smooth = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-  function setOn(i) { pills.forEach(function (p, j) { p.classList.toggle('is-on', j === i); }); }
-  pills.forEach(function (p) {
-    p.addEventListener('click', function () {
-      var i = +p.dataset.i, img = slides[i];
-      rail.scrollTo({ left: img.offsetLeft - (rail.clientWidth - img.clientWidth) / 2, behavior: smooth });
-      setOn(i);
+  var box = document.querySelector('.lightbox');
+  if (!box) return;
+  var boxImg = box.querySelector('img');
+  function close() { box.hidden = true; document.body.style.overflow = ''; }
+  document.querySelectorAll('.sgroup img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      boxImg.src = img.src;
+      box.hidden = false;
+      document.body.style.overflow = 'hidden';
     });
   });
-  var tick;
-  rail.addEventListener('scroll', function () {
-    clearTimeout(tick);
-    tick = setTimeout(function () {
-      var mid = rail.scrollLeft + rail.clientWidth / 2, best = 0, dist = Infinity;
-      slides.forEach(function (img, j) {
-        var d = Math.abs(img.offsetLeft + img.clientWidth / 2 - mid);
-        if (d < dist) { dist = d; best = j; }
-      });
-      setOn(best);
-    }, 90);
-  }, { passive: true });
+  box.addEventListener('click', close);
+  addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) close(); });
 })();
 </script>
 </body>
