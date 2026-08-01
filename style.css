@@ -182,28 +182,36 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 }
 .ztext h3 { font-size: 22px; font-weight: 760; letter-spacing: -0.02em; margin: 0 0 10px; text-wrap: balance; }
 .ztext p { margin: 0; color: #A2A4AB; font-size: 15px; line-height: 1.6; }
-.zart { position: relative; align-self: stretch; min-height: 300px; }
+.zart {
+  position: relative; align-self: stretch; min-height: 300px;
+  display: flex; align-items: center; justify-content: center;
+}
+.zart::before {
+  content: ""; position: absolute; width: 290px; height: 290px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,255,255,.11), transparent);
+}
 .zart img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  mask-image: linear-gradient(90deg, transparent, #000 16%);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%);
+  position: relative; width: min(225px, 56%); height: auto;
+  filter: drop-shadow(0 26px 34px rgba(0,0,0,.5));
+}
+@keyframes zfloat {
+  from { transform: translateY(7px) rotate(-1.5deg); }
+  to { transform: translateY(-9px) rotate(1.5deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .zart img { animation: zfloat 5.5s var(--ease-in-out) infinite alternate; }
+  .zrow.rev .zart img { animation-duration: 6.5s; }
 }
 .zrow.rev .ztext { order: 2; }
 .zrow.rev .zart { order: 1; }
-.zrow.rev .zart img {
-  mask-image: linear-gradient(270deg, transparent, #000 16%);
-  -webkit-mask-image: linear-gradient(270deg, transparent, #000 16%);
-}
 @media (max-width: 700px) {
   .zrow, .zrow.rev { grid-template-columns: 1fr; min-height: 0; }
   .zrow.rev .ztext { order: 1; }
   .zrow.rev .zart { order: 2; }
   .ztext { padding: 28px 24px 4px; }
-  .zart { min-height: 220px; margin-top: 10px; }
-  .zart img, .zrow.rev .zart img {
-    mask-image: linear-gradient(180deg, transparent, #000 14%);
-    -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%);
-  }
+  .zart { min-height: 232px; margin: 4px 0 8px; }
+  .zart::before { width: 220px; height: 220px; }
+  .zart img { width: 168px; }
 }
 
 /* Bento features (6 cards) */
