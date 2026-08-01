@@ -87,22 +87,33 @@ h1 {
 
 .hero-note { margin: 14px 0 0; font-size: 13.5px; color: var(--text-2); }
 
-/* Hero fan: three real app screens under the badge */
-.fan {
-  display: flex; justify-content: center; align-items: flex-end;
-  margin: 46px auto -6px; padding: 0 24px; max-width: 780px;
+/* Hero stage: one big phone signing an agreement, ink doodles around it */
+.stage { position: relative; max-width: 880px; margin: 46px auto -2px; padding: 0 24px; }
+.device {
+  width: min(302px, 78vw); margin: 0 auto; padding: 10px;
+  background: linear-gradient(160deg, #2B2C33, #17181C); border-radius: 46px;
+  box-shadow: 0 32px 74px rgba(20,21,24,.30);
 }
-.fan img {
-  width: 216px; height: auto; border-radius: 24px; background: #fff;
-  border: 1px solid var(--border); box-shadow: 0 26px 54px rgba(20,21,24,.18);
+.device img { display: block; width: 100%; height: auto; border-radius: 37px; }
+.dec { position: absolute; color: #DCDCD8; }
+.dec-sig { width: 210px; left: 3%; top: 14%; transform: rotate(-9deg); }
+.dec-x { width: 112px; right: 6%; top: 58%; transform: rotate(7deg); }
+.dec-seal { width: 102px; right: 10%; top: 6%; transform: rotate(11deg); }
+.dec-blot { width: 76px; left: 11%; bottom: 7%; color: #E7E7E4; }
+@media (prefers-reduced-motion: no-preference) {
+  .dec-seal { animation: decbob 7s var(--ease-in-out) infinite; }
+  .dec-sig { animation: decbob 8.6s var(--ease-in-out) infinite; animation-delay: -3.2s; }
+  .dec-x { animation: decbob 7.8s var(--ease-in-out) infinite; animation-delay: -5s; }
 }
-.fan img:first-child { transform: rotate(-6.5deg) translate(20px, 16px); }
-.fan img.mid { width: 238px; position: relative; z-index: 1; }
-.fan img:last-child { transform: rotate(6.5deg) translate(-20px, 16px); }
-@media (max-width: 640px) {
-  .fan { margin-top: 36px; }
-  .fan img { width: 31vw; border-radius: 16px; }
-  .fan img.mid { width: 35vw; }
+@keyframes decbob {
+  0%, 100% { translate: 0 6px; }
+  50% { translate: 0 -8px; }
+}
+@media (max-width: 760px) {
+  .stage { margin-top: 36px; }
+  .dec-sig, .dec-x { display: none; }
+  .dec-seal { width: 72px; right: 2%; top: 2%; }
+  .dec-blot { width: 54px; left: 4%; bottom: 4%; }
 }
 
 /* Closing call to action */
