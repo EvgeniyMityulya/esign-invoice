@@ -88,19 +88,21 @@ h1 {
 /* Hero stage: the real iPhone frame with a live screenshot inside,
    the brand signature, initials, a round APPROVED seal, and floating
    currencies in light ink around it */
-.stage { --dw: min(320px, 80vw); position: relative; max-width: 880px; margin: 46px auto -2px; padding: 0 24px; }
-.device { position: relative; width: var(--dw); margin: 0 auto; filter: drop-shadow(0 30px 58px rgba(20,21,24,.28)); }
-.device .frame { display: block; position: relative; z-index: 1; width: 100%; height: auto; pointer-events: none; }
-.device .shot {
-  position: absolute; z-index: 2;
-  left: calc(var(--dw) * .0947); top: calc(var(--dw) * .0893);
-  width: calc(var(--dw) * .8106); height: auto;
-  border-radius: calc(var(--dw) * .042);
+.stage { position: relative; max-width: 880px; margin: 46px auto -2px; padding: 0 24px; }
+.device {
+  width: min(300px, 78vw); margin: 0 auto; padding: 11px;
+  background: linear-gradient(160deg, #3A3B42, #17181C); border-radius: 48px;
+  box-shadow: 0 32px 74px rgba(20,21,24,.30);
 }
+.device img { display: block; width: 100%; height: auto; border-radius: 38px; }
 .dec { position: absolute; }
-.dec-sign { width: 262px; left: 1%; top: 20%; transform: rotate(-8deg); opacity: .17; }
-.dec-init { width: 128px; right: 6%; top: 60%; transform: rotate(6deg); opacity: .15; }
-.dec-seal { width: 148px; right: 8%; top: 4%; transform: rotate(10deg); opacity: .17; }
+.dec-sign { width: 212px; left: 3%; top: 22%; transform: rotate(-8deg); opacity: .17; }
+.dec-init {
+  right: 15%; top: 56%; transform: rotate(-6deg);
+  font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
+  font-size: 56px; line-height: 1; color: #D3D3CF;
+}
+.dec-seal { width: 150px; right: 7%; top: 4%; transform: rotate(10deg); color: #CFCFCB; }
 .cur { font-weight: 800; line-height: 1; color: #D8D8D4; }
 .cur-usd { font-size: 56px; left: 12%; bottom: 16%; transform: rotate(-11deg); }
 .cur-eur { font-size: 64px; right: 14%; top: 32%; transform: rotate(9deg); }

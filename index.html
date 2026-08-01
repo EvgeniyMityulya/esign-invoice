@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://evgeniymityulya.github.io/esign-invoice/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="./favicon.png">
-<link rel="stylesheet" href="./style.css?v=12">
+<link rel="stylesheet" href="./style.css?v=13">
 </head>
 <body>
 <div class="bar">
@@ -45,14 +45,19 @@
 
   <div class="stage">
     <img class="dec dec-sign" src="./art/dec-signature.png" alt="" aria-hidden="true">
-    <img class="dec dec-init" src="./art/dec-initials.png" alt="" aria-hidden="true">
-    <img class="dec dec-seal" src="./art/dec-stamp.png" alt="" aria-hidden="true">
+    <span class="dec dec-init">M. H.</span>
+    <svg class="dec dec-seal" viewBox="0 0 160 160" fill="none" stroke="currentColor" aria-hidden="true">
+      <defs><path id="sealArc" d="M80 24a56 56 0 1 1 -0.01 0" fill="none"/></defs>
+      <circle cx="80" cy="80" r="76" stroke-width="3"/>
+      <circle cx="80" cy="80" r="44" stroke-width="2.5"/>
+      <path d="M63 82l12 12 24-26" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text font-size="13.5" font-weight="700" letter-spacing="2.6" fill="currentColor" stroke="none"><textPath href="#sealArc">APPROVED · APPROVED · APPROVED</textPath></text>
+    </svg>
     <span class="dec cur cur-usd">$</span>
     <span class="dec cur cur-eur">€</span>
     <span class="dec cur cur-gbp">£</span>
     <div class="device">
-      <img class="shot" src="./art/hero-phone.jpg" alt="An invoice with payment QR codes opened in Inko, a signature being placed" width="720" height="1565">
-      <img class="frame" src="./art/iphone-frame.svg" alt="" aria-hidden="true" width="1240" height="2415">
+      <img src="./art/hero-phone.jpg" alt="An invoice with payment QR codes opened in Inko, a signature being placed" width="720" height="1565">
     </div>
   </div>
 </section>
