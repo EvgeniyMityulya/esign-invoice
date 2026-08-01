@@ -81,9 +81,10 @@ h1 {
 
 /* App Store badge */
 .store-badge {
-  display: inline-flex; align-items: center; gap: 12px; background: var(--ink); color: #fff;
-  border-radius: 14px; padding: 11px 20px 11px 18px; text-decoration: none; transition: transform var(--dur-micro) var(--ease-out);
+  display: inline-block; line-height: 0; border-radius: 13px;
+  transition: transform var(--dur-micro) var(--ease-out);
 }
+.store-badge img { display: block; width: 168px; height: auto; }
 .store-badge:hover { transform: translateY(-1px); }
 .store-badge:active { transform: scale(.985); transition-duration: 90ms; }
 .card:active { transform: translateY(0) scale(.995); }
@@ -92,9 +93,6 @@ h1 {
 a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 7px;
 }
-.store-badge .apple { width: 26px; height: 30px; display: block; }
-.store-badge .t small { display: block; font-size: 11px; opacity: .82; line-height: 1.2; letter-spacing: .2px; text-align: left; }
-.store-badge .t b { display: block; font-size: 19px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
 
 /* Feature tags */
 .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 26px auto 0; max-width: 540px; }
