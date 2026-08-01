@@ -92,7 +92,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 }
 
 /* App screens on a dark band: keyword chips, then a full-bleed slide belt */
-.screens { background: #17181C; margin-top: 72px; padding: 54px 0 58px; overflow: hidden; }
+.screens { background: #141819; margin-top: 72px; padding: 54px 0 52px; overflow: hidden; }
 .screens h2 { color: #fff; font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; text-align: center; padding: 0 24px; }
 .screens .sub { color: #A2A4AB; margin: 0 0 20px; text-align: center; font-size: 15px; padding: 0 24px; }
 
@@ -103,23 +103,27 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   border: 1px solid rgba(255,255,255,.17); border-radius: 999px; padding: 6px 14px;
 }
 
-/* Slow endless belt across the full viewport; hovering pauses it and
-   spotlights one slide, click opens it large */
-.srail { overflow: hidden; padding: 6px 0 4px; }
+/* Slow endless belt across the full viewport. The rail carries the same
+   vertical gradient as the slide artwork (#2C2C34 → #212226 → #141819), so
+   the slides melt into one continuous strip instead of reading as boxes.
+   Hover pauses the belt and spotlights one slide, click opens it large. */
+.srail {
+  overflow: hidden; padding: 22px 0;
+  background: linear-gradient(180deg, #2C2C34, #212226 50%, #141819);
+}
 .strack { display: flex; width: max-content; }
 .sgroup { display: flex; gap: 16px; padding-right: 16px; }
 .srail img {
-  width: min(272px, 62vw); height: auto; border-radius: 26px;
-  border: 1px solid rgba(255,255,255,.09); box-shadow: 0 18px 44px rgba(0,0,0,.42);
-  transition: transform var(--dur-comp) var(--ease-out), opacity var(--dur-comp) var(--ease-out);
+  width: clamp(264px, 19vw, 352px); height: auto; border-radius: 26px;
+  transition: transform var(--dur-comp) var(--ease-out), opacity var(--dur-comp) var(--ease-out), box-shadow var(--dur-comp) var(--ease-out);
   cursor: zoom-in;
 }
 @keyframes beltscroll { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  .strack { animation: beltscroll 60s linear infinite; }
+  .strack { animation: beltscroll 80s linear infinite; }
   .srail:hover .strack { animation-play-state: paused; }
-  .srail:hover img { opacity: .38; }
-  .srail img:hover { opacity: 1; transform: scale(1.045); }
+  .srail:hover img { opacity: .35; }
+  .srail img:hover { opacity: 1; transform: scale(1.05); box-shadow: 0 26px 70px rgba(0,0,0,.55); }
 }
 /* Touch or reduced motion: a plain swipeable rail, single set of slides */
 @media (hover: none), (prefers-reduced-motion: reduce) {
@@ -127,7 +131,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .srail::-webkit-scrollbar { display: none; }
   .sgroup { padding: 0 24px 0 24px; }
   .sgroup[aria-hidden="true"] { display: none; }
-  .srail img { scroll-snap-align: center; }
+  .srail img { width: min(272px, 62vw); scroll-snap-align: center; }
 }
 
 /* Lightbox for a closer look at one slide */
@@ -137,7 +141,35 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
 .lightbox[hidden] { display: none; }
-.lightbox img { max-height: 90vh; max-width: 92vw; width: auto; height: auto; border-radius: 26px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.lightbox img { max-height: 90vh; max-width: 80vw; width: auto; height: auto; border-radius: 26px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.lightbox button {
+  position: absolute; display: flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: 999px; border: none; cursor: pointer;
+  background: rgba(255,255,255,.14); color: #fff; padding: 0;
+  transition: background var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.lightbox button:hover { background: rgba(255,255,255,.28); }
+.lightbox button svg { width: 22px; height: 22px; }
+.lightbox button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.lb-x { top: 20px; right: 20px; }
+.lb-x:active { transform: scale(.92); }
+.lb-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 20px; top: 50%; transform: translateY(-50%); }
+.lb-prev:active { transform: translateY(-50%) scale(.92); }
+.lb-next:active { transform: translateY(-50%) scale(.92); }
+@media (max-width: 600px) {
+  .lightbox { padding: 16px; }
+  .lightbox img { max-width: 88vw; }
+  .lb-prev { left: 8px; } .lb-next { right: 8px; } .lb-x { top: 12px; right: 12px; }
+}
+
+/* Trust band */
+.trust { max-width: 880px; margin: 72px auto 0; padding: 0 24px; text-align: center; }
+.trust h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 28px; text-wrap: balance; }
+.trow { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px; text-align: left; }
+.titem { border-top: 2px solid var(--ink); padding-top: 14px; }
+.titem h3 { font-size: 16.5px; font-weight: 730; letter-spacing: -0.014em; margin: 0 0 6px; }
+.titem p { margin: 0; color: var(--text-2); font-size: 14.5px; line-height: 1.55; }
 
 /* Bento features (6 cards) */
 .bento { max-width: 880px; margin: 60px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 13px; }
