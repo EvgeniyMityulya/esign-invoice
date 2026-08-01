@@ -85,9 +85,8 @@ h1 {
 .store-badge:hover { transform: translateY(-1px); }
 .store-badge:active { transform: scale(.985); transition-duration: 90ms; }
 
-.hero-note { margin: 14px 0 0; font-size: 13.5px; color: var(--text-2); }
-
-/* Hero stage: one big phone signing an agreement, ink doodles around it */
+/* Hero stage: one big phone signing a document, ink flourishes, a rubber
+   stamp, and floating currencies around it */
 .stage { position: relative; max-width: 880px; margin: 46px auto -2px; padding: 0 24px; }
 .device {
   width: min(302px, 78vw); margin: 0 auto; padding: 10px;
@@ -95,15 +94,26 @@ h1 {
   box-shadow: 0 32px 74px rgba(20,21,24,.30);
 }
 .device img { display: block; width: 100%; height: auto; border-radius: 37px; }
-.dec { position: absolute; color: #DCDCD8; }
-.dec-sig { width: 210px; left: 3%; top: 14%; transform: rotate(-9deg); }
-.dec-x { width: 112px; right: 6%; top: 58%; transform: rotate(7deg); }
-.dec-seal { width: 102px; right: 10%; top: 6%; transform: rotate(11deg); }
-.dec-blot { width: 76px; left: 11%; bottom: 7%; color: #E7E7E4; }
+.dec { position: absolute; color: #D9D9D5; }
+.dec-fl1 { width: 208px; left: 3%; top: 16%; transform: rotate(-8deg); }
+.dec-fl2 { width: 118px; right: 6%; top: 60%; transform: rotate(6deg); }
+.dec-stamp {
+  right: 8%; top: 7%; transform: rotate(10deg);
+  font-size: 14px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+  color: #D4D4D0; border: 3px solid #DBDBD7; border-radius: 10px; padding: 8px 15px;
+}
+.cur { font-weight: 800; line-height: 1; color: #DFDFDB; }
+.cur-usd { font-size: 40px; left: 17%; bottom: 20%; transform: rotate(-11deg); }
+.cur-eur { font-size: 46px; right: 16%; top: 34%; transform: rotate(9deg); }
+.cur-gbp { font-size: 34px; left: 8%; top: 4%; transform: rotate(-7deg); }
+.dec-blot { width: 64px; right: 12%; bottom: 8%; color: #E7E7E4; }
 @media (prefers-reduced-motion: no-preference) {
-  .dec-seal { animation: decbob 7s var(--ease-in-out) infinite; }
-  .dec-sig { animation: decbob 8.6s var(--ease-in-out) infinite; animation-delay: -3.2s; }
-  .dec-x { animation: decbob 7.8s var(--ease-in-out) infinite; animation-delay: -5s; }
+  .dec-stamp { animation: decbob 7s var(--ease-in-out) infinite; }
+  .dec-fl1 { animation: decbob 8.6s var(--ease-in-out) infinite; animation-delay: -3.2s; }
+  .dec-fl2 { animation: decbob 7.8s var(--ease-in-out) infinite; animation-delay: -5s; }
+  .cur-usd { animation: decbob 6.6s var(--ease-in-out) infinite; animation-delay: -1.8s; }
+  .cur-eur { animation: decbob 7.4s var(--ease-in-out) infinite; animation-delay: -4.2s; }
+  .cur-gbp { animation: decbob 8s var(--ease-in-out) infinite; animation-delay: -2.7s; }
 }
 @keyframes decbob {
   0%, 100% { translate: 0 6px; }
@@ -111,9 +121,11 @@ h1 {
 }
 @media (max-width: 760px) {
   .stage { margin-top: 36px; }
-  .dec-sig, .dec-x { display: none; }
-  .dec-seal { width: 72px; right: 2%; top: 2%; }
-  .dec-blot { width: 54px; left: 4%; bottom: 4%; }
+  .dec-fl1, .dec-fl2, .cur-eur { display: none; }
+  .dec-stamp { right: 2%; top: 1%; font-size: 11px; padding: 6px 10px; border-width: 2.5px; }
+  .cur-usd { left: 5%; bottom: 6%; font-size: 30px; }
+  .cur-gbp { left: 4%; top: 2%; font-size: 26px; }
+  .dec-blot { width: 44px; right: 4%; bottom: 3%; }
 }
 
 /* Closing call to action */
