@@ -35,7 +35,7 @@ body {
 
   /* Below the fold: reveal as it scrolls into view (zero-JS, per-item stagger by row) */
   @supports (animation-timeline: view()) {
-    .showcase, .closing, .card {
+    .closing, .card {
       animation: pageup linear both;
       animation-timeline: view();
       /* complete during entry — elements near the page bottom can't reach a
@@ -45,7 +45,6 @@ body {
   }
   /* Fallback for browsers without scroll timelines: gentle load fade */
   @supports not (animation-timeline: view()) {
-    .showcase { animation: pageup var(--dur-section) var(--ease-out) both; animation-delay: 60ms; }
     .bento { animation: pageup var(--dur-section) var(--ease-out) both; animation-delay: 120ms; }
   }
 }
@@ -98,56 +97,36 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 26px auto 0; max-width: 540px; }
 .tag { font-size: 13px; font-weight: 600; color: #3A3C42; border: 1px solid var(--border); border-radius: 8px; padding: 6px 13px; background: #FCFCFB; }
 
-/* Showcase (phone mockup slot) */
-.showcase { max-width: 920px; margin: 60px auto 0; padding: 0 24px; text-align: center; }
-.phone { width: 250px; margin: 0 auto; border-radius: 40px; padding: 11px; background: linear-gradient(160deg, #2B2C33, #17181C); box-shadow: 0 26px 60px rgba(20,21,24,.30); }
-.screen { border-radius: 30px; background: #fff; overflow: hidden; aspect-ratio: 250 / 524; position: relative; text-align: left; }
-.screen .nav { padding: 16px 16px 8px; font-size: 12px; color: var(--text-2); border-bottom: 1px solid var(--border); }
-.screen .nav b { color: var(--text); font-weight: 650; }
-.screen .doc { padding: 16px; }
-.screen .ln { height: 7px; border-radius: 4px; background: #EDEDEB; margin: 0 0 9px; }
-.screen .ln.s { width: 62%; } .screen .ln.m { width: 84%; } .screen .ln.l { width: 96%; }
-.screen .sigline { margin-top: 26px; border-top: 1.5px solid #D8D8D5; padding-top: 8px; position: relative; }
-.screen .sigline svg { width: 120px; height: 44px; position: absolute; left: 4px; top: -34px; color: var(--ink); }
-.screen .sigcap { font-size: 10px; color: var(--text-2); }
-.screen .signed { position: absolute; right: 14px; bottom: 16px; display: inline-flex; align-items: center; gap: 5px; background: #17181C; color: #fff; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px; }
-.showcase .cap { margin-top: 22px; color: var(--text-2); font-size: 15px; }
-
-/* Real screens, three across. Scrolls sideways on a phone rather than
-   shrinking three devices down to thumbnails. */
-.gallery { max-width: 1020px; margin: 76px auto 0; padding: 0 24px; }
-.gallery h2 {
-  font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; text-align: center;
+/* App screens on a dark band: pill switcher on top, snap-scroll rail below */
+.screens { background: #17181C; margin-top: 72px; padding: 54px 0 58px; }
+.screens h2 { color: #fff; font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; text-align: center; padding: 0 24px; }
+.screens .sub { color: #A2A4AB; margin: 0 0 24px; text-align: center; font-size: 15px; padding: 0 24px; }
+.spills {
+  display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+  max-width: 1020px; margin: 0 auto; padding: 2px 24px 20px;
 }
-.gallery .sub { margin: 0 0 34px; color: var(--text-2); text-align: center; font-size: 15px; }
-.gallery .rail {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; align-items: start;
+.spills::-webkit-scrollbar { display: none; }
+@media (min-width: 900px) { .spills { flex-wrap: wrap; justify-content: center; } }
+.spill {
+  flex: none; font: inherit; font-size: 13.5px; font-weight: 620; letter-spacing: -0.006em;
+  color: #C9CBD1; background: transparent; border: 1px solid rgba(255,255,255,.17);
+  border-radius: 999px; padding: 7px 15px; cursor: pointer;
+  transition: color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
 }
-.gallery figure { margin: 0; text-align: center; }
-.gallery .frame {
-  border-radius: 34px; padding: 9px;
-  background: linear-gradient(160deg, #2B2C33, #17181C);
-  box-shadow: 0 22px 50px rgba(20, 21, 24, .26);
+.spill:hover { color: #fff; border-color: rgba(255,255,255,.36); }
+.spill:active { transform: scale(.96); transition-duration: 90ms; }
+.spill.is-on { background: #fff; color: #17181C; border-color: #fff; }
+.spill:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.srail {
+  display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
+  max-width: 1020px; margin: 0 auto; padding: 4px 24px 10px; scrollbar-width: none;
 }
-.gallery img { width: 100%; display: block; border-radius: 26px; }
-.gallery figcaption {
-  margin-top: 15px; font-size: 14.5px; font-weight: 620; color: var(--text);
+.srail::-webkit-scrollbar { display: none; }
+.srail img {
+  flex: none; width: min(300px, 72vw); height: auto; border-radius: 22px;
+  scroll-snap-align: center; border: 1px solid rgba(255,255,255,.09);
+  box-shadow: 0 18px 44px rgba(0,0,0,.42);
 }
-.gallery figcaption span { display: block; font-weight: 400; color: var(--text-2); font-size: 13.5px; }
-
-@media (max-width: 760px) {
-  .gallery { padding: 0; }
-  .gallery h2, .gallery .sub { padding: 0 24px; }
-  .gallery .rail {
-    grid-template-columns: repeat(3, 68vw);
-    overflow-x: auto; scroll-snap-type: x mandatory;
-    padding: 0 24px 6px; gap: 18px;
-    scrollbar-width: none;
-  }
-  .gallery .rail::-webkit-scrollbar { display: none; }
-  .gallery figure { scroll-snap-align: center; }
-}
-/* real screenshot: replace .screen contents with <img src="./shots/sign.png" style="width:100%;display:block"> */
 
 /* Bento features (6 cards) */
 .bento { max-width: 880px; margin: 60px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 13px; }
