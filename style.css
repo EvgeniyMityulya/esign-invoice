@@ -33,7 +33,7 @@ body {
 
   /* Below the fold: reveal as it scrolls into view (zero-JS, per-item stagger by row) */
   @supports (animation-timeline: view()) {
-    .closing, .card {
+    .closing, .card, .zrow {
       animation: pageup linear both;
       animation-timeline: view();
       /* complete during entry — elements near the page bottom can't reach a
@@ -115,6 +115,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .sgroup { display: flex; gap: 16px; padding-right: 16px; }
 .srail img {
   width: clamp(264px, 19vw, 352px); height: auto; border-radius: 26px;
+  border: 1px solid rgba(255,255,255,.10);
   transition: transform var(--dur-comp) var(--ease-out), opacity var(--dur-comp) var(--ease-out), box-shadow var(--dur-comp) var(--ease-out);
   cursor: zoom-in;
 }
@@ -141,7 +142,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
 .lightbox[hidden] { display: none; }
-.lightbox img { max-height: 90vh; max-width: 80vw; width: auto; height: auto; border-radius: 26px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+/* Controls anchor to the slide itself, not the viewport edges */
+.lb-wrap { position: relative; }
+.lb-wrap img { display: block; max-height: 88vh; max-width: 80vw; width: auto; height: auto; border-radius: 26px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
 .lightbox button {
   position: absolute; display: flex; align-items: center; justify-content: center;
   width: 46px; height: 46px; border-radius: 999px; border: none; cursor: pointer;
@@ -151,25 +154,57 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .lightbox button:hover { background: rgba(255,255,255,.28); }
 .lightbox button svg { width: 22px; height: 22px; }
 .lightbox button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-.lb-x { top: 20px; right: 20px; }
+.lb-x { top: -8px; right: -60px; }
 .lb-x:active { transform: scale(.92); }
-.lb-prev { left: 20px; top: 50%; transform: translateY(-50%); }
-.lb-next { right: 20px; top: 50%; transform: translateY(-50%); }
+.lb-prev { left: -64px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: -64px; top: 50%; transform: translateY(-50%); }
 .lb-prev:active { transform: translateY(-50%) scale(.92); }
 .lb-next:active { transform: translateY(-50%) scale(.92); }
-@media (max-width: 600px) {
+/* Narrow screens: no room beside the slide, lay controls over it */
+@media (max-width: 700px) {
   .lightbox { padding: 16px; }
-  .lightbox img { max-width: 88vw; }
-  .lb-prev { left: 8px; } .lb-next { right: 8px; } .lb-x { top: 12px; right: 12px; }
+  .lb-wrap img { max-width: 88vw; }
+  .lb-prev { left: 8px; } .lb-next { right: 8px; } .lb-x { top: 8px; right: 8px; background: rgba(20,21,24,.55); }
 }
 
-/* Trust band */
-.trust { max-width: 880px; margin: 72px auto 0; padding: 0 24px; text-align: center; }
-.trust h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 28px; text-wrap: balance; }
-.trow { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px; text-align: left; }
-.titem { border-top: 2px solid var(--ink); padding-top: 14px; }
-.titem h3 { font-size: 16.5px; font-weight: 730; letter-spacing: -0.014em; margin: 0 0 6px; }
-.titem p { margin: 0; color: var(--text-2); font-size: 14.5px; line-height: 1.55; }
+/* Alternating feature rows on dark panels, artwork cut from the slides */
+.zig { max-width: 928px; margin: 72px auto 0; padding: 0 24px; display: grid; gap: 18px; }
+.zrow {
+  display: grid; grid-template-columns: 1.05fr .95fr; align-items: center;
+  background: linear-gradient(160deg, #1E1F24, #141819); color: #fff;
+  border-radius: 22px; overflow: hidden; min-height: 330px;
+  box-shadow: 0 24px 60px rgba(20,21,24,.28);
+}
+.ztext { padding: 40px 38px; }
+.ztag {
+  display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: #8B8E96; margin-bottom: 12px;
+}
+.ztext h3 { font-size: 22px; font-weight: 760; letter-spacing: -0.02em; margin: 0 0 10px; text-wrap: balance; }
+.ztext p { margin: 0; color: #A2A4AB; font-size: 15px; line-height: 1.6; }
+.zart { position: relative; align-self: stretch; min-height: 300px; }
+.zart img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  mask-image: linear-gradient(90deg, transparent, #000 16%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%);
+}
+.zrow.rev .ztext { order: 2; }
+.zrow.rev .zart { order: 1; }
+.zrow.rev .zart img {
+  mask-image: linear-gradient(270deg, transparent, #000 16%);
+  -webkit-mask-image: linear-gradient(270deg, transparent, #000 16%);
+}
+@media (max-width: 700px) {
+  .zrow, .zrow.rev { grid-template-columns: 1fr; min-height: 0; }
+  .zrow.rev .ztext { order: 1; }
+  .zrow.rev .zart { order: 2; }
+  .ztext { padding: 28px 24px 4px; }
+  .zart { min-height: 220px; margin-top: 10px; }
+  .zart img, .zrow.rev .zart img {
+    mask-image: linear-gradient(180deg, transparent, #000 14%);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%);
+  }
+}
 
 /* Bento features (6 cards) */
 .bento { max-width: 880px; margin: 60px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 13px; }
