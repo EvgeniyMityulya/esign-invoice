@@ -85,32 +85,30 @@ h1 {
 .store-badge:hover { transform: translateY(-1px); }
 .store-badge:active { transform: scale(.985); transition-duration: 90ms; }
 
-/* Hero stage: one big phone signing a document, ink flourishes, a rubber
-   stamp, and floating currencies around it */
-.stage { position: relative; max-width: 880px; margin: 46px auto -2px; padding: 0 24px; }
-.device {
-  width: min(302px, 78vw); margin: 0 auto; padding: 10px;
-  background: linear-gradient(160deg, #2B2C33, #17181C); border-radius: 46px;
-  box-shadow: 0 32px 74px rgba(20,21,24,.30);
+/* Hero stage: the real iPhone frame with a live screenshot inside,
+   the brand signature, initials, a round APPROVED seal, and floating
+   currencies in light ink around it */
+.stage { --dw: min(320px, 80vw); position: relative; max-width: 880px; margin: 46px auto -2px; padding: 0 24px; }
+.device { position: relative; width: var(--dw); margin: 0 auto; filter: drop-shadow(0 30px 58px rgba(20,21,24,.28)); }
+.device .frame { display: block; position: relative; z-index: 1; width: 100%; height: auto; pointer-events: none; }
+.device .shot {
+  position: absolute; z-index: 2;
+  left: calc(var(--dw) * .0947); top: calc(var(--dw) * .0893);
+  width: calc(var(--dw) * .8106); height: auto;
+  border-radius: calc(var(--dw) * .042);
 }
-.device img { display: block; width: 100%; height: auto; border-radius: 37px; }
-.dec { position: absolute; color: #D9D9D5; }
-.dec-fl1 { width: 208px; left: 3%; top: 16%; transform: rotate(-8deg); }
-.dec-fl2 { width: 118px; right: 6%; top: 60%; transform: rotate(6deg); }
-.dec-stamp {
-  right: 8%; top: 7%; transform: rotate(10deg);
-  font-size: 14px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
-  color: #D4D4D0; border: 3px solid #DBDBD7; border-radius: 10px; padding: 8px 15px;
-}
-.cur { font-weight: 800; line-height: 1; color: #DFDFDB; }
-.cur-usd { font-size: 40px; left: 17%; bottom: 20%; transform: rotate(-11deg); }
-.cur-eur { font-size: 46px; right: 16%; top: 34%; transform: rotate(9deg); }
-.cur-gbp { font-size: 34px; left: 8%; top: 4%; transform: rotate(-7deg); }
-.dec-blot { width: 64px; right: 12%; bottom: 8%; color: #E7E7E4; }
+.dec { position: absolute; }
+.dec-sign { width: 262px; left: 1%; top: 20%; transform: rotate(-8deg); opacity: .17; }
+.dec-init { width: 128px; right: 6%; top: 60%; transform: rotate(6deg); opacity: .15; }
+.dec-seal { width: 148px; right: 8%; top: 4%; transform: rotate(10deg); opacity: .17; }
+.cur { font-weight: 800; line-height: 1; color: #D8D8D4; }
+.cur-usd { font-size: 56px; left: 12%; bottom: 16%; transform: rotate(-11deg); }
+.cur-eur { font-size: 64px; right: 14%; top: 32%; transform: rotate(9deg); }
+.cur-gbp { font-size: 48px; left: 6%; top: 2%; transform: rotate(-7deg); }
 @media (prefers-reduced-motion: no-preference) {
-  .dec-stamp { animation: decbob 7s var(--ease-in-out) infinite; }
-  .dec-fl1 { animation: decbob 8.6s var(--ease-in-out) infinite; animation-delay: -3.2s; }
-  .dec-fl2 { animation: decbob 7.8s var(--ease-in-out) infinite; animation-delay: -5s; }
+  .dec-seal { animation: decbob 7s var(--ease-in-out) infinite; }
+  .dec-sign { animation: decbob 8.6s var(--ease-in-out) infinite; animation-delay: -3.2s; }
+  .dec-init { animation: decbob 7.8s var(--ease-in-out) infinite; animation-delay: -5s; }
   .cur-usd { animation: decbob 6.6s var(--ease-in-out) infinite; animation-delay: -1.8s; }
   .cur-eur { animation: decbob 7.4s var(--ease-in-out) infinite; animation-delay: -4.2s; }
   .cur-gbp { animation: decbob 8s var(--ease-in-out) infinite; animation-delay: -2.7s; }
@@ -121,11 +119,10 @@ h1 {
 }
 @media (max-width: 760px) {
   .stage { margin-top: 36px; }
-  .dec-fl1, .dec-fl2, .cur-eur { display: none; }
-  .dec-stamp { right: 2%; top: 1%; font-size: 11px; padding: 6px 10px; border-width: 2.5px; }
-  .cur-usd { left: 5%; bottom: 6%; font-size: 30px; }
-  .cur-gbp { left: 4%; top: 2%; font-size: 26px; }
-  .dec-blot { width: 44px; right: 4%; bottom: 3%; }
+  .dec-sign, .dec-init, .cur-eur { display: none; }
+  .dec-seal { width: 84px; right: 1%; top: 0; }
+  .cur-usd { left: 4%; bottom: 5%; font-size: 38px; }
+  .cur-gbp { left: 3%; top: 1%; font-size: 32px; }
 }
 
 /* Closing call to action */
