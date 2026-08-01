@@ -76,14 +76,14 @@ h1 {
 }
 .lede { font-size: clamp(1.02rem, 2.2vw, 1.16rem); color: var(--text-2); max-width: 480px; margin: 0 auto 26px; text-wrap: balance; }
 
-/* App Store badge */
+/* App Store badge. Apple's marketing guidelines forbid animating the badge,
+   so no hover or press transforms here. */
 .store-badge {
   display: inline-block; line-height: 0; border-radius: 13px;
-  transition: transform var(--dur-micro) var(--ease-out);
+  transition: opacity var(--dur-micro) var(--ease-out);
 }
 .store-badge img { display: block; width: 168px; height: auto; }
-.store-badge:hover { transform: translateY(-1px); }
-.store-badge:active { transform: scale(.985); transition-duration: 90ms; }
+.store-badge:hover { opacity: .86; }
 
 /* Hero stage: the real iPhone frame with a live screenshot inside,
    the brand signature, initials, a round APPROVED seal, and floating
