@@ -85,6 +85,31 @@ h1 {
 .store-badge:hover { transform: translateY(-1px); }
 .store-badge:active { transform: scale(.985); transition-duration: 90ms; }
 
+.hero-note { margin: 14px 0 0; font-size: 13.5px; color: var(--text-2); }
+
+/* Hero fan: three real app screens under the badge */
+.fan {
+  display: flex; justify-content: center; align-items: flex-end;
+  margin: 46px auto -6px; padding: 0 24px; max-width: 780px;
+}
+.fan img {
+  width: 216px; height: auto; border-radius: 24px; background: #fff;
+  border: 1px solid var(--border); box-shadow: 0 26px 54px rgba(20,21,24,.18);
+}
+.fan img:first-child { transform: rotate(-6.5deg) translate(20px, 16px); }
+.fan img.mid { width: 238px; position: relative; z-index: 1; }
+.fan img:last-child { transform: rotate(6.5deg) translate(-20px, 16px); }
+@media (max-width: 640px) {
+  .fan { margin-top: 36px; }
+  .fan img { width: 31vw; border-radius: 16px; }
+  .fan img.mid { width: 35vw; }
+}
+
+/* Closing call to action */
+.cta { max-width: 720px; margin: 78px auto 0; padding: 0 24px; text-align: center; }
+.cta h2 { font-size: 27px; letter-spacing: -0.022em; margin: 0 0 8px; text-wrap: balance; }
+.cta .sub { color: var(--text-2); font-size: 15px; margin: 0 0 22px; }
+
 /* Focus-visible rings (accessibility) */
 a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 7px;
@@ -180,14 +205,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   position: relative; align-self: stretch; min-height: 300px;
   display: flex; align-items: center; justify-content: center;
 }
-/* Wide elliptical glow, like light falling behind the object */
+/* Light falls from the top left: round glow shifted up-left,
+   shadow cast down-right */
 .zart::before {
-  content: ""; position: absolute; width: 78%; height: 190px; border-radius: 50%;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.16), rgba(255,255,255,.05) 55%, transparent 78%);
+  content: ""; position: absolute; width: 300px; height: 300px; border-radius: 50%;
+  transform: translate(-5%, -8%);
+  background: radial-gradient(closest-side, rgba(255,255,255,.17), rgba(255,255,255,.05) 52%, transparent 74%);
 }
 .zart img {
   position: relative; width: min(225px, 56%); height: auto;
-  filter: drop-shadow(0 26px 34px rgba(0,0,0,.5));
+  filter: drop-shadow(16px 26px 28px rgba(0,0,0,.55));
   will-change: transform;
 }
 @keyframes zfloat {
