@@ -74,7 +74,14 @@ h1 {
   font-size: clamp(2.1rem, 5.4vw, 3.15rem); font-weight: 780; line-height: 1.06;
   letter-spacing: -0.03em; margin: 0 0 16px; text-wrap: balance;
 }
-.lede { font-size: clamp(1.02rem, 2.2vw, 1.16rem); color: var(--text-2); max-width: 480px; margin: 0 auto 26px; text-wrap: balance; }
+/* Two lines, two jobs: the promise reads almost as loud as the headline, the
+   reassurance sits back. One idea per line beats one paragraph that wraps
+   wherever the viewport decides. */
+.lede {
+  font-size: clamp(1.14rem, 2.7vw, 1.36rem); font-weight: 560; line-height: 1.34;
+  color: var(--text); max-width: 540px; margin: 0 auto 10px; text-wrap: balance;
+}
+.lede-note { font-size: clamp(.95rem, 2vw, 1.04rem); color: var(--text-2); max-width: 490px; margin: 0 auto 26px; text-wrap: balance; }
 
 /* App Store badge. Apple's marketing guidelines forbid animating the badge,
    so no hover or press transforms here. */
@@ -96,26 +103,26 @@ h1 {
   width: min(960px, calc(100vw - 40px)); max-width: none;
   margin: 46px 0 -2px; padding: 0 24px;
 }
-.device {
-  width: min(300px, 78vw); margin: 0 auto; padding: 11px;
-  background: linear-gradient(160deg, #3A3B42, #17181C); border-radius: 48px;
-  box-shadow: 0 32px 74px rgba(20,21,24,.30);
-}
-.device img { display: block; width: 100%; height: auto; border-radius: 38px; }
+/* The art carries its own phone body and shadow, so no CSS chrome here.
+   Within the 1528px source: the frame spans 17.1%–82.9% of the width, the
+   invoice sheet bleeds wider at 5.9%–94.0% across the middle 12%–88% of the
+   height. Those edges, not the frame, are what the decor has to clear. */
+.device { width: min(456px, 100%); margin: 0 auto; }
+.device img, .device picture { display: block; width: 100%; height: auto; }
 /* The two arcs read as one wide oval around the phone: ink marks (signature,
    seal, initials) swing out furthest at mid-height, currencies hug the frame.
    Slightly darker than before — the old tint all but vanished on white. */
 .dec { position: absolute; }
-.dec-sign { width: 212px; left: 1.5%; top: 36%; transform: rotate(-8deg); opacity: .22; }
+.dec-sign { width: 190px; left: 1%; top: 38%; transform: rotate(-8deg); opacity: .22; }
 .dec-init {
-  right: 4%; top: 43%; transform: rotate(-6deg);
+  right: 2.5%; top: 43%; transform: rotate(-6deg);
   font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
   font-size: 56px; line-height: 1; color: #C8C8C3;
 }
-.dec-seal { width: 150px; right: 9%; top: 3%; transform: rotate(10deg); color: #C3C3BE; }
+.dec-seal { width: 150px; right: 7%; top: 3%; transform: rotate(10deg); color: #C3C3BE; }
 .cur { font-weight: 800; line-height: 1; color: #CECEC9; }
-.cur-usd { font-size: 56px; left: 25.5%; bottom: 14%; transform: rotate(-11deg); }
-.cur-eur { font-size: 64px; right: 25.5%; top: 68%; transform: rotate(9deg); }
+.cur-usd { font-size: 56px; left: 19.5%; bottom: 14%; transform: rotate(-11deg); }
+.cur-eur { font-size: 64px; right: 19.5%; top: 68%; transform: rotate(9deg); }
 .cur-gbp { font-size: 48px; left: 26%; top: 4%; transform: rotate(-7deg); }
 @media (prefers-reduced-motion: no-preference) {
   .dec-seal { animation: decbob 7s var(--ease-in-out) infinite; }
@@ -132,17 +139,21 @@ h1 {
 /* Narrower stage, narrower side gutters: shrink the marks so they still clear
    the phone instead of drifting over it. */
 @media (max-width: 1040px) {
-  .dec-sign { width: 168px; left: 0.5%; }
-  .dec-seal { width: 116px; right: 5%; }
-  .dec-init { font-size: 42px; right: 2%; }
-  .cur-usd { font-size: 44px; left: 20%; }
-  .cur-eur { font-size: 48px; right: 19.5%; }
-  .cur-gbp { font-size: 38px; left: 21%; }
+  .device { width: min(380px, 100%); }
+  .dec-sign { width: 150px; left: 1%; }
+  .dec-seal { width: 104px; right: 4%; }
+  .dec-init { font-size: 38px; right: 1.5%; }
+  .cur-usd { font-size: 40px; left: 19%; }
+  .cur-eur { font-size: 42px; right: 18%; }
+  .cur-gbp { font-size: 34px; left: 19%; }
 }
 /* Below this the phone eats the full width — there is no gutter left to stand
    in, and decor drawn over the screenshot is what made it invisible. */
 @media (max-width: 760px) {
-  .stage { margin-top: 36px; }
+  /* Trim the stage padding instead of widening the art: a child wider than
+     its container does not centre, it just runs off the right edge. */
+  .stage { margin-top: 36px; padding: 0 4px; }
+  .device { width: min(420px, 100%); }
   .dec { display: none; }
 }
 
