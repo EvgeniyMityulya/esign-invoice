@@ -107,39 +107,46 @@ h1 {
   margin: 46px 0 -2px; padding: 0 24px;
 }
 /* The art carries its own phone body and shadow, so no CSS chrome here.
-   Its silhouette is not a rectangle, and that is what the decor has to clear.
-   Right edge as a percentage of the art box, read off the asset's alpha
-   channel in 5% slices of its height:
+   It is cropped so the phone and the sheet sit on the art box's own centre
+   line (both measure 49.9–50.0%), which is why the box carries 16% of empty
+   space down its left side: that mirrors how far the pen reaches out right.
+   Centre the box and the composition is centred.
 
-      0–10%   69–72%   phone frame only
-     10–25%      81%   invoice sheet
-     25–35%     100%   the pen, at full reach
-     35–45%   98→96%   |
-     45–55%   93→90%   | pen tapering back in
-     55–65%   87→84%   |
-     65–90%      81%   sheet again
-     90–100%     72%   phone frame only
+   The silhouette is still not a rectangle, and that is what the decor has to
+   clear. Right edge as a percentage of the art box, in 5% slices of height:
 
-   Left edge is 4% wherever the sheet is, 13–16% above and below it. */
-.device { width: min(500px, 100%); margin: 0 auto; }
+      0–10%   73–75%   phone frame only
+     10–25%    83.4%   invoice sheet
+     25–35%    99.8%   the pen, at full reach
+     35–45%  98→96%    |
+     45–55%  94→91%    | pen tapering back in
+     55–65%  89→86%    |
+     65–90%    83.4%   sheet again
+     90–100%   73–75%  phone frame only
+
+   Left edge is 16.4% wherever the sheet is, 24–27% above and below it. */
+.device { width: min(560px, 100%); margin: 0 auto; }
 .device img, .device picture { display: block; width: 100%; height: auto; }
 /* Six marks on a ring around the art: seal at the top right, euro out past the
    pen at the sheet's midline, initials below it, then dollar, signature and
    pound back up the left side. */
 .dec { position: absolute; }
-.dec-sign { width: 170px; left: 2.5%; top: 38%; transform: rotate(-8deg); opacity: .22; }
+.dec-sign { width: 170px; left: 6%; top: 37%; transform: rotate(-8deg); opacity: .22; }
 .dec-init {
-  right: 12%; top: 70%; transform: rotate(-6deg);
+  right: 8%; top: 68%; transform: rotate(-6deg);
   font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
   font-size: 56px; line-height: 1; color: #C8C8C3;
 }
-/* Smaller and higher than it used to be: it has to finish above the 25% mark,
-   where the pen starts claiming the right side. */
-.dec-seal { width: 132px; right: 14%; top: 0.5%; transform: rotate(10deg); color: #C3C3BE; }
+/* Small and high on purpose: it has to finish above the 25% mark, where the
+   pen starts claiming the right side. */
+.dec-seal { width: 132px; right: 10.5%; top: 0; transform: rotate(10deg); color: #C3C3BE; }
 .cur { font-weight: 800; line-height: 1; color: #CECEC9; }
-.cur-usd { font-size: 56px; left: 16.5%; bottom: 15%; transform: rotate(-11deg); }
-.cur-eur { font-size: 64px; right: 17%; top: 47%; transform: rotate(9deg); }
-.cur-gbp { font-size: 48px; left: 17.5%; top: 3%; transform: rotate(-7deg); }
+.cur-usd { font-size: 56px; left: 20.5%; bottom: 15%; transform: rotate(-11deg); }
+/* Sits past the pen, not under it — hence the small inset. */
+.cur-eur { font-size: 64px; right: 14.5%; top: 45%; transform: rotate(9deg); }
+/* Dips below the phone's rounded top corner, so it clears the sheet's edge
+   at 16.4%, not the frame's at 24.5%. */
+.cur-gbp { font-size: 48px; left: 22%; top: 2%; transform: rotate(-7deg); }
 @media (prefers-reduced-motion: no-preference) {
   .dec-seal { animation: decbob 7s var(--ease-in-out) infinite; }
   .dec-sign { animation: decbob 8.6s var(--ease-in-out) infinite; animation-delay: -3.2s; }
@@ -155,23 +162,22 @@ h1 {
 /* Narrower stage, narrower side gutters: shrink the marks so they still clear
    the phone instead of drifting over it. */
 @media (max-width: 1040px) {
-  .device { width: min(420px, 100%); }
-  .dec-sign { width: 124px; left: 0.5%; }
-  .dec-seal { width: 104px; right: 8%; }
-  .dec-init { font-size: 40px; right: 8%; }
-  .cur-usd { font-size: 40px; left: 13%; }
-  /* Has to clear the pen, not the sheet — hence far less inset than the
-     other currencies. */
-  .cur-eur { font-size: 42px; right: 15%; }
-  .cur-gbp { font-size: 34px; left: 14%; }
+  .device { width: min(460px, 100%); }
+  .dec-sign { width: 140px; left: 3%; }
+  .dec-seal { width: 104px; right: 6%; }
+  .dec-init { font-size: 40px; right: 6%; }
+  .cur-usd { font-size: 40px; left: 20%; }
+  .cur-eur { font-size: 42px; right: 11%; }
+  .cur-gbp { font-size: 34px; left: 24%; }
 }
 /* Below this the phone eats the full width — there is no gutter left to stand
    in, and decor drawn over the screenshot is what made it invisible. */
 @media (max-width: 760px) {
-  /* Trim the stage padding instead of widening the art: a child wider than
-     its container does not centre, it just runs off the right edge. */
-  .stage { margin-top: 36px; padding: 0 4px; }
-  .device { width: min(420px, 100%); }
+  /* Wider stage, no padding: the art carries 16% of empty space on its left,
+     so a box sized to the text column would render a small phone with a
+     margin baked into the pixels. Trim the stage instead of the art. */
+  .stage { margin-top: 36px; width: calc(100vw - 16px); padding: 0; }
+  .device { width: min(440px, 100%); }
   .dec { display: none; }
 }
 
