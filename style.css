@@ -69,25 +69,22 @@ body {
 
 /* Hero */
 .hero { max-width: 720px; margin: 0 auto; padding: 74px 24px 8px; text-align: center; }
-.hero .app-icon { width: 92px; height: 92px; border-radius: 21px; margin-bottom: 22px; box-shadow: 0 12px 34px rgba(20,21,24,.20); }
-/* Who this is for, before the pitch: a visitor decides "that's me" or leaves,
-   and the line that answered it used to sit under the final CTA. */
-.eyebrow {
-  display: block; margin: 0 0 14px; font-size: 12.5px; font-weight: 700;
-  letter-spacing: .09em; text-transform: uppercase; color: var(--text-2);
-}
+.hero .app-icon { width: 92px; height: 92px; border-radius: 21px; margin-bottom: 26px; box-shadow: 0 12px 34px rgba(20,21,24,.20); }
+/* Who this is for, right under the button: it answers "is this for me?" at the
+   moment of the decision, and it used to sit under the final CTA where almost
+   nobody reaches it. Quiet on purpose — the headline and the one line above
+   the button carry the pitch. */
+.audience { margin: 15px 0 0; font-size: 13.5px; color: var(--text-2); }
 h1 {
   font-size: clamp(2.1rem, 5.4vw, 3.15rem); font-weight: 780; line-height: 1.06;
   letter-spacing: -0.03em; margin: 0 0 16px; text-wrap: balance;
 }
-/* Two lines, two jobs: the promise reads almost as loud as the headline, the
-   reassurance sits back. One idea per line beats one paragraph that wraps
-   wherever the viewport decides. */
+/* One line, said once. Two stacked paragraphs plus an eyebrow read as a wall
+   of text above the button, which is the last place to put one. */
 .lede {
   font-size: clamp(1.14rem, 2.7vw, 1.36rem); font-weight: 560; line-height: 1.34;
-  color: var(--text); max-width: 540px; margin: 0 auto 10px; text-wrap: balance;
+  color: var(--text); max-width: 520px; margin: 0 auto 28px; text-wrap: balance;
 }
-.lede-note { font-size: clamp(.95rem, 2vw, 1.04rem); color: var(--text-2); max-width: 490px; margin: 0 auto 26px; text-wrap: balance; }
 
 /* App Store badge. Apple's marketing guidelines forbid animating the badge,
    so no hover or press transforms here. */
@@ -110,26 +107,29 @@ h1 {
   margin: 46px 0 -2px; padding: 0 24px;
 }
 /* The art carries its own phone body and shadow, so no CSS chrome here.
-   Its silhouette is not a rectangle, and that is what the decor has to clear
-   (percentages of the art box, measured off the asset's alpha channel):
+   Its silhouette is not a rectangle, and that is what the decor has to clear.
+   Right edge as a percentage of the art box, read off the asset's alpha
+   channel in 5% slices of its height:
 
-     height band   left    right
-     0–10%         13.3%   71.7%   phone frame only
-     10–25%         4.0%   80.9%   invoice sheet
-     25–65%         4.0%   99.8%   sheet + the pen reaching out right
-     65–90%         4.0%   80.9%   sheet
-     90–100%       13.2%   71.7%   phone frame only
+      0–10%   69–72%   phone frame only
+     10–25%      81%   invoice sheet
+     25–35%     100%   the pen, at full reach
+     35–45%   98→96%   |
+     45–55%   93→90%   | pen tapering back in
+     55–65%   87→84%   |
+     65–90%      81%   sheet again
+     90–100%     72%   phone frame only
 
-   The pen owns the middle of the right side, so nothing else goes there. */
+   Left edge is 4% wherever the sheet is, 13–16% above and below it. */
 .device { width: min(500px, 100%); margin: 0 auto; }
 .device img, .device picture { display: block; width: 100%; height: auto; }
-/* Six marks on a ring around the art, the pen counting as the seventh: seal
-   top right, pen mid right, initials low right, then dollar, signature and
-   pound back up the left. Nothing sits beside the pen. */
+/* Six marks on a ring around the art: seal at the top right, euro out past the
+   pen at the sheet's midline, initials below it, then dollar, signature and
+   pound back up the left side. */
 .dec { position: absolute; }
 .dec-sign { width: 170px; left: 2.5%; top: 38%; transform: rotate(-8deg); opacity: .22; }
 .dec-init {
-  right: 7%; top: 68%; transform: rotate(-6deg);
+  right: 12%; top: 70%; transform: rotate(-6deg);
   font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
   font-size: 56px; line-height: 1; color: #C8C8C3;
 }
@@ -138,7 +138,7 @@ h1 {
 .dec-seal { width: 132px; right: 14%; top: 0.5%; transform: rotate(10deg); color: #C3C3BE; }
 .cur { font-weight: 800; line-height: 1; color: #CECEC9; }
 .cur-usd { font-size: 56px; left: 16.5%; bottom: 15%; transform: rotate(-11deg); }
-.cur-eur { font-size: 64px; right: 23.5%; top: 82%; transform: rotate(9deg); }
+.cur-eur { font-size: 64px; right: 17%; top: 47%; transform: rotate(9deg); }
 .cur-gbp { font-size: 48px; left: 17.5%; top: 3%; transform: rotate(-7deg); }
 @media (prefers-reduced-motion: no-preference) {
   .dec-seal { animation: decbob 7s var(--ease-in-out) infinite; }
@@ -156,11 +156,13 @@ h1 {
    the phone instead of drifting over it. */
 @media (max-width: 1040px) {
   .device { width: min(420px, 100%); }
-  .dec-sign { width: 132px; left: 1.5%; }
+  .dec-sign { width: 124px; left: 0.5%; }
   .dec-seal { width: 104px; right: 8%; }
-  .dec-init { font-size: 40px; right: 4%; }
+  .dec-init { font-size: 40px; right: 8%; }
   .cur-usd { font-size: 40px; left: 13%; }
-  .cur-eur { font-size: 42px; right: 20%; }
+  /* Has to clear the pen, not the sheet — hence far less inset than the
+     other currencies. */
+  .cur-eur { font-size: 42px; right: 15%; }
   .cur-gbp { font-size: 34px; left: 14%; }
 }
 /* Below this the phone eats the full width — there is no gutter left to stand
@@ -283,16 +285,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .zart img {
   position: relative; width: min(225px, 56%); height: auto;
   filter: drop-shadow(16px 26px 28px rgba(0,0,0,.55));
-  will-change: transform;
+  will-change: translate;
 }
+/* Animates `translate`, not `transform`, so the glow keeps its own light
+   offset (a transform here would wipe it out). */
 @keyframes zfloat {
-  0%, 100% { transform: translateY(9px); }
-  50% { transform: translateY(-11px); }
+  0%, 100% { translate: 0 9px; }
+  50% { translate: 0 -11px; }
 }
+/* The glow floats WITH the object. It used to sit still while the icon drifted
+   20px through it, which read as light missing its target (user 2026-08-04).
+   Same duration and delay on both, so they never separate. */
 @media (prefers-reduced-motion: no-preference) {
-  .zart img { animation: zfloat 7s var(--ease-in-out) infinite; }
-  .zig .zrow:nth-child(2) .zart img { animation-duration: 8.2s; animation-delay: -2.6s; }
-  .zig .zrow:nth-child(3) .zart img { animation-duration: 7.6s; animation-delay: -4.1s; }
+  .zart img, .zart::before { animation: zfloat 7s var(--ease-in-out) infinite; }
+  .zig .zrow:nth-child(2) .zart img,
+  .zig .zrow:nth-child(2) .zart::before { animation-duration: 8.2s; animation-delay: -2.6s; }
+  .zig .zrow:nth-child(3) .zart img,
+  .zig .zrow:nth-child(3) .zart::before { animation-duration: 7.6s; animation-delay: -4.1s; }
 }
 .zrow.rev .ztext { order: 2; }
 .zrow.rev .zart { order: 1; }
