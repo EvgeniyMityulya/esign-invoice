@@ -71,10 +71,16 @@ body {
 .hero { max-width: 720px; margin: 0 auto; padding: 74px 24px 8px; text-align: center; }
 .hero .app-icon { width: 92px; height: 92px; border-radius: 21px; margin-bottom: 26px; box-shadow: 0 12px 34px rgba(20,21,24,.20); }
 /* Who this is for, right under the button: it answers "is this for me?" at the
-   moment of the decision, and it used to sit under the final CTA where almost
-   nobody reaches it. Quiet on purpose — the headline and the one line above
-   the button carry the pitch. */
-.audience { margin: 15px 0 0; font-size: 13.5px; color: var(--text-2); }
+   moment of the decision. Drawn as a chip rather than a sentence — as running
+   text it read like a fragment someone forgot to finish (user 2026-08-04). */
+/* width:fit-content + auto margins, not inline-block: inline-block would flow
+   onto the badge's own line, since the badge is inline too. */
+.audience {
+  width: fit-content; margin: 18px auto 0; padding: 7px 16px;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--bg-soft);
+  font-size: 12.5px; font-weight: 620; color: var(--text-2);
+}
+.audience i { font-style: normal; margin: 0 3px; color: #C8C9CD; }
 h1 {
   font-size: clamp(2.1rem, 5.4vw, 3.15rem); font-weight: 780; line-height: 1.06;
   letter-spacing: -0.03em; margin: 0 0 16px; text-wrap: balance;
