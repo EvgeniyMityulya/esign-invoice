@@ -71,16 +71,22 @@ body {
 .hero { max-width: 720px; margin: 0 auto; padding: 74px 24px 8px; text-align: center; }
 .hero .app-icon { width: 92px; height: 92px; border-radius: 21px; margin-bottom: 26px; box-shadow: 0 12px 34px rgba(20,21,24,.20); }
 /* Who this is for, right under the button: it answers "is this for me?" at the
-   moment of the decision. Drawn as a chip rather than a sentence — as running
-   text it read like a fragment someone forgot to finish (user 2026-08-04). */
-/* width:fit-content + auto margins, not inline-block: inline-block would flow
-   onto the badge's own line, since the badge is inline too. */
+   moment of the decision. Four chips, not a sentence — one grey line of names
+   read as a disabled control (user 2026-08-04).
+   Ink text on an ink hairline, not a filled black pill: the App Store badge is
+   solid black and is the thing that must win here. */
 .audience {
-  width: fit-content; margin: 18px auto 0; padding: 7px 16px;
-  border: 1px solid var(--border); border-radius: 999px; background: var(--bg-soft);
-  font-size: 12.5px; font-weight: 620; color: var(--text-2);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  /* No cap: at 540px the fourth chip dropped to a row of its own. The hero's
+     own column is the only limit that should apply. */
+  list-style: none; margin: 20px auto 0; padding: 0;
 }
-.audience i { font-style: normal; margin: 0 3px; color: #C8C9CD; }
+.audience li {
+  margin: 0; padding: 7px 15px; white-space: nowrap;
+  border: 1px solid rgba(23,24,28,.24); border-radius: 999px;
+  font-size: 12.5px; font-weight: 640; line-height: 1.2;
+  letter-spacing: .002em; color: var(--text);
+}
 h1 {
   font-size: clamp(2.1rem, 5.4vw, 3.15rem); font-weight: 780; line-height: 1.06;
   letter-spacing: -0.03em; margin: 0 0 16px; text-wrap: balance;
