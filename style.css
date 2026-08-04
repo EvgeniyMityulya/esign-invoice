@@ -69,7 +69,13 @@ body {
 
 /* Hero */
 .hero { max-width: 720px; margin: 0 auto; padding: 74px 24px 8px; text-align: center; }
-.hero .app-icon { width: 92px; height: 92px; border-radius: 21px; margin-bottom: 28px; box-shadow: 0 12px 34px rgba(20,21,24,.20); }
+.hero .app-icon { width: 92px; height: 92px; border-radius: 21px; margin-bottom: 22px; box-shadow: 0 12px 34px rgba(20,21,24,.20); }
+/* Who this is for, before the pitch: a visitor decides "that's me" or leaves,
+   and the line that answered it used to sit under the final CTA. */
+.eyebrow {
+  display: block; margin: 0 0 14px; font-size: 12.5px; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--text-2);
+}
 h1 {
   font-size: clamp(2.1rem, 5.4vw, 3.15rem); font-weight: 780; line-height: 1.06;
   letter-spacing: -0.03em; margin: 0 0 16px; text-wrap: balance;
@@ -104,26 +110,36 @@ h1 {
   margin: 46px 0 -2px; padding: 0 24px;
 }
 /* The art carries its own phone body and shadow, so no CSS chrome here.
-   Within the 1528px source: the frame spans 17.1%–82.9% of the width, the
-   invoice sheet bleeds wider at 5.9%–94.0% across the middle 12%–88% of the
-   height. Those edges, not the frame, are what the decor has to clear. */
-.device { width: min(456px, 100%); margin: 0 auto; }
+   Its silhouette is not a rectangle, and that is what the decor has to clear
+   (percentages of the art box, measured off the asset's alpha channel):
+
+     height band   left    right
+     0–10%         13.3%   71.7%   phone frame only
+     10–25%         4.0%   80.9%   invoice sheet
+     25–65%         4.0%   99.8%   sheet + the pen reaching out right
+     65–90%         4.0%   80.9%   sheet
+     90–100%       13.2%   71.7%   phone frame only
+
+   The pen owns the middle of the right side, so nothing else goes there. */
+.device { width: min(500px, 100%); margin: 0 auto; }
 .device img, .device picture { display: block; width: 100%; height: auto; }
-/* The two arcs read as one wide oval around the phone: ink marks (signature,
-   seal, initials) swing out furthest at mid-height, currencies hug the frame.
-   Slightly darker than before — the old tint all but vanished on white. */
+/* Six marks on a ring around the art, the pen counting as the seventh: seal
+   top right, pen mid right, initials low right, then dollar, signature and
+   pound back up the left. Nothing sits beside the pen. */
 .dec { position: absolute; }
-.dec-sign { width: 190px; left: 1%; top: 38%; transform: rotate(-8deg); opacity: .22; }
+.dec-sign { width: 170px; left: 2.5%; top: 38%; transform: rotate(-8deg); opacity: .22; }
 .dec-init {
-  right: 2.5%; top: 43%; transform: rotate(-6deg);
+  right: 7%; top: 68%; transform: rotate(-6deg);
   font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
   font-size: 56px; line-height: 1; color: #C8C8C3;
 }
-.dec-seal { width: 150px; right: 7%; top: 3%; transform: rotate(10deg); color: #C3C3BE; }
+/* Smaller and higher than it used to be: it has to finish above the 25% mark,
+   where the pen starts claiming the right side. */
+.dec-seal { width: 132px; right: 14%; top: 0.5%; transform: rotate(10deg); color: #C3C3BE; }
 .cur { font-weight: 800; line-height: 1; color: #CECEC9; }
-.cur-usd { font-size: 56px; left: 19.5%; bottom: 14%; transform: rotate(-11deg); }
-.cur-eur { font-size: 64px; right: 19.5%; top: 68%; transform: rotate(9deg); }
-.cur-gbp { font-size: 48px; left: 26%; top: 4%; transform: rotate(-7deg); }
+.cur-usd { font-size: 56px; left: 16.5%; bottom: 15%; transform: rotate(-11deg); }
+.cur-eur { font-size: 64px; right: 23.5%; top: 82%; transform: rotate(9deg); }
+.cur-gbp { font-size: 48px; left: 17.5%; top: 3%; transform: rotate(-7deg); }
 @media (prefers-reduced-motion: no-preference) {
   .dec-seal { animation: decbob 7s var(--ease-in-out) infinite; }
   .dec-sign { animation: decbob 8.6s var(--ease-in-out) infinite; animation-delay: -3.2s; }
@@ -139,13 +155,13 @@ h1 {
 /* Narrower stage, narrower side gutters: shrink the marks so they still clear
    the phone instead of drifting over it. */
 @media (max-width: 1040px) {
-  .device { width: min(380px, 100%); }
-  .dec-sign { width: 150px; left: 1%; }
-  .dec-seal { width: 104px; right: 4%; }
-  .dec-init { font-size: 38px; right: 1.5%; }
-  .cur-usd { font-size: 40px; left: 19%; }
-  .cur-eur { font-size: 42px; right: 18%; }
-  .cur-gbp { font-size: 34px; left: 19%; }
+  .device { width: min(420px, 100%); }
+  .dec-sign { width: 132px; left: 1.5%; }
+  .dec-seal { width: 104px; right: 8%; }
+  .dec-init { font-size: 40px; right: 4%; }
+  .cur-usd { font-size: 40px; left: 13%; }
+  .cur-eur { font-size: 42px; right: 20%; }
+  .cur-gbp { font-size: 34px; left: 14%; }
 }
 /* Below this the phone eats the full width — there is no gutter left to stand
    in, and decor drawn over the screenshot is what made it invisible. */
