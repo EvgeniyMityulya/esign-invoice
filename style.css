@@ -88,25 +88,35 @@ h1 {
 /* Hero stage: the real iPhone frame with a live screenshot inside,
    the brand signature, initials, a round APPROVED seal, and floating
    currencies in light ink around it */
-.stage { position: relative; max-width: 880px; margin: 46px auto -2px; padding: 0 24px; }
+/* Breaks out of the hero's 720px text column: the decor needs room to sit
+   BESIDE the phone, never on top of it. Anything left of the phone must end
+   before its left edge, anything right of it must start after its right one. */
+.stage {
+  position: relative; left: 50%; translate: -50% 0;
+  width: min(960px, calc(100vw - 40px)); max-width: none;
+  margin: 46px 0 -2px; padding: 0 24px;
+}
 .device {
   width: min(300px, 78vw); margin: 0 auto; padding: 11px;
   background: linear-gradient(160deg, #3A3B42, #17181C); border-radius: 48px;
   box-shadow: 0 32px 74px rgba(20,21,24,.30);
 }
 .device img { display: block; width: 100%; height: auto; border-radius: 38px; }
+/* The two arcs read as one wide oval around the phone: ink marks (signature,
+   seal, initials) swing out furthest at mid-height, currencies hug the frame.
+   Slightly darker than before — the old tint all but vanished on white. */
 .dec { position: absolute; }
-.dec-sign { width: 212px; left: 3%; top: 22%; transform: rotate(-8deg); opacity: .17; }
+.dec-sign { width: 212px; left: 1.5%; top: 36%; transform: rotate(-8deg); opacity: .22; }
 .dec-init {
-  right: 15%; top: 56%; transform: rotate(-6deg);
+  right: 4%; top: 43%; transform: rotate(-6deg);
   font-family: "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
-  font-size: 56px; line-height: 1; color: #D3D3CF;
+  font-size: 56px; line-height: 1; color: #C8C8C3;
 }
-.dec-seal { width: 150px; right: 7%; top: 4%; transform: rotate(10deg); color: #CFCFCB; }
-.cur { font-weight: 800; line-height: 1; color: #D8D8D4; }
-.cur-usd { font-size: 56px; left: 12%; bottom: 16%; transform: rotate(-11deg); }
-.cur-eur { font-size: 64px; right: 14%; top: 32%; transform: rotate(9deg); }
-.cur-gbp { font-size: 48px; left: 6%; top: 2%; transform: rotate(-7deg); }
+.dec-seal { width: 150px; right: 9%; top: 3%; transform: rotate(10deg); color: #C3C3BE; }
+.cur { font-weight: 800; line-height: 1; color: #CECEC9; }
+.cur-usd { font-size: 56px; left: 25.5%; bottom: 14%; transform: rotate(-11deg); }
+.cur-eur { font-size: 64px; right: 25.5%; top: 68%; transform: rotate(9deg); }
+.cur-gbp { font-size: 48px; left: 26%; top: 4%; transform: rotate(-7deg); }
 @media (prefers-reduced-motion: no-preference) {
   .dec-seal { animation: decbob 7s var(--ease-in-out) infinite; }
   .dec-sign { animation: decbob 8.6s var(--ease-in-out) infinite; animation-delay: -3.2s; }
@@ -119,12 +129,21 @@ h1 {
   0%, 100% { translate: 0 6px; }
   50% { translate: 0 -8px; }
 }
+/* Narrower stage, narrower side gutters: shrink the marks so they still clear
+   the phone instead of drifting over it. */
+@media (max-width: 1040px) {
+  .dec-sign { width: 168px; left: 0.5%; }
+  .dec-seal { width: 116px; right: 5%; }
+  .dec-init { font-size: 42px; right: 2%; }
+  .cur-usd { font-size: 44px; left: 20%; }
+  .cur-eur { font-size: 48px; right: 19.5%; }
+  .cur-gbp { font-size: 38px; left: 21%; }
+}
+/* Below this the phone eats the full width — there is no gutter left to stand
+   in, and decor drawn over the screenshot is what made it invisible. */
 @media (max-width: 760px) {
   .stage { margin-top: 36px; }
-  .dec-sign, .dec-init, .cur-eur { display: none; }
-  .dec-seal { width: 84px; right: 1%; top: 0; }
-  .cur-usd { left: 4%; bottom: 5%; font-size: 38px; }
-  .cur-gbp { left: 3%; top: 1%; font-size: 32px; }
+  .dec { display: none; }
 }
 
 /* Closing call to action */
