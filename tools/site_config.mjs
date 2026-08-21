@@ -7,7 +7,8 @@ export const APP = {
   id: '6788092513',
   name: 'Inko: Invoice Maker & eSign',
   shortName: 'Inko',
-  storeUrl: 'https://apps.apple.com/us/app/inko-invoice-maker-esign/id6788092513',
+  // no locale in the path: Apple redirects to the visitor's own storefront
+  storeUrl: 'https://apps.apple.com/app/id6788092513',
   category: 'BusinessApplication',
   os: 'iOS 18.0 or later',
   price: '0',
