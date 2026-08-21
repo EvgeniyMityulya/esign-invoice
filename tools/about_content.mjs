@@ -2,37 +2,38 @@
 // it, what happens to your data. Edit here, the page is generated.
 export const ABOUT = {
   title: 'About Inko',
-  lead: 'An iPhone app for the paperwork at the end of a job: estimates, signatures and invoices, finished before you leave.',
-  // three blocks in the same style as the home page
+  // two lines, the first shorter than the second
+  lead: 'Paperwork finished on your phone.\nEstimates, invoices and signatures, without a laptop or an account.',
+  // short noun tags, bold marks the phrase that matters, same as the home page
   blocks: [
     {
-      tag: 'The app',
-      title: 'What Inko actually is',
-      body: 'An estimate, a client signature and an invoice, all on one phone. You build the document in a minute, the client signs it with a finger, and the signed estimate becomes an invoice in one tap. Nothing to install on their side, no email round trip.',
+      tag: 'Documents',
+      title: 'Estimate, signature, invoice',
+      body: 'Build the document in a minute, hand over the phone, and the client signs with a finger. The signed estimate **becomes an invoice in one tap**, so nothing gets retyped.',
       art: 'art/3d-document.png',
       alt: 'A document with a signature'
     },
     {
-      tag: 'Why it exists',
-      title: 'Paperwork always slips to next week',
-      body: 'Every trade and freelance job ends the same way. The work is done, everyone stands in the hallway, and you promise to send the estimate later. Later becomes next week, and next week becomes an awkward reminder. Inko closes that gap while you are still on site.',
+      tag: 'Payments',
+      title: 'Paid directly, with no cut',
+      body: 'A payment QR code sends the client to **your own PayPal, Stripe or Revolut**. Inko never holds the money and takes no commission.',
       art: 'art/3d-coin.png',
       alt: 'A chrome coin'
     },
     {
-      tag: 'Your data',
+      tag: 'Security',
       title: 'Nothing leaves the phone',
-      body: 'There are no accounts and no server. Clients, documents and signatures stay on your iPhone, so I cannot see who you work for or what you charge. Payment QR codes point at your own PayPal, Stripe or Revolut, so the money never passes through me either.',
+      body: 'No accounts and no server. Clients, documents and signatures **stay on your iPhone**, which also means the app works with no signal on site.',
       art: 'art/3d-shield.png',
       alt: 'A shield'
     }
   ],
-  whoTitle: 'Who makes it?',
+  whoTitle: 'Developer',
   name: 'Evgeniy Mityulya',
   role: 'iOS Engineer, Founder of Inko',
   who: [
-    'I write the app and the documents it produces, alone. That includes the PDF renderer, the signature engine and every default template, so if something in a document looks wrong you know exactly whom to tell 🙂',
-    'Write to me directly. Feature requests from people who actually invoice for a living are the ones that get built first.'
+    'I write the app and every document it produces, alone. If something in a PDF looks wrong, you know exactly whom to tell 🙂',
+    'Write to me directly. Requests from people who invoice for a living get built first.'
   ],
   photo: 'author.jpg'
 };

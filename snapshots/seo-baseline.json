@@ -66,29 +66,23 @@
     "description": "Why Inko exists, who builds it, and why your invoices and signatures never leave your iPhone. Written by Evgeniy Mityulya, iOS engineer.",
     "canonical": "https://inkoinvoice.com/about/",
     "robots": "index,follow,max-image-preview:large",
-    "h1": "Built by one developer who was tired of chasing paperwork",
+    "h1": "About Inko",
     "schemaTypes": [
       "Organization",
       "Person",
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 271
+    "bodyWords": 286
   },
   "/faq/": {
     "status": 200,
-    "title": "FAQ — Inko | Signatures, estimates and invoices",
-    "description": "Is a finger signature legally binding? Can a client sign on your phone? Straight answers about electronic signatures, estimates and invoices in Inko.",
-    "canonical": "https://inkoinvoice.com/faq/",
-    "robots": "index,follow,max-image-preview:large",
-    "h1": "Signing and invoicing, answered",
-    "schemaTypes": [
-      "FAQPage",
-      "Organization",
-      "Person",
-      "WebPage",
-      "WebSite"
-    ],
-    "bodyWords": 473
+    "title": "",
+    "description": "",
+    "canonical": "",
+    "robots": "",
+    "h1": "FAQ",
+    "schemaTypes": [],
+    "bodyWords": 465
   }
 }

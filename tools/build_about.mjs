@@ -5,6 +5,8 @@ import { ABOUT, AUTHOR_LINKS } from './about_content.mjs';
 import { BRAND_ICONS } from './brand_icons_data.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const rich = (s) => esc(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+const lines = (s) => esc(s).split('\n').join('<br>');
 const shell = readFileSync('support/index.html', 'utf8');
 const root = (h) => h
   .replace(/href="\.\.\//g, 'href="/').replace(/href="\.\//g, 'href="/')
@@ -18,7 +20,7 @@ const rows = ABOUT.blocks.map((b, i) => `  <div class="zrow${i % 2 ? ' flip' : '
     <div class="ztext">
       <span class="ztag">${esc(b.tag)}</span>
       <h2>${esc(b.title)}</h2>
-      <p>${esc(b.body)}</p>
+      <p>${rich(b.body)}</p>
     </div>
     <div class="zart"><img src="/${b.art}" alt="${esc(b.alt)}" width="600" height="600" loading="lazy"></div>
   </div>`).join('\n');
@@ -44,7 +46,7 @@ ${bar}
   <section class="about-hero">
     <img class="app-icon" src="/icon.png" alt="Inko app icon" width="78" height="78">
     <h1>${esc(ABOUT.title)}</h1>
-    <p class="lead">${esc(ABOUT.lead)}</p>
+    <p class="lead">${lines(ABOUT.lead)}</p>
   </section>
 
 <section class="zig">

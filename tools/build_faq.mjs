@@ -36,7 +36,7 @@ ${bar
   <section class="wrap narrow">
     <div class="faq-head">
       <h1>FAQ</h1>
-      <p class="lead">The questions people ask most about signing, estimates and invoices.</p>
+      <p class="lead">The questions people ask most.<br>Signing, estimates, invoices and what the free tier covers.</p>
     </div>
     <div class="faq">
 ${items}
