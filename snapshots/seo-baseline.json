@@ -1,0 +1,42 @@
+{
+  "/": {
+    "status": 200,
+    "title": "Inko — Invoice Maker &amp; eSign",
+    "description": "Inko is an invoice maker and eSign app for iPhone. Bill the client before you leave the job: invoices, estimates and receipts, signed on the spot. No account, no commission, nothing leaves your device.",
+    "canonical": "",
+    "robots": "",
+    "h1": "Invoice. Sign. Get paid.",
+    "schemaTypes": [],
+    "bodyWords": 201
+  },
+  "/support/": {
+    "status": 200,
+    "title": "Support — Inko",
+    "description": "",
+    "canonical": "",
+    "robots": "",
+    "h1": "Support",
+    "schemaTypes": [],
+    "bodyWords": 218
+  },
+  "/privacy/": {
+    "status": 200,
+    "title": "Privacy Policy — Inko",
+    "description": "",
+    "canonical": "",
+    "robots": "",
+    "h1": "Privacy Policy",
+    "schemaTypes": [],
+    "bodyWords": 945
+  },
+  "/terms/": {
+    "status": 200,
+    "title": "Terms of Use — Inko",
+    "description": "",
+    "canonical": "",
+    "robots": "",
+    "h1": "Terms of Use",
+    "schemaTypes": [],
+    "bodyWords": 856
+  }
+}
