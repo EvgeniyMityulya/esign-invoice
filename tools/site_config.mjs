@@ -1,7 +1,7 @@
 // One place that knows where the site lives. Flip SITE the day the domain is
 // live and every generator follows: canonical, sitemap, robots, OG, schema.
-export const SITE = 'https://evgeniymityulya.github.io/esign-invoice';
-export const SITE_NEXT = 'https://inkoinvoice.com';
+export const SITE = 'https://inkoinvoice.com';
+export const SITE_NEXT = 'https://inkoinvoice.com'; // live
 
 export const APP = {
   id: '6788092513',

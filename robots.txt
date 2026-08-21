@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://evgeniymityulya.github.io/esign-invoice/sitemap.xml
+Sitemap: https://inkoinvoice.com/sitemap.xml

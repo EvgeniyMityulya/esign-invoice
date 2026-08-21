@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://evgeniymityulya.github.io/esign-invoice/</loc><priority>1.0</priority></url>
-  <url><loc>https://evgeniymityulya.github.io/esign-invoice/support/</loc><priority>0.6</priority></url>
-  <url><loc>https://evgeniymityulya.github.io/esign-invoice/privacy/</loc><priority>0.4</priority></url>
-  <url><loc>https://evgeniymityulya.github.io/esign-invoice/terms/</loc><priority>0.4</priority></url>
-  <url><loc>https://evgeniymityulya.github.io/esign-invoice/faq/</loc><priority>0.8</priority></url>
+  <url><loc>https://inkoinvoice.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://inkoinvoice.com/support/</loc><priority>0.6</priority></url>
+  <url><loc>https://inkoinvoice.com/privacy/</loc><priority>0.4</priority></url>
+  <url><loc>https://inkoinvoice.com/terms/</loc><priority>0.4</priority></url>
+  <url><loc>https://inkoinvoice.com/faq/</loc><priority>0.8</priority></url>
 </urlset>
