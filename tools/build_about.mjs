@@ -25,7 +25,8 @@ const rows = ABOUT.blocks.map((b, i) => `  <div class="zrow${i % 2 ? ' flip' : '
     <div class="zart"><img src="/${b.art}" alt="${esc(b.alt)}" width="600" height="600" loading="lazy"></div>
   </div>`).join('\n');
 
-const mark = (l) => `<svg viewBox="0 0 24 24" width="18" height="18" fill="${l.color}" aria-hidden="true"><path d="${BRAND_ICONS[l.icon]}"/></svg>`;
+// brand mark inside a coloured chip, so it stays legible on the dark card
+const mark = (l) => `<span class="brand-chip" style="background:${l.chip}"><svg viewBox="0 0 24 24" width="13" height="13" fill="${l.mark}" aria-hidden="true"><path d="${BRAND_ICONS[l.icon]}"/></svg></span>`;
 const links = AUTHOR_LINKS.map((l) =>
   `        <a class="author-link" href="${l.href}" rel="me noopener" target="_blank" aria-label="${esc(l.handle)}, ${esc(l.label)}">${mark(l)}${esc(l.handle)}</a>`
 ).join('\n');
@@ -54,9 +55,10 @@ ${rows}
 </section>
 
   <section class="dev-wrap">
-    <h2 class="about-h2">${esc(ABOUT.whoTitle)}</h2>
     <div class="dev-card">
+      <img class="dev-photo" src="/${ABOUT.photo}" alt="${esc(ABOUT.name)}" width="118" height="118" loading="lazy">
       <div>
+        <span class="ztag dev-tag">${esc(ABOUT.whoTitle)}</span>
         <div class="dev-name">${esc(ABOUT.name)}</div>
         <div class="dev-role">${esc(ABOUT.role)}</div>
 ${ABOUT.who.map((p) => `        <p>${esc(p)}</p>`).join('\n')}
@@ -64,7 +66,6 @@ ${ABOUT.who.map((p) => `        <p>${esc(p)}</p>`).join('\n')}
 ${links}
         </div>
       </div>
-      <img class="dev-photo" src="/${ABOUT.photo}" alt="${esc(ABOUT.name)}" width="118" height="118" loading="lazy">
     </div>
 
     <div class="faq-foot">
