@@ -73,16 +73,22 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 286
+    "bodyWords": 195
   },
   "/faq/": {
     "status": 200,
-    "title": "",
-    "description": "",
-    "canonical": "",
-    "robots": "",
+    "title": "FAQ — Inko | Signatures, estimates and invoices",
+    "description": "Is a finger signature legally binding? Can a client sign on your phone? Straight answers about electronic signatures, estimates and invoices in Inko.",
+    "canonical": "https://inkoinvoice.com/faq/",
+    "robots": "index,follow,max-image-preview:large",
     "h1": "FAQ",
-    "schemaTypes": [],
-    "bodyWords": 465
+    "schemaTypes": [
+      "FAQPage",
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 469
   }
 }

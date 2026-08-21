@@ -9,21 +9,21 @@ export const ABOUT = {
     {
       tag: 'Documents',
       title: 'Estimate, signature, invoice',
-      body: 'Build the document in a minute, hand over the phone, and the client signs with a finger. The signed estimate **becomes an invoice in one tap**, so nothing gets retyped.',
+      body: 'Build it in a minute, hand over the phone, and the client signs with a finger. The signed estimate **becomes an invoice in one tap**.',
       art: 'art/3d-document.png',
       alt: 'A document with a signature'
     },
     {
       tag: 'Payments',
       title: 'Paid directly, with no cut',
-      body: 'A payment QR code sends the client to **your own PayPal, Stripe or Revolut**. Inko never holds the money and takes no commission.',
+      body: 'The payment QR code points at **your own PayPal, Stripe or Revolut**. Inko never holds the money and takes no commission.',
       art: 'art/3d-coin.png',
       alt: 'A chrome coin'
     },
     {
       tag: 'Security',
       title: 'Nothing leaves the phone',
-      body: 'No accounts and no server. Clients, documents and signatures **stay on your iPhone**, which also means the app works with no signal on site.',
+      body: 'No accounts, no server. Documents and signatures **stay on your iPhone**, so the app also works with no signal.',
       art: 'art/3d-shield.png',
       alt: 'A shield'
     }

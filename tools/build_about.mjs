@@ -42,7 +42,7 @@ writeFileSync('about/index.html', `<!doctype html>
 <body>
 ${bar}
 
-<main class="page">
+<main class="page about">
   <section class="about-hero">
     <img class="app-icon" src="/icon.png" alt="Inko app icon" width="78" height="78">
     <h1>${esc(ABOUT.title)}</h1>
