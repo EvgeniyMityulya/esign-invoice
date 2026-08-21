@@ -365,11 +365,11 @@ main.center h2 { text-align: center; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary .chev { flex: none; width: 18px; height: 18px; color: var(--text-2); transition: transform var(--dur-comp) var(--ease-out); }
 .faq details[open] summary .chev { transform: rotate(180deg); }
-.faq .a { padding: 0 4px 16px; margin: 0; color: var(--text-2); font-size: 15px; }
+.faq .a { padding: 2px 4px 18px; margin: 0; color: var(--text-2); font-size: 15px; line-height: 1.62; }
 /* Smooth open AND close (was open-only). Modern CSS; older browsers fall back to instant. */
 .faq details::details-content {
-  opacity: 0; height: 0; overflow: clip;
-  transition: opacity var(--dur-comp) var(--ease-out), height var(--dur-comp) var(--ease-out), content-visibility var(--dur-comp);
+  opacity: 0; height: 0; overflow: clip; contain: paint;
+  transition: opacity var(--dur-comp) var(--ease-out), height var(--dur-comp) var(--ease-out), content-visibility var(--dur-comp) allow-discrete;
   transition-behavior: allow-discrete;
 }
 .faq details[open]::details-content { opacity: 1; height: auto; }
@@ -453,7 +453,7 @@ footer .spacer { flex: 1; }
 .bar nav a.active:hover { background: #17181C; box-shadow: none; }
 
 @media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  .zrow .ztext, .faq details { transition: transform var(--dur-comp) var(--ease-out); }
+  .zrow .ztext { transition: transform var(--dur-comp) var(--ease-out); }
   .zrow:hover .zart img { transform: translateY(-4px) scale(1.01); }
   .zart img { transition: transform var(--dur-comp) var(--ease-out); }
 }
@@ -462,3 +462,27 @@ footer .spacer { flex: 1; }
 .faq-more { margin-top: 26px; font-size: 15px; color: var(--text-2); }
 .faq-more a { color: var(--text); }
 .faq-cta { margin-top: 30px; }
+
+/* FAQ page: labelled section, centred call to action */
+.faq-head { text-align: center; max-width: 640px; margin: 0 auto 30px; }
+.faq-eyebrow { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--text-2); margin-bottom: 12px; }
+.faq-head h1 { margin: 0 0 10px; }
+.faq-head .lede { margin: 0 auto; max-width: 30em; }
+.faq-foot { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--border); text-align: center; }
+.faq-foot .support-line { margin: 0 0 20px; font-size: 15px; color: var(--text-2); }
+.faq-foot .store-badge { display: inline-block; }
+
+/* About page: author card and profile links */
+.author-card { border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px; margin: 18px 0 26px; }
+.author-head { margin-bottom: 12px; }
+.author-name { display: block; font-weight: 700; font-size: 17.5px; }
+.author-role { display: block; font-size: 14px; color: var(--text-2); margin-top: 2px; }
+.author-card p { margin: 0 0 12px; color: var(--text-2); font-size: 15px; line-height: 1.62; }
+.author-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.author-link {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--border); font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none;
+  transition: border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.author-link:hover { border-color: #B9B9B4; transform: translateY(-1px); }
+.page .wrap.narrow h2 { margin: 30px 0 10px; font-size: 21px; }

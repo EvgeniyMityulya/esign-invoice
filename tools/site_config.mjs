@@ -33,7 +33,8 @@ export const AUTHOR = {
 export const CAMPAIGNS = {
   'index.html': 'site-home',
   'faq/index.html': 'site-faq',
-  'support/index.html': 'site-support'
+  'support/index.html': 'site-support',
+  'about/index.html': 'site-about'
 };
 
 export const PAGES = [
@@ -49,6 +50,9 @@ export const PAGES = [
   { file: 'terms/index.html', path: '/terms/', priority: '0.4',
     title: 'Terms of Use — Inko',
     description: 'The terms that apply when you use Inko for invoices, estimates and electronic signatures on iPhone.' },
+  { file: 'about/index.html', path: '/about/', priority: '0.7',
+    title: 'About Inko — built by one iOS developer',
+    description: 'Why Inko exists, who builds it, and why your invoices and signatures never leave your iPhone. Written by Evgeniy Mityulya, iOS engineer.' },
   { file: 'faq/index.html', path: '/faq/', priority: '0.8', faq: true,
     title: 'FAQ — Inko | Signatures, estimates and invoices',
     description: 'Is a finger signature legally binding? Can a client sign on your phone? Straight answers about electronic signatures, estimates and invoices in Inko.' },

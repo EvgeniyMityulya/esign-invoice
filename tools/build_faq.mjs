@@ -11,7 +11,7 @@ const footer = (shell.match(/<footer>[\s\S]*?<\/footer>/) || [''])[0];
 const chev = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
 const items = FAQ.map((f) => `      <details>
         <summary>${esc(f.q)}${chev}</summary>
-        <p>${esc(f.a)}</p>
+        <p class="a">${esc(f.a)}</p>
       </details>`).join('\n');
 
 mkdirSync('faq', { recursive: true });
@@ -34,17 +34,20 @@ ${bar
 
 <main class="page">
   <section class="wrap narrow">
-    <h1>Questions about signing and invoicing</h1>
-    <p class="lede">Short answers about signatures, estimates, invoices and what the app does with your data.</p>
+    <div class="faq-head">
+      <span class="faq-eyebrow">FAQ</span>
+      <h1>Signing and invoicing, answered</h1>
+      <p class="lede">What is legal, what stays on your phone, and what the free tier covers.</p>
+    </div>
     <div class="faq">
 ${items}
     </div>
-    <p class="faq-more">Still stuck? <a href="/support/">Write to the developer</a> and you will get an answer, usually the same day.</p>
-    <p class="faq-cta">
+    <div class="faq-foot">
+      <p class="support-line">Question not here? <a href="/support/">Write to the developer</a> and you will usually get an answer the same day.</p>
       <a class="store-badge" href="https://apps.apple.com/app/id6788092513" aria-label="Download on the App Store">
         <img src="/appstore-badge.svg" alt="Download on the App Store" width="168" height="56">
       </a>
-    </p>
+    </div>
   </section>
 </main>
 

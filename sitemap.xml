@@ -4,5 +4,6 @@
   <url><loc>https://inkoinvoice.com/support/</loc><priority>0.6</priority></url>
   <url><loc>https://inkoinvoice.com/privacy/</loc><priority>0.4</priority></url>
   <url><loc>https://inkoinvoice.com/terms/</loc><priority>0.4</priority></url>
+  <url><loc>https://inkoinvoice.com/about/</loc><priority>0.7</priority></url>
   <url><loc>https://inkoinvoice.com/faq/</loc><priority>0.8</priority></url>
 </urlset>
