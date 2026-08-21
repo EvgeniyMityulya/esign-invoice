@@ -26,9 +26,9 @@ const rows = ABOUT.blocks.map((b, i) => `  <div class="zrow${i % 2 ? ' flip' : '
   </div>`).join('\n');
 
 // brand mark inside a coloured chip, so it stays legible on the dark card
-const FRAMED = new Set(['linkedin', 'telegram']);
+const MARK_SIZE = { telegram: 20, linkedin: 14, x: 13 };
 const mark = (l) => {
-  const size = FRAMED.has(l.icon) ? 20 : 13;
+  const size = MARK_SIZE[l.icon] || 14;
   return `<span class="brand-chip" style="background:${l.chip}"><svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${l.mark}" aria-hidden="true"><path d="${BRAND_ICONS[l.icon]}"/></svg></span>`;
 };
 const links = AUTHOR_LINKS.map((l) =>
@@ -63,7 +63,7 @@ ${rows}
       <div class="dev-side">
         <img class="dev-photo" src="/${ABOUT.photo}" alt="${esc(ABOUT.name)}" width="132" height="132" loading="lazy">
         <div class="dev-name">${esc(ABOUT.name)}</div>
-        <div class="dev-role">${esc(ABOUT.role)}</div>
+        <div class="dev-role">${lines(ABOUT.role)}</div>
       </div>
       <div>
         <span class="ztag dev-tag">${esc(ABOUT.whoTitle)}</span>
