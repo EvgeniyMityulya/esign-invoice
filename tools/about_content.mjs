@@ -28,13 +28,13 @@ export const ABOUT = {
       alt: 'A shield'
     }
   ],
-  whoTitle: 'About me',
+  whoTitle: 'Founder',
   name: 'Evgeniy Mityulya',
   role: 'iOS Engineer\nFounder of Inko',
   who: [
-    'Hi, I am Evgeniy. Thanks for reading this far. If Inko is already on your phone, thank you twice, and if it is not, I would really like you to try it.',
+    'Hi, I am Evgeniy! Thanks for reading this far. If Inko is already on your phone, thank you twice, and if it is not, give it a try and tell me what breaks.',
     'I built it because I wanted all of this in one place. Sign a document in seconds, turn a finished job into an invoice, then style that invoice the way each client expects. All of it on the phone that is already in my hand, with nothing to open first and no laptop involved. If something breaks or a document comes out wrong, you know exactly whom to blame. 🙂',
-    'Write to me on any of these and I usually answer the same day.'
+    'Write to me on any of these, I usually answer the same day!'
   ],
   photo: 'author.jpg'
 };
