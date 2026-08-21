@@ -32,14 +32,15 @@ export const ABOUT = {
   name: 'Evgeniy Mityulya',
   role: 'iOS Engineer, Founder of Inko',
   who: [
-    'I build Inko alone. The app, the PDF renderer, the signature engine and every template come from the same pair of hands, so if a document comes out wrong you know exactly whom to tell 🙂',
-    'It started because I was tired of promising clients an estimate later and writing it up at midnight. Write to me on any of these and I usually answer the same day.'
+    'Hi, I am Evgeniy. Thanks for reading this far. If Inko is already on your phone, thank you twice, and if it is not, I would really like you to try it.',
+    'I built it because I wanted all of this in one place. Sign a document in seconds, turn a finished job into an invoice, then style that invoice the way each client expects. All of it on the phone that is already in my hand, with nothing to open first and no laptop involved.',
+    'If something breaks or a document comes out wrong, you know exactly whom to blame 🙂 Write to me on any of these and I usually answer the same day.'
   ],
   photo: 'author.jpg'
 };
 
 export const AUTHOR_LINKS = [
-  { label: 'LinkedIn', handle: 'Evgeniy Mityulya', href: 'https://www.linkedin.com/in/evgeniy-mityulya/', icon: 'linkedin', chip: '#0A66C2', mark: '#FFFFFF' },
-  { label: 'Telegram', handle: '@evgeniymityulya', href: 'https://t.me/evgeniymityulya', icon: 'telegram', chip: '#26A5E4', mark: '#FFFFFF' },
+  { label: 'LinkedIn', handle: 'Evgeniy Mityulya', href: 'https://www.linkedin.com/in/evgeniy-mityulya/', icon: 'linkedin', chip: '#FFFFFF', mark: '#0A66C2' },
+  { label: 'Telegram', handle: '@evgeniymityulya', href: 'https://t.me/evgeniymityulya', icon: 'telegram', chip: '#FFFFFF', mark: '#26A5E4' },
   { label: 'X', handle: '@Evgeniy_iOS', href: 'https://x.com/Evgeniy_iOS', icon: 'x', chip: '#FFFFFF', mark: '#111111' }
 ];

@@ -26,7 +26,11 @@ const rows = ABOUT.blocks.map((b, i) => `  <div class="zrow${i % 2 ? ' flip' : '
   </div>`).join('\n');
 
 // brand mark inside a coloured chip, so it stays legible on the dark card
-const mark = (l) => `<span class="brand-chip" style="background:${l.chip}"><svg viewBox="0 0 24 24" width="13" height="13" fill="${l.mark}" aria-hidden="true"><path d="${BRAND_ICONS[l.icon]}"/></svg></span>`;
+const FRAMED = new Set(['linkedin', 'telegram']);
+const mark = (l) => {
+  const size = FRAMED.has(l.icon) ? 20 : 13;
+  return `<span class="brand-chip" style="background:${l.chip}"><svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${l.mark}" aria-hidden="true"><path d="${BRAND_ICONS[l.icon]}"/></svg></span>`;
+};
 const links = AUTHOR_LINKS.map((l) =>
   `        <a class="author-link" href="${l.href}" rel="me noopener" target="_blank" aria-label="${esc(l.handle)}, ${esc(l.label)}">${mark(l)}${esc(l.handle)}</a>`
 ).join('\n');

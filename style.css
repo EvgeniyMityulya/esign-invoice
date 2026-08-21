@@ -485,7 +485,7 @@ footer .spacer { flex: 1; }
 .author-card p { margin: 0 0 12px; color: var(--text-2); font-size: 15px; line-height: 1.62; }
 .author-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .author-link {
-  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 9px; padding: 7px 16px 7px 8px; border-radius: 999px;
   border: 1px solid var(--border); font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none;
   transition: border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
 }
@@ -512,7 +512,7 @@ main.page.about .zig { margin-top: 42px; padding-left: 0; padding-right: 0; gap:
 .about-hero .lead { line-height: 1.55; }
 
 /* Developer: same dark card as the rows above, photo on the right */
-.dev-wrap { max-width: 844px; margin: 0 auto; padding: 0; }
+.dev-wrap { max-width: 844px; margin: 14px auto 0; padding: 0; }
 .dev-card {
   position: relative; color: #fff; padding: 32px 34px; display: grid;
   grid-template-columns: 168px 1fr; gap: 30px; align-items: start; overflow: hidden;
