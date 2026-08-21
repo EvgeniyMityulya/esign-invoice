@@ -53,20 +53,18 @@ ${bar}
 ${rows}
 </section>
 
-  <section class="wrap narrow">
+  <section class="dev-wrap">
     <h2 class="about-h2">${esc(ABOUT.whoTitle)}</h2>
-    <div class="author-card">
-      <div class="author-top">
-        <img class="author-photo" src="/${ABOUT.photo}" alt="${esc(ABOUT.name)}" width="72" height="72" loading="lazy">
-        <span class="author-head">
-          <span class="author-name">${esc(ABOUT.name)}</span>
-          <span class="author-role">${esc(ABOUT.role)}</span>
-        </span>
-      </div>
-${ABOUT.who.map((p) => `      <p>${esc(p)}</p>`).join('\n')}
-      <div class="author-links">
+    <div class="dev-card">
+      <div>
+        <div class="dev-name">${esc(ABOUT.name)}</div>
+        <div class="dev-role">${esc(ABOUT.role)}</div>
+${ABOUT.who.map((p) => `        <p>${esc(p)}</p>`).join('\n')}
+        <div class="author-links">
 ${links}
+        </div>
       </div>
+      <img class="dev-photo" src="/${ABOUT.photo}" alt="${esc(ABOUT.name)}" width="118" height="118" loading="lazy">
     </div>
 
     <div class="faq-foot">

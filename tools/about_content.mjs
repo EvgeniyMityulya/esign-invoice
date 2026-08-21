@@ -8,22 +8,22 @@ export const ABOUT = {
   blocks: [
     {
       tag: 'Documents',
-      title: 'Estimate, signature, invoice',
-      body: 'Build it in a minute, hand over the phone, and the client signs with a finger. The signed estimate **becomes an invoice in one tap**.',
+      title: 'From estimate to invoice',
+      body: 'Build it in a minute, hand over the phone, and the client signs with a finger. One tap **turns it into an invoice**.',
       art: 'art/3d-document.png',
       alt: 'A document with a signature'
     },
     {
       tag: 'Payments',
-      title: 'Paid directly, with no cut',
-      body: 'The payment QR code points at **your own PayPal, Stripe or Revolut**. Inko never holds the money and takes no commission.',
+      title: 'You keep every cent',
+      body: 'The payment QR code points at **your own PayPal or Stripe**. Inko never holds the money and takes no commission.',
       art: 'art/3d-coin.png',
       alt: 'A chrome coin'
     },
     {
       tag: 'Security',
-      title: 'Nothing leaves the phone',
-      body: 'No accounts, no server. Documents and signatures **stay on your iPhone**, so the app also works with no signal.',
+      title: 'Works without an account',
+      body: 'No sign-up and no server to trust. Clients, documents and signatures **stay on your iPhone**, so the app keeps working with no signal on site.',
       art: 'art/3d-shield.png',
       alt: 'A shield'
     }

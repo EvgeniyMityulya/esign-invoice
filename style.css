@@ -281,7 +281,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   box-shadow: 0 24px 60px rgba(20,21,24,.28);
 }
 .ztext { padding: 40px 38px; }
-main.page.about .ztext { padding: 32px 34px; }
+main.page.about .ztext { padding: 28px 32px; }
+main.page.about .zrow { min-height: 0; }
+main.page.about .ztext h2 { font-size: 27px; font-weight: 800; letter-spacing: -0.026em; margin-bottom: 10px; }
+/* keep the bold phrase on one line, it is short on purpose */
+.ztext p strong { white-space: nowrap; }
 .ztag {
   display: inline-block; font-size: 12px; font-weight: 660; letter-spacing: .07em;
   text-transform: uppercase; color: #D6D8DC; margin-bottom: 16px;
@@ -494,9 +498,9 @@ footer .spacer { flex: 1; }
 .about-hero h1 { margin: 0 0 12px; }
 .about-hero .lead { margin: 0 auto; max-width: 34em; }
 /* the feature rows need the same width they get on the home page */
-main.page.about { max-width: 928px; }
+main.page.about { max-width: 892px; }
 main.page.about .wrap.narrow { max-width: 720px; margin: 0 auto; }
-main.page.about .zig { margin-top: 46px; padding-left: 0; padding-right: 0; }
+main.page.about .zig { margin-top: 42px; padding-left: 0; padding-right: 0; gap: 14px; }
 .about-h2 { margin-top: 56px !important; margin-bottom: 14px !important; }
 .author-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 .author-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex: none; }
@@ -506,3 +510,19 @@ main.page.about .zig { margin-top: 46px; padding-left: 0; padding-right: 0; }
   .author-card:hover { box-shadow: 0 18px 40px -26px rgba(23,24,28,.42); transform: translateY(-2px); }
 }
 .about-hero .lead { line-height: 1.55; }
+
+/* Developer: same dark card as the rows above, photo on the right */
+.dev-wrap { max-width: 844px; margin: 0 auto; padding: 0; }
+.dev-card { position: relative; border-radius: 26px; background: #17181C; color: #fff; padding: 30px 34px; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; overflow: hidden; }
+.dev-card .dev-name { font-size: 20px; font-weight: 780; letter-spacing: -0.02em; }
+.dev-card .dev-role { font-size: 14px; color: #A2A4AB; margin-top: 3px; }
+.dev-card p { color: #A2A4AB; font-size: 15px; line-height: 1.62; margin: 14px 0 0; max-width: 46em; }
+.dev-card .author-links { margin-top: 18px; }
+.dev-card .author-link { border-color: rgba(255,255,255,.16); color: #fff; background: rgba(255,255,255,.04); }
+.dev-card .author-link:hover { border-color: rgba(255,255,255,.4); }
+.dev-photo { width: 118px; height: 118px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 18px 40px -18px rgba(0,0,0,.7); }
+@media (max-width: 700px) {
+  .dev-card { grid-template-columns: 1fr; }
+  .dev-photo { width: 88px; height: 88px; order: -1; }
+}
+main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
