@@ -4,6 +4,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { SITE, APP, AUTHOR, PAGES } from './site_config.mjs';
+import { FAQ } from './faq_content.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const cssVer = createHash('md5').update(readFileSync('style.css')).digest('hex').slice(0, 8);
@@ -25,6 +26,15 @@ function schemaFor(p) {
     '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: APP.shortName,
     publisher: { '@id': `${SITE}/#org` }, inLanguage: 'en'
   }];
+  if (p.faq) {
+    graph.push({
+      '@type': 'FAQPage', '@id': `${url}#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question', name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a }
+      }))
+    });
+  }
   if (p.path === '/') {
     graph.push({
       '@type': 'MobileApplication', '@id': `${SITE}/#app`, name: APP.name,

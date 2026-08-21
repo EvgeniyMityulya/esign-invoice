@@ -442,3 +442,22 @@ footer .spacer { flex: 1; }
   .bar nav a + a { border-top: 1px solid var(--border); }
 }
 @media (prefers-reduced-motion: reduce) { .bar nav, .burger svg { transition: none; } }
+
+/* ===== nav plate on hover, and the FAQ page ===== */
+.bar nav a {
+  position: relative; padding: 7px 12px; border-radius: 999px;
+  transition: color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+}
+.bar nav a:hover { background: #F4F4F3; box-shadow: 0 6px 16px -12px rgba(23,24,28,.5); }
+.bar nav a.active { background: #17181C; color: #fff; }
+.bar nav a.active:hover { background: #17181C; box-shadow: none; }
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .zrow .ztext, .faq details { transition: transform var(--dur-comp) var(--ease-out); }
+  .zrow:hover .zart img { transform: translateY(-4px) scale(1.01); }
+  .zart img { transition: transform var(--dur-comp) var(--ease-out); }
+}
+
+.page .wrap.narrow { max-width: 760px; }
+.faq-more { margin-top: 26px; font-size: 15px; color: var(--text-2); }
+.faq-more a { color: var(--text); }

@@ -37,6 +37,9 @@ export const PAGES = [
   { file: 'terms/index.html', path: '/terms/', priority: '0.4',
     title: 'Terms of Use — Inko',
     description: 'The terms that apply when you use Inko for invoices, estimates and electronic signatures on iPhone.' },
+  { file: 'faq/index.html', path: '/faq/', priority: '0.8', faq: true,
+    title: 'FAQ — Inko | Signatures, estimates and invoices',
+    description: 'Is a finger signature legally binding? Can a client sign on your phone? Straight answers about electronic signatures, estimates and invoices in Inko.' },
   { file: 'support/thanks/index.html', path: '/support/thanks/', priority: null, robots: 'noindex,follow',
     title: 'Message sent — Inko',
     description: 'Your message reached the developer.' }

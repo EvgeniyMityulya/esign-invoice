@@ -5,12 +5,15 @@ The site is hand-written static HTML. Everything SEO-related is generated from
 block between `<!-- seo:start -->` and `<!-- seo:end -->`, it gets overwritten.
 
 ```bash
+node tools/build_faq.mjs      # faq/index.html from faq_content.mjs, shell copied from support/
 node tools/patch_meta.mjs     # per-page title/description/canonical/OG/JSON-LD + css cache-buster
 node tools/build.mjs          # sitemap.xml, robots.txt, 404.html
 node tools/seo_baseline.mjs   # diff the live pages against snapshots/seo-baseline.json
 ```
 
-Run `patch_meta.mjs` before `build.mjs`, then commit. `seo_baseline.mjs --save`
+Run them in that order: `build_faq.mjs` first (it copies the header from
+`support/index.html`, so nav changes must already be in place), then
+`patch_meta.mjs`, then `build.mjs`. Commit after. `seo_baseline.mjs --save`
 rewrites the snapshot after an intentional change; without the flag it exits 1
 when a high-severity field (status, canonical, robots, title, h1) moved.
 
