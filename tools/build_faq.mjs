@@ -40,6 +40,11 @@ ${bar
 ${items}
     </div>
     <p class="faq-more">Still stuck? <a href="/support/">Write to the developer</a> and you will get an answer, usually the same day.</p>
+    <p class="faq-cta">
+      <a class="store-badge" href="https://apps.apple.com/app/id6788092513" aria-label="Download on the App Store">
+        <img src="/appstore-badge.svg" alt="Download on the App Store" width="168" height="56">
+      </a>
+    </p>
   </section>
 </main>
 

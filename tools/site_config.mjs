@@ -9,6 +9,8 @@ export const APP = {
   shortName: 'Inko',
   // no locale in the path: Apple redirects to the visitor's own storefront
   storeUrl: 'https://apps.apple.com/app/id6788092513',
+  // App Store campaign attribution. pt is public, it travels inside every link.
+  providerToken: '128999575',
   category: 'BusinessApplication',
   os: 'iOS 18.0 or later',
   price: '0',
@@ -23,6 +25,15 @@ export const AUTHOR = {
     'https://t.me/evgeniymityulya',
     'https://x.com/Evgeniy_iOS'
   ]
+};
+
+// Campaign tag per page, so App Store analytics can tell the surfaces apart.
+// Apple only reports a tag once five different Apple IDs installed through it,
+// so keep the tags coarse until a channel actually produces volume.
+export const CAMPAIGNS = {
+  'index.html': 'site-home',
+  'faq/index.html': 'site-faq',
+  'support/index.html': 'site-support'
 };
 
 export const PAGES = [
