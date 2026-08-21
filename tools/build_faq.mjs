@@ -35,9 +35,8 @@ ${bar
 <main class="page">
   <section class="wrap narrow">
     <div class="faq-head">
-      <span class="faq-eyebrow">FAQ</span>
-      <h1>Signing and invoicing, answered</h1>
-      <p class="lede">What is legal, what stays on your phone, and what the free tier covers.</p>
+      <h1>FAQ</h1>
+      <p class="lead">The questions people ask most about signing, estimates and invoices.</p>
     </div>
     <div class="faq">
 ${items}
