@@ -513,19 +513,28 @@ main.page.about .zig { margin-top: 42px; padding-left: 0; padding-right: 0; gap:
 
 /* Developer: same dark card as the rows above, photo on the right */
 .dev-wrap { max-width: 844px; margin: 0 auto; padding: 0; }
-.dev-card { position: relative; border-radius: 26px; background: #17181C; color: #fff; padding: 30px 34px; display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: start; overflow: hidden; }
+.dev-card {
+  position: relative; color: #fff; padding: 32px 34px; display: grid;
+  grid-template-columns: 168px 1fr; gap: 30px; align-items: start; overflow: hidden;
+  /* same surface as the rows above, so the section reads as one family */
+  background: linear-gradient(160deg, #1E1F24, #141819);
+  border-radius: 22px; box-shadow: 0 24px 60px rgba(20,21,24,.28);
+}
+.dev-side { text-align: center; }
+.dev-side .dev-name { margin-top: 14px; }
+.dev-side .dev-role { margin-top: 4px; }
 .dev-card .dev-name { font-size: 20px; font-weight: 780; letter-spacing: -0.02em; }
 .dev-card .dev-role { font-size: 14px; color: #A2A4AB; margin-top: 3px; }
 .dev-card p { color: #A2A4AB; font-size: 15px; line-height: 1.62; margin: 14px 0 0; max-width: 46em; }
 .dev-card .author-links { margin-top: 18px; }
 .dev-card .author-link { border-color: rgba(255,255,255,.16); color: #fff; background: rgba(255,255,255,.04); }
 .dev-card .author-link:hover { border-color: rgba(255,255,255,.4); }
-.dev-photo { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 18px 40px -18px rgba(0,0,0,.7); }
+.dev-photo { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 18px 40px -18px rgba(0,0,0,.7); }
 .dev-tag { display: inline-flex; margin-bottom: 14px; }
 .dev-card .dev-name { margin-top: 2px; }
 .brand-chip { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex: none; }
 @media (max-width: 700px) {
-  .dev-card { grid-template-columns: 1fr; gap: 18px; }
-  .dev-photo { width: 84px; height: 84px; }
+  .dev-card { grid-template-columns: 1fr; gap: 20px; }
+  .dev-photo { width: 96px; height: 96px; }
 }
 main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }

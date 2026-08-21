@@ -56,11 +56,13 @@ ${rows}
 
   <section class="dev-wrap">
     <div class="dev-card">
-      <img class="dev-photo" src="/${ABOUT.photo}" alt="${esc(ABOUT.name)}" width="118" height="118" loading="lazy">
-      <div>
-        <span class="ztag dev-tag">${esc(ABOUT.whoTitle)}</span>
+      <div class="dev-side">
+        <img class="dev-photo" src="/${ABOUT.photo}" alt="${esc(ABOUT.name)}" width="132" height="132" loading="lazy">
         <div class="dev-name">${esc(ABOUT.name)}</div>
         <div class="dev-role">${esc(ABOUT.role)}</div>
+      </div>
+      <div>
+        <span class="ztag dev-tag">${esc(ABOUT.whoTitle)}</span>
 ${ABOUT.who.map((p) => `        <p>${esc(p)}</p>`).join('\n')}
         <div class="author-links">
 ${links}

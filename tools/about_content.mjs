@@ -28,13 +28,12 @@ export const ABOUT = {
       alt: 'A shield'
     }
   ],
-  whoTitle: 'Developer',
+  whoTitle: 'About me',
   name: 'Evgeniy Mityulya',
   role: 'iOS Engineer, Founder of Inko',
   who: [
-    'I build Inko alone, which means the app, the PDF renderer, the signature engine and every default template come from the same pair of hands. If a document comes out wrong, you know exactly whom to tell 🙂',
-    'The app started because I was tired of promising clients an estimate later and then writing it up at midnight. Everything in it exists to end that habit, and nothing is in it to collect data or upsell a plan.',
-    'Write to me directly on any of these. Requests from people who invoice for a living get built first, and I usually answer the same day.'
+    'I build Inko alone. The app, the PDF renderer, the signature engine and every template come from the same pair of hands, so if a document comes out wrong you know exactly whom to tell 🙂',
+    'It started because I was tired of promising clients an estimate later and writing it up at midnight. Write to me on any of these and I usually answer the same day.'
   ],
   photo: 'author.jpg'
 };
