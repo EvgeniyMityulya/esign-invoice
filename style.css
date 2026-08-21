@@ -286,7 +286,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   text-transform: uppercase; color: #D6D8DC; margin-bottom: 16px;
   border: 1px solid rgba(255,255,255,.20); border-radius: 999px; padding: 6px 14px;
 }
-.ztext h3 { font-size: 25px; font-weight: 770; letter-spacing: -0.022em; margin: 0 0 12px; text-wrap: balance; }
+.ztext h2, .ztext h3 { font-size: 25px; font-weight: 770; letter-spacing: -0.022em; margin: 0 0 12px; text-wrap: balance; }
 .ztext p { margin: 0; color: #A2A4AB; font-size: 15px; line-height: 1.65; }
 .ztext p strong { color: #fff; font-weight: 680; }
 .zart {

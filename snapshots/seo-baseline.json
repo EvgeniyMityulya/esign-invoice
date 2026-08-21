@@ -1,42 +1,63 @@
 {
   "/": {
     "status": 200,
-    "title": "Inko — Invoice Maker &amp; eSign",
-    "description": "Inko is an invoice maker and eSign app for iPhone. Bill the client before you leave the job: invoices, estimates and receipts, signed on the spot. No account, no commission, nothing leaves your device.",
-    "canonical": "",
-    "robots": "",
+    "title": "Inko — Invoice Maker &amp; eSign for iPhone",
+    "description": "Invoices, estimates and receipts built on your phone and signed by the client on the spot. No account, no commission, nothing leaves your device.",
+    "canonical": "https://evgeniymityulya.github.io/esign-invoice/",
+    "robots": "index,follow,max-image-preview:large",
     "h1": "Invoice. Sign. Get paid.",
-    "schemaTypes": [],
+    "schemaTypes": [
+      "MobileApplication",
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
     "bodyWords": 201
   },
   "/support/": {
     "status": 200,
     "title": "Support — Inko",
-    "description": "",
-    "canonical": "",
-    "robots": "",
+    "description": "Questions about invoices, signatures or your subscription? Write to the developer directly. Every message is read and usually answered the same day.",
+    "canonical": "https://evgeniymityulya.github.io/esign-invoice/support/",
+    "robots": "index,follow,max-image-preview:large",
     "h1": "Support",
-    "schemaTypes": [],
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
     "bodyWords": 218
   },
   "/privacy/": {
     "status": 200,
     "title": "Privacy Policy — Inko",
-    "description": "",
-    "canonical": "",
-    "robots": "",
+    "description": "Inko keeps your invoices and signatures on your device. No accounts, no server storage of your documents, no selling of data.",
+    "canonical": "https://evgeniymityulya.github.io/esign-invoice/privacy/",
+    "robots": "index,follow,max-image-preview:large",
     "h1": "Privacy Policy",
-    "schemaTypes": [],
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
     "bodyWords": 945
   },
   "/terms/": {
     "status": 200,
     "title": "Terms of Use — Inko",
-    "description": "",
-    "canonical": "",
-    "robots": "",
+    "description": "The terms that apply when you use Inko for invoices, estimates and electronic signatures on iPhone.",
+    "canonical": "https://evgeniymityulya.github.io/esign-invoice/terms/",
+    "robots": "index,follow,max-image-preview:large",
     "h1": "Terms of Use",
-    "schemaTypes": [],
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
     "bodyWords": 856
   }
 }
