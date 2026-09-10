@@ -10,8 +10,9 @@ export const HUBS = [
     kind: 'hub',
     title: 'Signing on a phone',
     h1: 'Getting a signature on a phone',
-    lead: 'Signing your own paperwork is solved. Getting someone else to sign, on the spot, without sending them anywhere, is the part every app skips.',
-    intro: 'Preview on a Mac and Markup on an iPhone both let you sign a document yourself, and they cost nothing. The gap opens the moment a second person has to sign. That usually means an email, an account, a link, a subscription, and a customer who signs tomorrow instead of now. Inko was built for the other version: you hand over your phone, they draw, the document is done.',
+    lead: 'Hand over the phone. They draw. Done.',
+    introTitle: 'The gap every app leaves',
+    intro: 'Preview on a Mac and Markup on an iPhone sign your own paperwork for free. Neither helps when a second person has to sign. That path runs through an email, an account and a subscription, and the customer signs tomorrow instead of now.',
     sections: [
       { h: 'What actually counts as a signature', p: 'A drawn mark is enough for the vast majority of everyday agreements. The US ESIGN Act and UETA, the UK eIDAS regulations, the Australian Electronic Transactions Act and the Canadian UECA all accept an electronic signature where a handwritten one would do. What matters is intent, association with the document, and being able to show who signed and when.' },
       { h: 'Why a record beats a prettier signature', p: 'A signature image on its own proves little. Inko writes an entry for every signed document with the time, the document title and the parties, and can produce a completion certificate alongside the PDF. That record is what answers a dispute, not how neat the line looked.' },
@@ -29,8 +30,9 @@ export const HUBS = [
     parent: 'esign',
     title: 'Sign a document on iPhone',
     h1: 'How to sign a document on an iPhone',
-    lead: 'Three ways, from the one built into the phone to the one that works when someone else has to sign.',
-    intro: 'You do not need an app to sign a PDF yourself on an iPhone. You do need one the moment a client, a tenant or a subcontractor has to put their name on it while standing in front of you.',
+    lead: 'Three ways, and two of them are free.',
+    introTitle: 'Which one you need',
+    intro: 'Signing it yourself needs no app at all. Getting a client to sign, while they stand in front of you, does.',
     steps: {
       title: 'Signing something yourself, free, no app',
       items: [
@@ -56,8 +58,9 @@ export const HUBS = [
     parent: 'esign',
     title: 'DocuSign alternative',
     h1: 'A DocuSign alternative for people who sign a few documents',
-    lead: 'The free plan died in 2022. If you sign two documents a year, the replacement is not a cheaper subscription, it is a different shape of tool.',
-    intro: 'DocuSign is built for organisations routing documents between people who are not in the same room. It prices accordingly. If your reality is a quote agreed on site and a contract signed at a kitchen table, you are paying for routing you never use.',
+    lead: 'The free plan died in 2022.',
+    introTitle: 'Why the price feels wrong',
+    intro: 'DocuSign routes documents between people in different buildings, and prices for it. If your customer is standing next to you, that routing is the part you never use.',
     compare: {
       title: 'Two different jobs',
       rows: [
@@ -84,8 +87,9 @@ export const HUBS = [
     parent: 'esign',
     title: 'Are e-signatures legally binding',
     h1: 'Are electronic signatures legally binding',
-    lead: 'Short answer, yes, for almost everything you are likely to sign. The longer answer is about what you can prove afterwards.',
-    intro: 'This worries people more than it should. Electronic signatures have been recognised across the English-speaking world for two decades, and a mark drawn with a finger is one of them. What varies is not whether it counts, but how well you can show later that it happened.',
+    lead: 'Yes, for almost everything you sign.',
+    introTitle: 'The part that actually matters',
+    intro: 'Electronic signatures have been recognised for two decades, and a mark drawn with a finger is one of them. The question is never whether it counts. It is what you can show afterwards.',
     laws: {
       title: 'Where the rules come from',
       rows: [
@@ -113,8 +117,9 @@ export const HUBS = [
     kind: 'hub',
     title: 'Who uses Inko',
     h1: 'Built for whoever sends the invoice themselves',
-    lead: 'The document is the same. What changes is what goes on the line items and where the signature happens.',
-    intro: 'A developer bills in milestones, a designer bills in rounds, a tradesman quotes on the spot and needs the customer to agree before the tools come out of the van. Inko is one engine underneath, so these pages are about the workflow rather than about different features.',
+    lead: 'Same document, different line items.',
+    introTitle: 'One engine, four workflows',
+    intro: 'A developer bills in milestones, a designer in rounds, a tradesman on the spot. The app underneath is the same, so these pages are about the workflow, not about different features.',
     sections: [
       { h: 'Bill in the currency the client pays in', p: 'Inko carries ninety one currencies, from the pound, euro and dollar to the zloty, dirham, rand and tenge. You set the one your business bills in, and a price book item can carry a different one when you buy materials abroad.' },
       { h: 'The estimate is the useful part', p: 'Quote first, get it signed, convert it to an invoice when the work is done. The signature is what stops the argument about what was agreed, and the conversion is what stops you typing the same lines twice.' },
@@ -133,8 +138,9 @@ export const HUBS = [
     parent: 'for',
     title: 'Invoice app for tradesmen',
     h1: 'An invoice app for trades, quotes signed on site',
-    lead: 'The quote is agreed at the door, the work happens, the invoice follows. All of it from the phone already in your pocket.',
-    intro: 'Trade work has an awkward gap in it. You price the job standing in someone\'s hallway, then the paperwork happens that evening, and by then the customer remembers the number differently. Getting a signature at the moment of agreement closes that gap, and it takes about fifteen seconds.',
+    lead: 'Quoted at the door, signed on the spot.',
+    introTitle: 'The gap in a trade job',
+    intro: 'You price the job in the hallway, the paperwork happens that evening, and by then the customer remembers the number differently. A signature at the moment of agreement closes that gap in fifteen seconds.',
     steps: {
       title: 'How a job runs through the app',
       items: [
@@ -161,8 +167,9 @@ export const HUBS = [
     parent: 'for',
     title: 'Invoices for developers',
     h1: 'Invoicing for developers and IT contractors',
-    lead: 'Milestones, retainers and the client in another country. The invoice has to survive all three.',
-    intro: 'Contract development bills differently from most trades. The work is remote, the client is often abroad, and the money arrives in whichever currency their finance team uses. What stays the same is that a scope agreed in writing beats a scope agreed in a call.',
+    lead: 'Milestones, retainers, clients abroad.',
+    introTitle: 'What breaks in contract work',
+    intro: 'The work is remote, the client is often abroad, and the money arrives in their currency. What holds it together is a scope agreed in writing rather than on a call.',
     steps: {
       title: 'A project through the app',
       items: [
@@ -188,8 +195,9 @@ export const HUBS = [
     parent: 'for',
     title: 'Invoices for designers',
     h1: 'Invoices and estimates for designers',
-    lead: 'Rounds of revisions, usage rights and a deposit before the first sketch. The paperwork has to say all of that.',
-    intro: 'Design work goes wrong in a predictable place: the number of revisions and what the client is allowed to do with the result. Both belong on the estimate, in writing, signed, before anything gets designed.',
+    lead: 'Rounds, rights and the deposit.',
+    introTitle: 'Where design jobs go wrong',
+    intro: 'Two things cause almost every dispute. How many revisions are included, and what the client may do with the result. Both belong on a signed estimate, before anything gets designed.',
     steps: {
       title: 'A project through the app',
       items: [
@@ -215,8 +223,9 @@ export const HUBS = [
     parent: 'for',
     title: 'Invoices for photographers',
     h1: 'Invoices, quotes and releases for photographers',
-    lead: 'The shoot is booked on a phone, the release is signed on a phone, the invoice follows from the same document.',
-    intro: 'Photography runs on agreements made quickly and in person. A booking confirmed by message, a release signed on the day, an invoice after delivery. All three are the same document at different stages, and all three can happen on the device in your hand.',
+    lead: 'Booked, signed and invoiced on the phone.',
+    introTitle: 'Three moments, one document',
+    intro: 'A booking, a release on the day, an invoice after delivery. All three are the same document at different stages, and all three happen on the device in your hand.',
     steps: {
       title: 'A shoot through the app',
       items: [

@@ -542,7 +542,7 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
 /* Content hubs. The page reads top down like a chapter: where you are, the
    title, the thesis, then the sections. Each level is visibly smaller than
    the one above it, so nothing competes with the h1. */
-.hub-head { text-align: center; padding: 8px 0 30px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+.hub-head { text-align: center; padding: 8px 0 4px; margin-bottom: 6px; }
 .hub-eyebrow {
   font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
   color: var(--text-2); margin: 0 0 14px;
@@ -553,9 +553,9 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
   font-size: clamp(30px, 4.4vw, 42px); line-height: 1.08; letter-spacing: -0.025em;
   margin: 0 auto 14px; max-width: 18ch; text-wrap: balance;
 }
-.hub-lead { font-size: 18.5px; line-height: 1.5; color: var(--text-2); margin: 0 auto; max-width: 46ch; text-wrap: pretty; }
+.hub .hub-lead { font-size: 19px; line-height: 1.45; color: var(--text-2); margin: 0 auto; max-width: 34ch; text-wrap: balance; }
 
-.hub-intro { font-size: 17.5px; line-height: 1.62; margin: 0 0 8px; }
+.hub .hub-intro { font-size: 17px; line-height: 1.6; margin: 0 0 14px; }
 
 .page .wrap.narrow .hub h2 {
   font-size: 19px; letter-spacing: -0.01em; margin: 34px 0 8px;

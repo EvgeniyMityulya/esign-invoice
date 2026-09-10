@@ -25,6 +25,7 @@ function body(h) {
   out.push(`        <h1>${esc(h.h1)}</h1>`);
   out.push(`        <p class="hub-lead">${esc(h.lead)}</p>`);
   out.push('      </header>');
+  if (h.introTitle) out.push(`      <h2>${esc(h.introTitle)}</h2>`);
   out.push(`      <p class="hub-intro">${esc(h.intro)}</p>`);
 
   if (h.steps) {
