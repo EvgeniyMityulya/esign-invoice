@@ -41,6 +41,8 @@ ${bar
     <div class="faq">
 ${items}
     </div>
+    <p class="faq-guides">Longer answers live in the guides: <a href="/esign/">how signing works on a phone</a> and <a href="/for/">what the paperwork looks like in your line of work</a>.</p>
+
     <div class="faq-foot">
       <p class="support-line">Question not here? <a href="/support/">Write to the developer</a> and you will usually get an answer the same day.</p>
       <a class="store-badge" href="https://apps.apple.com/app/id6788092513" aria-label="Download on the App Store">

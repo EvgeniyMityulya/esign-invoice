@@ -583,3 +583,33 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
 @media (prefers-color-scheme: dark) {
   .hub-steps li::before { background: rgba(255,255,255,.06); }
 }
+
+/* Footer picks up the content hubs, so the header can stay at six items. */
+.fnav .fgroup {
+  color: var(--text-2); opacity: .72; font-size: 13px;
+  margin-left: 6px; padding-left: 14px; border-left: 1px solid var(--border);
+}
+@media (max-width: 640px) {
+  .fnav .fgroup { margin-left: 0; padding-left: 0; border-left: 0; width: 100%; }
+}
+
+/* Guides grid on the home page: the way into the content hubs now that the
+   header is back to six items. */
+.guides { padding: 64px 0 8px; }
+.guides h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; }
+.guides .sub { color: var(--text-2); margin: 0 0 26px; max-width: 56ch; }
+.guides-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: 14px; }
+.guide {
+  display: block; padding: 18px 20px; border: 1px solid var(--border); border-radius: 14px;
+  background: var(--card); color: var(--text);
+  transition: border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.guide:hover { border-color: #C9C9C4; transform: translateY(-1px); }
+.guide-h { display: block; font-weight: 650; margin-bottom: 5px; }
+.guide-h::after { content: " →"; color: var(--text-2); font-weight: 400; }
+.guide-p { display: block; font-size: 14.5px; line-height: 1.5; color: var(--text-2); }
+.faq-guides { margin: 24px 0 0; font-size: 15px; color: var(--text-2); }
+.faq-guides a { color: var(--text); }
+@media (prefers-color-scheme: dark) {
+  .guide:hover { border-color: rgba(255,255,255,.22); }
+}

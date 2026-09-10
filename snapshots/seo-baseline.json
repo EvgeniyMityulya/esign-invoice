@@ -13,7 +13,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 205
+    "bodyWords": 210
   },
   "/support/": {
     "status": 200,
@@ -28,7 +28,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 222
+    "bodyWords": 227
   },
   "/privacy/": {
     "status": 200,
@@ -43,7 +43,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 949
+    "bodyWords": 954
   },
   "/terms/": {
     "status": 200,
@@ -58,7 +58,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 860
+    "bodyWords": 865
   },
   "/about/": {
     "status": 200,
@@ -73,7 +73,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 264
+    "bodyWords": 278
   },
   "/faq/": {
     "status": 200,
@@ -89,6 +89,141 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 469
+    "bodyWords": 474
+  },
+  "/esign/": {
+    "status": 200,
+    "title": "Client Signatures on a Phone — Inko",
+    "description": "Signing your own paperwork is solved. Getting the client to sign on the spot is not. How electronic signatures work on a phone and what makes one hold up.",
+    "canonical": "https://inkoinvoice.com/esign/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "Getting a signature on a phone",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 320
+  },
+  "/esign/sign-document-iphone/": {
+    "status": 200,
+    "title": "How to Sign a Document on iPhone — Free and Paid Ways",
+    "description": "Sign a PDF yourself with Markup for free, and see what to use when a client has to sign on your screen instead. Step by step, no account needed.",
+    "canonical": "https://inkoinvoice.com/esign/sign-document-iphone/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "How to sign a document on an iPhone",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 331
+  },
+  "/esign/docusign-alternative/": {
+    "status": 200,
+    "title": "DocuSign Alternative for a Few Documents a Year",
+    "description": "DocuSign killed its free plan in 2022. If you sign two documents a year and the other person is standing next to you, here is the smaller shape of tool.",
+    "canonical": "https://inkoinvoice.com/esign/docusign-alternative/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "A DocuSign alternative for people who sign a few documents",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 304
+  },
+  "/esign/legally-binding/": {
+    "status": 200,
+    "title": "Are Electronic Signatures Legally Binding",
+    "description": "Yes in most everyday cases, under ESIGN, UETA, UK eIDAS, the Australian ETA and Canadian UECA. What those laws require and what is still excluded.",
+    "canonical": "https://inkoinvoice.com/esign/legally-binding/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "Are electronic signatures legally binding",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 362
+  },
+  "/for/": {
+    "status": 200,
+    "title": "Who Uses Inko — Trades, Developers, Designers",
+    "description": "One engine, different workflows. Ninety one currencies, estimates signed on the spot and no cut of your payments, whatever line of work you send invoices in.",
+    "canonical": "https://inkoinvoice.com/for/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "Built for whoever sends the invoice themselves",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 247
+  },
+  "/for/tradesmen/": {
+    "status": 200,
+    "title": "Invoice App for Tradesmen — Quotes Signed on Site",
+    "description": "Price the job in the hallway, get it signed with a finger, convert the estimate to an invoice when the work is done. Works with no signal, takes no cut.",
+    "canonical": "https://inkoinvoice.com/for/tradesmen/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "An invoice app for trades, quotes signed on site",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 299
+  },
+  "/for/developers/": {
+    "status": 200,
+    "title": "Invoicing for Developers and IT Contractors",
+    "description": "Milestones instead of hours, a signed estimate as your scope document, and ninety one currencies for clients who pay from another country.",
+    "canonical": "https://inkoinvoice.com/for/developers/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "Invoicing for developers and IT contractors",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 284
+  },
+  "/for/designers/": {
+    "status": 200,
+    "title": "Invoices and Estimates for Designers",
+    "description": "Revisions and usage rights written as line items, a deposit as its own line, and documents that carry your own colour, logo and typeface.",
+    "canonical": "https://inkoinvoice.com/for/designers/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "Invoices and estimates for designers",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 244
+  },
+  "/for/photographers/": {
+    "status": 200,
+    "title": "Invoices and Releases for Photographers",
+    "description": "Quote the shoot, hold the date with a signature, sign the release on location and turn the same document into an invoice after delivery.",
+    "canonical": "https://inkoinvoice.com/for/photographers/",
+    "robots": "index,follow,max-image-preview:large",
+    "h1": "Invoices, quotes and releases for photographers",
+    "schemaTypes": [
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "bodyWords": 276
   }
 }
