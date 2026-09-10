@@ -73,9 +73,9 @@ export const HUBS = [
       ]
     },
     sections: [
-      { h: 'When is a big service still the right answer?', p: 'Remote parties, several signers in a set order, corporate audit requirements, integration with a CRM. If that is the job, pay for the tool built for it. Nothing here pretends otherwise.' },
-      { h: 'What do you give up going smaller?', p: 'No sending for remote signature, no reminder emails, no template library shared across a team. Inko is one person with a phone and a customer in front of them.' },
-      { h: 'What do you get back?', p: 'A signed PDF in under a minute, a record of who signed and when, your documents staying on your own device, and no monthly fee for the two documents a year you actually sign.' }
+      { h: 'What is Inko built for?', p: 'The moment both people are in the same place. A quote agreed at a kitchen table, a release signed at a shoot, a contract signed across a desk. Everything in the app is shaped around that minute, which is why it needs no account, no signal and no second app for the other person.' },
+      { h: 'Why does that make it faster?', p: 'Nothing leaves the device and nobody waits for an email, so the whole exchange happens while the customer is still in front of you. One tap turns the signed estimate into an invoice, and the record of who signed and when is saved next to it.' },
+      { h: 'What do you get?', p: 'A signed PDF in under a minute, a completion certificate with the time and the parties, ninety one currencies, three premium templates, and your documents staying on your own phone. No commission on anything you get paid.' }
     ],
     links: [
       { to: 'esign/legally-binding', text: 'Is an electronic signature legally binding' },
