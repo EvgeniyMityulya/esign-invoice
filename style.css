@@ -620,7 +620,9 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
 /* One tile component for every card grid on the site: the guides on the home
    page and the topics on the FAQ. Dark variant borrows the palette of the
    screens band (#141819 / #2C2C34) so the two dark areas read as one system. */
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(224px, 1fr)); gap: 12px; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .tiles { grid-template-columns: 1fr; } }
 .tile {
   display: flex; flex-direction: column; gap: 6px;
   padding: 20px 22px 18px; border-radius: 16px;
@@ -646,11 +648,16 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
 .tile.is-dark:focus-visible { outline-color: #fff; }
 
 /* The band the tiles sit in, so a grid of dark cards has ground under it. */
-.tile-band { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 56px 0 58px; margin-top: 64px; }
-.tile-band h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; }
-.tile-band .sub { color: var(--text-2); margin: 0 0 26px; max-width: 56ch; }
+/* Guides section: same column width as the header, three across, centred
+   heading, no tinted band. The bare .wrap has no max-width of its own, which
+   is why this needs its own. */
+.tile-band { padding: 64px 0 8px; }
+.tile-band .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+.tile-band h2 { font-size: 27px; letter-spacing: -0.022em; margin: 0 0 8px; text-align: center; }
+.tile-band .sub { color: var(--text-2); margin: 0 auto 30px; max-width: 52ch; text-align: center; }
 
-.page .wrap.narrow .tiles { margin: 0 0 38px; }
+.page .wrap.narrow .tiles { margin: 0 0 38px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 560px) { .page .wrap.narrow .tiles { grid-template-columns: 1fr; } }
 
 @media (prefers-reduced-motion: reduce) { .tile:hover { transform: none; } }
 
