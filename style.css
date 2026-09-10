@@ -681,3 +681,19 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
 /* Legal and support pages ended on a full stop with nowhere to go. */
 .page-foot { padding: 8px 0 56px; text-align: center; }
 .page-foot-line { font-size: 15px; color: var(--text-2); margin: 0 0 16px; }
+
+/* The pill plate is a desktop affordance. In the burger menu the items are
+   full-width rows, and a 999px radius on a full-width row reads as a giant
+   capsule, so the mobile menu gets its own restrained treatment. This block
+   sits last on purpose: the pill rule above is unscoped and would win. */
+@media (max-width: 560px) {
+  .bar nav a {
+    padding: 13px 12px; border-radius: 10px;
+    box-shadow: none;
+  }
+  .bar nav a:hover { background: transparent; box-shadow: none; }
+  .bar nav a:active { background: #F2F2F1; }
+  .bar nav a.active,
+  .bar nav a.active:hover { background: #F2F2F1; color: var(--text); font-weight: 650; box-shadow: none; }
+  .bar nav a + a { border-top: 1px solid var(--border); border-radius: 10px; }
+}
