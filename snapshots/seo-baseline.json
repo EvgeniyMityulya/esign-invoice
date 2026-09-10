@@ -13,7 +13,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 210
+    "bodyWords": 352
   },
   "/support/": {
     "status": 200,
@@ -28,7 +28,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 227
+    "bodyWords": 228
   },
   "/privacy/": {
     "status": 200,
@@ -43,7 +43,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 954
+    "bodyWords": 955
   },
   "/terms/": {
     "status": 200,
@@ -58,7 +58,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 865
+    "bodyWords": 866
   },
   "/about/": {
     "status": 200,
@@ -73,7 +73,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 278
+    "bodyWords": 279
   },
   "/faq/": {
     "status": 200,
@@ -89,7 +89,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 474
+    "bodyWords": 545
   },
   "/esign/": {
     "status": 200,
@@ -104,7 +104,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 320
+    "bodyWords": 282
   },
   "/esign/sign-document-iphone/": {
     "status": 200,
@@ -119,12 +119,12 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 331
+    "bodyWords": 305
   },
   "/esign/docusign-alternative/": {
     "status": 200,
     "title": "DocuSign Alternative for a Few Documents a Year",
-    "description": "DocuSign killed its free plan in 2022. If you sign two documents a year and the other person is standing next to you, here is the smaller shape of tool.",
+    "description": "If you sign a few documents a year and the other person is standing next to you, a routing subscription is the wrong shape. Documents stay on your phone, no account for either side.",
     "canonical": "https://inkoinvoice.com/esign/docusign-alternative/",
     "robots": "index,follow,max-image-preview:large",
     "h1": "A DocuSign alternative for people who sign a few documents",
@@ -134,7 +134,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 304
+    "bodyWords": 320
   },
   "/esign/legally-binding/": {
     "status": 200,
@@ -149,7 +149,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 362
+    "bodyWords": 332
   },
   "/for/": {
     "status": 200,
@@ -164,7 +164,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 247
+    "bodyWords": 219
   },
   "/for/tradesmen/": {
     "status": 200,
@@ -179,7 +179,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 299
+    "bodyWords": 269
   },
   "/for/developers/": {
     "status": 200,
@@ -194,7 +194,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 284
+    "bodyWords": 263
   },
   "/for/designers/": {
     "status": 200,
@@ -209,7 +209,7 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 244
+    "bodyWords": 225
   },
   "/for/photographers/": {
     "status": 200,
@@ -224,6 +224,6 @@
       "WebPage",
       "WebSite"
     ],
-    "bodyWords": 276
+    "bodyWords": 247
   }
 }
