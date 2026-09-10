@@ -17,12 +17,14 @@ const byline = (h) => HUBS.find((x) => x.slug === h.parent);
 
 function body(h) {
   const out = [];
-  if (h.parent) {
-    const up = byline(h);
-    if (up) out.push(`      <p class="crumb"><a href="/${up.slug}/">${esc(up.title)}</a></p>`);
-  }
-  out.push(`      <h1>${esc(h.h1)}</h1>`);
-  out.push(`      <p class="lead">${esc(h.lead)}</p>`);
+  // Head block is centred and carries the whole hierarchy: where you are, the
+  // one-line thesis, then the paragraph that frames the sections below.
+  const up = h.parent ? byline(h) : null;
+  out.push('      <header class="hub-head">');
+  out.push(`        <p class="hub-eyebrow">${up ? `<a href="/${up.slug}/">${esc(up.title)}</a>` : esc(h.title)}</p>`);
+  out.push(`        <h1>${esc(h.h1)}</h1>`);
+  out.push(`        <p class="hub-lead">${esc(h.lead)}</p>`);
+  out.push('      </header>');
   out.push(`      <p class="hub-intro">${esc(h.intro)}</p>`);
 
   if (h.steps) {

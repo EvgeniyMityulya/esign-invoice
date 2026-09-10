@@ -539,14 +539,29 @@ main.page.about .zig { margin-top: 42px; padding-left: 0; padding-right: 0; gap:
 }
 main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
 
-/* Content hubs: signing guides and profession pages. Reuses the narrow page
-   column; only the pieces the legal pages never needed are new here. */
-.hub h1 { margin: 0 0 10px; }
-.hub .lead { font-size: 18px; margin: 0 0 22px; }
-.hub .hub-intro { margin: 0 0 6px; }
-.hub .crumb { font-size: 14px; color: var(--text-2); margin: 0 0 14px; }
-.hub .crumb a { color: var(--text-2); }
-.hub .crumb a:hover { color: var(--text); }
+/* Content hubs. The page reads top down like a chapter: where you are, the
+   title, the thesis, then the sections. Each level is visibly smaller than
+   the one above it, so nothing competes with the h1. */
+.hub-head { text-align: center; padding: 8px 0 30px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+.hub-eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-2); margin: 0 0 14px;
+}
+.hub-eyebrow a { color: var(--text-2); text-decoration: none; }
+.hub-eyebrow a:hover { color: var(--text); }
+.page .wrap.narrow .hub-head h1 {
+  font-size: clamp(30px, 4.4vw, 42px); line-height: 1.08; letter-spacing: -0.025em;
+  margin: 0 auto 14px; max-width: 18ch; text-wrap: balance;
+}
+.hub-lead { font-size: 18.5px; line-height: 1.5; color: var(--text-2); margin: 0 auto; max-width: 46ch; text-wrap: pretty; }
+
+.hub-intro { font-size: 17.5px; line-height: 1.62; margin: 0 0 8px; }
+
+.page .wrap.narrow .hub h2 {
+  font-size: 19px; letter-spacing: -0.01em; margin: 34px 0 8px;
+  padding-top: 2px;
+}
+.hub p { margin: 0 0 14px; }
 
 .hub-steps { margin: 0 0 6px; padding-left: 0; list-style: none; counter-reset: step; }
 .hub-steps li {
