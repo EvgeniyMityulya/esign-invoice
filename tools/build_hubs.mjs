@@ -1,0 +1,97 @@
+// Generates the content hubs from hub_content.mjs, reusing the support page as
+// the shell so header, footer and styles never drift between pages.
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { HUBS } from './hub_content.mjs';
+import { APP } from './site_config.mjs';
+
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const shell = readFileSync('support/index.html', 'utf8');
+const bar = (shell.match(/<div class="bar">[\s\S]*?\n<\/div>/) || [''])[0]
+  .replace(/href="\.\.\//g, 'href="/').replace(/href="\.\//g, 'href="/')
+  .replace(/src="\.\.\//g, 'src="/').replace(/src="\.\//g, 'src="/')
+  .replace(/ class="active"/g, '');
+const footer = (shell.match(/<footer>[\s\S]*?<\/footer>/) || [''])[0]
+  .replace(/href="\.\.\//g, 'href="/').replace(/href="\.\//g, 'href="/');
+
+const byline = (h) => HUBS.find((x) => x.slug === h.parent);
+
+function body(h) {
+  const out = [];
+  if (h.parent) {
+    const up = byline(h);
+    if (up) out.push(`      <p class="crumb"><a href="/${up.slug}/">${esc(up.title)}</a></p>`);
+  }
+  out.push(`      <h1>${esc(h.h1)}</h1>`);
+  out.push(`      <p class="lead">${esc(h.lead)}</p>`);
+  out.push(`      <p class="hub-intro">${esc(h.intro)}</p>`);
+
+  if (h.steps) {
+    out.push(`      <h2>${esc(h.steps.title)}</h2>`);
+    out.push('      <ol class="hub-steps">');
+    for (const s of h.steps.items) out.push(`        <li>${esc(s)}</li>`);
+    out.push('      </ol>');
+  }
+
+  if (h.compare) {
+    out.push(`      <h2>${esc(h.compare.title)}</h2>`);
+    out.push('      <div class="hub-table"><table>');
+    for (const [label, a, b] of h.compare.rows) {
+      out.push(`        <tr><th>${esc(label)}</th><td>${esc(a)}</td><td>${esc(b)}</td></tr>`);
+    }
+    out.push('      </table></div>');
+  }
+
+  if (h.laws) {
+    out.push(`      <h2>${esc(h.laws.title)}</h2>`);
+    out.push('      <div class="hub-table"><table>');
+    for (const [place, law] of h.laws.rows) out.push(`        <tr><th>${esc(place)}</th><td colspan="2">${esc(law)}</td></tr>`);
+    out.push('      </table></div>');
+  }
+
+  for (const s of h.sections || []) {
+    out.push(`      <h2>${esc(s.h)}</h2>`);
+    out.push(`      <p>${esc(s.p)}</p>`);
+  }
+
+  if (h.links?.length) {
+    out.push(`      <h2>${esc(h.kind === 'hub' ? 'Pick your situation' : 'Read next')}</h2>`);
+    out.push('      <ul class="hub-links">');
+    for (const l of h.links) out.push(`        <li><a href="/${l.to}/">${esc(l.text)}</a></li>`);
+    out.push('      </ul>');
+  }
+
+  out.push(`      <p class="hub-cta"><a class="btn-link" href="${APP.storeUrl}">Get Inko on the App Store</a></p>`);
+  return out.join('\n');
+}
+
+let written = 0;
+for (const h of HUBS) {
+  mkdirSync(h.slug, { recursive: true });
+  const nav = bar.replace('<a href="/">Home</a>', '<a href="/">Home</a>')
+    .replace(`<a href="/${h.slug.split('/')[0]}/">`, `<a href="/${h.slug.split('/')[0]}/" class="active">`);
+  writeFileSync(`${h.slug}/index.html`, `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+${nav}
+
+<main class="page">
+  <section class="wrap narrow">
+    <article class="hub">
+${body(h)}
+    </article>
+  </section>
+</main>
+
+${footer}
+</body>
+</html>
+`);
+  written++;
+}
+console.log(`hubs written: ${written}`);
