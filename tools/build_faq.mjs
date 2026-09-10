@@ -9,10 +9,33 @@ const bar = (shell.match(/<div class="bar">[\s\S]*?\n<\/div>/) || shell.match(/<
 const footer = (shell.match(/<footer>[\s\S]*?<\/footer>/) || [''])[0];
 
 const chev = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
-const items = FAQ.map((f) => `      <details>
-        <summary>${esc(f.q)}${chev}</summary>
-        <p class="a">${esc(f.a)}</p>
-      </details>`).join('\n');
+// Topic cards double as the way into the longer guides, so the page stops
+// being one undifferentiated list and the hubs get a visible entry point.
+const TOPICS = [
+  { key: 'signing', title: 'Signing', blurb: 'Who can sign, on whose phone, and whether it holds up', to: '/esign/' },
+  { key: 'documents', title: 'Estimates and invoices', blurb: 'What goes on the document and how it turns into a bill', to: '/for/' },
+  { key: 'money', title: 'Price and privacy', blurb: 'What the free tier covers and where your documents live', to: null }
+];
+
+const cards = TOPICS.map((t) => {
+  const inner = `<span class="topic-h">${esc(t.title)}</span><span class="topic-p">${esc(t.blurb)}</span>`;
+  return t.to
+    ? `        <a class="topic" href="${t.to}">${inner}<span class="topic-go">Read the guide</span></a>`
+    : `        <a class="topic" href="#${t.key}">${inner}<span class="topic-go">Jump to answers</span></a>`;
+}).join('\n');
+
+const items = TOPICS.map((t) => {
+  const group = FAQ.filter((f) => f.topic === t.key);
+  if (!group.length) return '';
+  const rows = group.map((f) => `        <details>
+          <summary>${esc(f.q)}${chev}</summary>
+          <p class="a">${esc(f.a)}</p>
+        </details>`).join('\n');
+  return `      <section class="faq-group" id="${t.key}">
+        <h2>${esc(t.title)}</h2>
+${rows}
+      </section>`;
+}).join('\n');
 
 mkdirSync('faq', { recursive: true });
 writeFileSync('faq/index.html', `<!doctype html>
@@ -38,11 +61,13 @@ ${bar
       <h1>FAQ</h1>
       <p class="lead">The questions people ask most.<br>Signing, estimates, invoices and what the free tier covers.</p>
     </div>
+    <div class="topics">
+${cards}
+    </div>
+
     <div class="faq">
 ${items}
     </div>
-    <p class="faq-guides">Longer answers live in the guides: <a href="/esign/">how signing works on a phone</a> and <a href="/for/">what the paperwork looks like in your line of work</a>.</p>
-
     <div class="faq-foot">
       <p class="support-line">Question not here? <a href="/support/">Write to the developer</a> and you will usually get an answer the same day.</p>
       <a class="store-badge" href="https://apps.apple.com/app/id6788092513" aria-label="Download on the App Store">
