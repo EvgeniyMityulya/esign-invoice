@@ -12,17 +12,17 @@ const chev = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentC
 // Topic cards double as the way into the longer guides, so the page stops
 // being one undifferentiated list and the hubs get a visible entry point.
 const TOPICS = [
-  { key: 'signing', title: 'Signing', blurb: 'Who can sign, on whose phone, and whether it holds up', to: '/esign/' },
-  { key: 'documents', title: 'Estimates and invoices', blurb: 'What goes on the document and how it turns into a bill', to: '/for/' },
-  { key: 'money', title: 'Price and privacy', blurb: 'What the free tier covers and where your documents live', to: null }
+  { key: 'signing', title: 'Signing', blurb: 'Who signs, on whose phone, and what gets recorded', to: '/esign/', cta: 'Read the guide' },
+  { key: 'legal', title: 'Is it legal', blurb: 'ESIGN, UK eIDAS, the Australian ETA and what they require', to: '/esign/legally-binding/', cta: 'Read the guide' },
+  { key: 'documents', title: 'Estimates and invoices', blurb: 'What goes on the document and how a quote becomes a bill', to: '/for/', cta: 'Read the guide' },
+  { key: 'money', title: 'Price and privacy', blurb: 'What the free tier covers and where your documents live', to: '#money', cta: 'Jump to answers' }
 ];
 
-const cards = TOPICS.map((t) => {
-  const inner = `<span class="topic-h">${esc(t.title)}</span><span class="topic-p">${esc(t.blurb)}</span>`;
-  return t.to
-    ? `        <a class="topic" href="${t.to}">${inner}<span class="topic-go">Read the guide</span></a>`
-    : `        <a class="topic" href="#${t.key}">${inner}<span class="topic-go">Jump to answers</span></a>`;
-}).join('\n');
+const cards = TOPICS.map((t) => `        <a class="tile is-dark" href="${t.to}">
+          <span class="tile-h">${esc(t.title)}</span>
+          <span class="tile-p">${esc(t.blurb)}</span>
+          <span class="tile-go">${esc(t.cta)}</span>
+        </a>`).join('\n');
 
 const items = TOPICS.map((t) => {
   const group = FAQ.filter((f) => f.topic === t.key);
@@ -61,7 +61,7 @@ ${bar
       <h1>FAQ</h1>
       <p class="lead">The questions people ask most.<br>Signing, estimates, invoices and what the free tier covers.</p>
     </div>
-    <div class="topics">
+    <div class="tiles">
 ${cards}
     </div>
 

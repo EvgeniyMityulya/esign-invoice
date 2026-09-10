@@ -593,51 +593,6 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
   .fnav .fgroup { margin-left: 0; padding-left: 0; border-left: 0; width: 100%; }
 }
 
-/* Guides grid on the home page: the way into the content hubs now that the
-   header is back to six items. */
-.guides { padding: 64px 0 8px; }
-.guides h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; }
-.guides .sub { color: var(--text-2); margin: 0 0 26px; max-width: 56ch; }
-.guides-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: 14px; }
-.guide {
-  display: block; padding: 18px 20px; border: 1px solid var(--border); border-radius: 14px;
-  background: var(--card); color: var(--text);
-  transition: border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
-}
-.guide:hover { border-color: #C9C9C4; transform: translateY(-1px); }
-.guide-h { display: block; font-weight: 650; margin-bottom: 5px; }
-.guide-h::after { content: " →"; color: var(--text-2); font-weight: 400; }
-.guide-p { display: block; font-size: 14.5px; line-height: 1.5; color: var(--text-2); }
-@media (prefers-color-scheme: dark) {
-  .guide:hover { border-color: rgba(255,255,255,.22); }
-}
-
-/* Topic cards on the FAQ: three themes, each either opening its guide or
-   jumping to its own group of answers below. */
-.topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(228px, 1fr)); gap: 12px; margin: 0 0 34px; }
-.topic {
-  display: flex; flex-direction: column; gap: 5px;
-  padding: 18px 20px 16px; border: 1px solid var(--border); border-radius: 14px;
-  background: var(--card); color: var(--text);
-  transition: border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
-}
-.topic:hover { border-color: #C9C9C4; transform: translateY(-1px); }
-.topic-h { font-weight: 650; font-size: 16.5px; }
-.topic-p { font-size: 14px; line-height: 1.45; color: var(--text-2); }
-.topic-go { margin-top: 6px; font-size: 13.5px; font-weight: 600; color: var(--text-2); }
-.topic-go::after { content: " →"; }
-.topic:hover .topic-go { color: var(--text); }
-
-.faq-group { scroll-margin-top: 90px; }
-.faq-group + .faq-group { margin-top: 34px; }
-.faq-group h2 {
-  font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--text-2); margin: 0 0 6px;
-}
-@media (prefers-color-scheme: dark) {
-  .topic:hover { border-color: rgba(255,255,255,.22); }
-}
-
 /* The brand line was wrapping word by word and pushing the header to four
    rows. It never wraps now, and on narrow screens it shortens to the name. */
 .bar .brand { white-space: nowrap; }
@@ -646,6 +601,50 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
   .bar .brand::after { content: "Inko"; font-size: 15.5px; font-weight: 700; }
 }
 
-/* Cards are the link, so the text inside them should not look like one. */
-.topic, .topic:hover, .guide, .guide:hover { text-decoration: none; }
-.hub-links a { text-decoration: none; }
+
+/* One tile component for every card grid on the site: the guides on the home
+   page and the topics on the FAQ. Dark variant borrows the palette of the
+   screens band (#141819 / #2C2C34) so the two dark areas read as one system. */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(224px, 1fr)); gap: 12px; }
+.tile {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 20px 22px 18px; border-radius: 16px;
+  border: 1px solid var(--border); background: var(--card); color: var(--text);
+  text-decoration: none;
+  transition: transform var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.tile:hover { transform: translateY(-2px); }
+.tile:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+.tile-h { font-weight: 650; font-size: 16.5px; letter-spacing: -0.01em; }
+.tile-p { font-size: 14px; line-height: 1.5; color: var(--text-2); }
+.tile-go { margin-top: auto; padding-top: 10px; font-size: 13.5px; font-weight: 600; color: var(--text-2); }
+.tile-go::after { content: " →"; }
+
+.tile.is-dark {
+  background: linear-gradient(158deg, #2C2C34, #141819);
+  border-color: rgba(255, 255, 255, .09); color: #fff;
+}
+.tile.is-dark .tile-p { color: #A2A4AB; }
+.tile.is-dark .tile-go { color: #D6D8DC; }
+.tile.is-dark:hover { border-color: rgba(255, 255, 255, .26); }
+.tile.is-dark:hover .tile-go { color: #fff; }
+.tile.is-dark:focus-visible { outline-color: #fff; }
+
+/* The band the tiles sit in, so a grid of dark cards has ground under it. */
+.tile-band { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 56px 0 58px; margin-top: 64px; }
+.tile-band h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 6px; }
+.tile-band .sub { color: var(--text-2); margin: 0 0 26px; max-width: 56ch; }
+
+.page .wrap.narrow .tiles { margin: 0 0 38px; }
+
+@media (prefers-reduced-motion: reduce) { .tile:hover { transform: none; } }
+
+/* Group headings inside the FAQ read as labels, not as page headings, so the
+   topic tiles above stay the loudest thing on the page. The selector matches
+   `.page .wrap.narrow h2` in specificity, which would otherwise win. */
+.page .wrap.narrow .faq-group h2 {
+  font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--text-2); margin: 0 0 8px;
+}
+.faq-group { scroll-margin-top: 90px; }
+.faq-group + .faq-group { margin-top: 34px; }
