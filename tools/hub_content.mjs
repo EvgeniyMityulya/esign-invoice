@@ -14,8 +14,8 @@ export const HUBS = [
     introTitle: 'The gap every app leaves',
     intro: 'Preview on a Mac and Markup on an iPhone sign your own paperwork for free. Neither helps when a second person has to sign. That path runs through an email, an account and a subscription, and the customer signs tomorrow instead of now.',
     sections: [
-      { h: 'What actually counts as a signature', p: 'A drawn mark is enough for the vast majority of everyday agreements. The US ESIGN Act and UETA, the UK eIDAS regulations, the Australian Electronic Transactions Act and the Canadian UECA all accept an electronic signature where a handwritten one would do. What matters is intent, association with the document, and being able to show who signed and when.' },
-      { h: 'Why a record beats a prettier signature', p: 'A signature image on its own proves little. Inko writes an entry for every signed document with the time, the document title and the parties, and can produce a completion certificate alongside the PDF. That record is what answers a dispute, not how neat the line looked.' },
+      { h: 'What counts as a signature?', p: 'A drawn mark is enough for the vast majority of everyday agreements. The US ESIGN Act and UETA, the UK eIDAS regulations, the Australian Electronic Transactions Act and the Canadian UECA all accept an electronic signature where a handwritten one would do. What matters is intent, association with the document, and being able to show who signed and when.' },
+      { h: 'Why does the record matter more than the mark?', p: 'A signature image on its own proves little. Inko writes an entry for every signed document with the time, the document title and the parties, and can produce a completion certificate alongside the PDF. That record is what answers a dispute, not how neat the line looked.' },
       { h: 'The part nobody builds', p: 'Every large signing service is designed around sending a document away. That is the right shape for a contract between offices and the wrong shape for a quote agreed at a kitchen table. On site, the fastest path is the phone already in your hand.' }
     ],
     links: [
@@ -31,7 +31,7 @@ export const HUBS = [
     title: 'Sign a document on iPhone',
     h1: 'How to sign a document on an iPhone',
     lead: 'Three ways, and two of them are free.',
-    introTitle: 'Which one you need',
+    introTitle: 'Which one do you need?',
     intro: 'Signing it yourself needs no app at all. Getting a client to sign, while they stand in front of you, does.',
     steps: {
       title: 'Signing something yourself, free, no app',
@@ -43,9 +43,9 @@ export const HUBS = [
       ]
     },
     sections: [
-      { h: 'Where Markup runs out', p: 'Markup has no idea what a document is. It cannot record who signed, it cannot stamp a date next to the mark, and it treats a signature as a drawing on top of a picture. For your own paperwork that is fine. For anything you might have to defend later, it is thin.' },
-      { h: 'When the other person signs', p: 'This is the real reason people look for an app. Inko keeps the document on your phone, you turn the screen around, and the client draws with a finger. No app for them, no account, no email round trip. The signed PDF and its record land back on your device.' },
-      { h: 'What about a photo of a paper signature', p: 'It works and it is legal, but it is the weakest option. A pasted image carries no timestamp and no link to the document it sits on, so it is the easiest thing to dispute and the easiest to reuse without permission.' }
+      { h: 'Where does Markup run out?', p: 'Markup has no idea what a document is. It cannot record who signed, it cannot stamp a date next to the mark, and it treats a signature as a drawing on top of a picture. For your own paperwork that is fine. For anything you might have to defend later, it is thin.' },
+      { h: 'What if someone else has to sign?', p: 'This is the real reason people look for an app. Inko keeps the document on your phone, you turn the screen around, and the client draws with a finger. No app for them, no account, no email round trip. The signed PDF and its record land back on your device.' },
+      { h: 'What about a photo of a paper signature?', p: 'It works and it is legal, but it is the weakest option. A pasted image carries no timestamp and no link to the document it sits on, so it is the easiest thing to dispute and the easiest to reuse without permission.' }
     ],
     links: [
       { to: 'esign/legally-binding', text: 'Whether that signature holds up' },
@@ -59,7 +59,7 @@ export const HUBS = [
     title: 'DocuSign alternative',
     h1: 'A DocuSign alternative for people who sign a few documents',
     lead: 'The free plan died in 2022.',
-    introTitle: 'Why the price feels wrong',
+    introTitle: 'Why does the price feel wrong?',
     intro: 'DocuSign routes documents between people in different buildings, and prices for it. If your customer is standing next to you, that routing is the part you never use.',
     compare: {
       title: 'Two different jobs',
@@ -72,9 +72,9 @@ export const HUBS = [
       ]
     },
     sections: [
-      { h: 'When DocuSign is still the right answer', p: 'Remote parties, several signers in a set order, corporate audit requirements, integration with a CRM. If that is the job, pay for the tool that does it. Nothing here pretends otherwise.' },
-      { h: 'What you give up going smaller', p: 'No sending for remote signature, no reminder emails, no template library shared across a team. Inko is one person with a phone and a customer in front of them.' },
-      { h: 'What you get back', p: 'A signed PDF in under a minute, a record of who signed and when, and no monthly fee for the two documents a year you actually sign.' }
+      { h: 'When is DocuSign still the right answer?', p: 'Remote parties, several signers in a set order, corporate audit requirements, integration with a CRM. If that is the job, pay for the tool that does it. Nothing here pretends otherwise.' },
+      { h: 'What do you give up going smaller?', p: 'No sending for remote signature, no reminder emails, no template library shared across a team. Inko is one person with a phone and a customer in front of them.' },
+      { h: 'What do you get back?', p: 'A signed PDF in under a minute, a record of who signed and when, and no monthly fee for the two documents a year you actually sign.' }
     ],
     links: [
       { to: 'esign/legally-binding', text: 'Is an electronic signature legally binding' },
@@ -91,7 +91,7 @@ export const HUBS = [
     introTitle: 'The part that actually matters',
     intro: 'Electronic signatures have been recognised for two decades, and a mark drawn with a finger is one of them. The question is never whether it counts. It is what you can show afterwards.',
     laws: {
-      title: 'Where the rules come from',
+      title: 'The laws behind it',
       rows: [
         ['United States', 'ESIGN Act 2000 and UETA at state level'],
         ['United Kingdom', 'eIDAS as retained in UK law, plus the Electronic Communications Act 2000'],
@@ -101,9 +101,9 @@ export const HUBS = [
       ]
     },
     sections: [
-      { h: 'What these laws actually require', p: 'They ask three things. The signer intended to sign. The signature is connected to the document rather than floating loose. Both are capable of being retained and reproduced later. A drawn signature saved into the PDF with a record of the time meets all three.' },
-      { h: 'What is usually excluded', p: 'Wills, some property transfers, powers of attorney and a handful of family law documents still want wet ink or a witness, and the list differs by country. If a document has a legal formality attached to it, check before relying on any electronic signature, including the expensive ones.' },
-      { h: 'Where cheap tools fall down', p: 'Not on legality, on evidence. If all you kept is an image pasted on a page, you have no time, no context and no way to show the document was not altered afterwards. Inko keeps a ledger entry for each signing and can render a completion certificate next to the document.' },
+      { h: 'What do these laws require?', p: 'They ask three things. The signer intended to sign. The signature is connected to the document rather than floating loose. Both are capable of being retained and reproduced later. A drawn signature saved into the PDF with a record of the time meets all three.' },
+      { h: 'What is excluded?', p: 'Wills, some property transfers, powers of attorney and a handful of family law documents still want wet ink or a witness, and the list differs by country. If a document has a legal formality attached to it, check before relying on any electronic signature, including the expensive ones.' },
+      { h: 'Where do cheap tools fall down?', p: 'Not on legality, on evidence. If all you kept is an image pasted on a page, you have no time, no context and no way to show the document was not altered afterwards. Inko keeps a ledger entry for each signing and can render a completion certificate next to the document.' },
       { h: 'One honest caveat', p: 'This is a plain description of how these laws work, not legal advice, and the author builds software rather than practises law. For anything high value, ask someone qualified in your jurisdiction.' }
     ],
     links: [
@@ -142,7 +142,7 @@ export const HUBS = [
     introTitle: 'The gap in a trade job',
     intro: 'You price the job in the hallway, the paperwork happens that evening, and by then the customer remembers the number differently. A signature at the moment of agreement closes that gap in fifteen seconds.',
     steps: {
-      title: 'How a job runs through the app',
+      title: 'A job, step by step',
       items: [
         'Build the estimate on the spot, pulling repeat lines from your price book',
         'Turn the phone around, the customer signs with a finger',
@@ -168,7 +168,7 @@ export const HUBS = [
     title: 'Invoices for developers',
     h1: 'Invoicing for developers and IT contractors',
     lead: 'Milestones, retainers, clients abroad.',
-    introTitle: 'What breaks in contract work',
+    introTitle: 'What breaks in contract work?',
     intro: 'The work is remote, the client is often abroad, and the money arrives in their currency. What holds it together is a scope agreed in writing rather than on a call.',
     steps: {
       title: 'A project through the app',
@@ -196,7 +196,7 @@ export const HUBS = [
     title: 'Invoices for designers',
     h1: 'Invoices and estimates for designers',
     lead: 'Rounds, rights and the deposit.',
-    introTitle: 'Where design jobs go wrong',
+    introTitle: 'Where do design jobs go wrong?',
     intro: 'Two things cause almost every dispute. How many revisions are included, and what the client may do with the result. Both belong on a signed estimate, before anything gets designed.',
     steps: {
       title: 'A project through the app',

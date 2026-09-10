@@ -593,7 +593,7 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
 .hub-links a::after { content: " →"; color: var(--text-2); font-weight: 400; }
 .hub-links a:hover { opacity: .62; }
 
-.hub-cta { margin-top: 32px; }
+.hub-foot { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); text-align: center; }
 
 @media (prefers-color-scheme: dark) {
   .hub-steps li::before { background: rgba(255,255,255,.06); }

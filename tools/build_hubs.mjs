@@ -63,7 +63,12 @@ function body(h) {
     out.push('      </ul>');
   }
 
-  out.push(`      <p class="hub-cta"><a class="btn-link" href="${APP.storeUrl}">Get Inko on the App Store</a></p>`);
+  // Same App Store badge the home page and the FAQ use, centred under the page.
+  out.push(`      <div class="hub-foot">
+        <a class="store-badge" href="${APP.storeUrl}" aria-label="Download on the App Store">
+          <img src="/appstore-badge.svg" alt="Download on the App Store" width="168" height="56">
+        </a>
+      </div>`);
   return out.join('\n');
 }
 
