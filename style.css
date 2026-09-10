@@ -663,3 +663,10 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
 }
 .faq-group { scroll-margin-top: 90px; }
 .faq-group + .faq-group { margin-top: 34px; }
+
+/* Comparison table names the two approaches in a header row, so the cells
+   below can stay short. */
+.hub-table .hub-thead th, .hub-table .hub-thead td {
+  font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--text-2); padding-bottom: 6px;
+}

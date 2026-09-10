@@ -20,7 +20,7 @@ export const HUBS = [
     ],
     links: [
       { to: 'esign/sign-document-iphone', text: 'How to sign a document on an iPhone' },
-      { to: 'esign/docusign-alternative', text: 'Looking for a DocuSign alternative' },
+      { to: 'esign/docusign-alternative', text: 'Coming from a subscription service' },
       { to: 'esign/legally-binding', text: 'Are electronic signatures legally binding' }
     ]
   },
@@ -49,7 +49,7 @@ export const HUBS = [
     ],
     links: [
       { to: 'esign/legally-binding', text: 'Whether that signature holds up' },
-      { to: 'esign/docusign-alternative', text: 'How this compares with DocuSign' }
+      { to: 'esign/docusign-alternative', text: 'How this compares with the big services' }
     ]
   },
 
@@ -58,23 +58,24 @@ export const HUBS = [
     parent: 'esign',
     title: 'DocuSign alternative',
     h1: 'A DocuSign alternative for people who sign a few documents',
-    lead: 'The free plan died in 2022.',
+    lead: 'Paying monthly to sign twice a year.',
     introTitle: 'Why does the price feel wrong?',
-    intro: 'DocuSign routes documents between people in different buildings, and prices for it. If your customer is standing next to you, that routing is the part you never use.',
+    intro: 'The big signing services route documents between people in different buildings, and they price for that routing. If your customer is standing next to you, routing is the part you never use.',
     compare: {
       title: 'Two different jobs',
+      head: ['', 'Routing services', 'Inko'],
       rows: [
-        ['Signing happens', 'DocuSign: by email, later', 'Inko: in front of you, now'],
-        ['The other person needs', 'DocuSign: a link and often an account', 'Inko: nothing, they use your phone'],
-        ['Works with no signal', 'DocuSign: no', 'Inko: yes, everything is on the device'],
-        ['Your documents live', 'DocuSign: on their servers', 'Inko: on your phone'],
-        ['Cost to sign one document', 'DocuSign: a subscription', 'Inko: free tier, no watermark']
+        ['Signing happens', 'By email, later', 'In front of you, now'],
+        ['The other person needs', 'A link and often an account', 'Nothing, they use your phone'],
+        ['Works with no signal', 'No, it needs the cloud', 'Yes, everything is on the device'],
+        ['Your documents live', 'On someone else\'s servers', 'On your phone'],
+        ['Cost to sign one document', 'A monthly subscription', 'Free tier, no watermark']
       ]
     },
     sections: [
-      { h: 'When is DocuSign still the right answer?', p: 'Remote parties, several signers in a set order, corporate audit requirements, integration with a CRM. If that is the job, pay for the tool that does it. Nothing here pretends otherwise.' },
+      { h: 'When is a big service still the right answer?', p: 'Remote parties, several signers in a set order, corporate audit requirements, integration with a CRM. If that is the job, pay for the tool built for it. Nothing here pretends otherwise.' },
       { h: 'What do you give up going smaller?', p: 'No sending for remote signature, no reminder emails, no template library shared across a team. Inko is one person with a phone and a customer in front of them.' },
-      { h: 'What do you get back?', p: 'A signed PDF in under a minute, a record of who signed and when, and no monthly fee for the two documents a year you actually sign.' }
+      { h: 'What do you get back?', p: 'A signed PDF in under a minute, a record of who signed and when, your documents staying on your own device, and no monthly fee for the two documents a year you actually sign.' }
     ],
     links: [
       { to: 'esign/legally-binding', text: 'Is an electronic signature legally binding' },
@@ -185,7 +186,7 @@ export const HUBS = [
       { h: 'Your client list is not a spreadsheet', p: 'Clients, their documents and their totals live together, so answering "what has this client paid this year" takes one tap rather than a search through a folder of PDFs.' }
     ],
     links: [
-      { to: 'esign/docusign-alternative', text: 'If you are leaving DocuSign' },
+      { to: 'esign/docusign-alternative', text: 'If you are paying a monthly fee to sign' },
       { to: 'for/designers', text: 'Similar workflow, different lines' }
     ]
   },

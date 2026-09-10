@@ -38,6 +38,9 @@ function body(h) {
   if (h.compare) {
     out.push(`      <h2>${esc(h.compare.title)}</h2>`);
     out.push('      <div class="hub-table"><table>');
+    if (h.compare.head) {
+      out.push(`        <tr class="hub-thead">${h.compare.head.map((c, i) => (i ? `<td>${esc(c)}</td>` : `<th>${esc(c)}</th>`)).join('')}</tr>`);
+    }
     for (const [label, a, b] of h.compare.rows) {
       out.push(`        <tr><th>${esc(label)}</th><td>${esc(a)}</td><td>${esc(b)}</td></tr>`);
     }
