@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { SITE, APP, AUTHOR, PAGES } from './site_config.mjs';
 import { FAQ } from './faq_content.mjs';
+import { HUBS } from './hub_content.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const cssVer = createHash('md5').update(readFileSync('style.css')).digest('hex').slice(0, 8);
@@ -26,6 +27,34 @@ function schemaFor(p) {
     '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: APP.shortName,
     publisher: { '@id': `${SITE}/#org` }, inLanguage: 'en'
   }];
+  // Hub pages: the question-shaped headings are a real FAQ, so declare them.
+  // Every answer is the paragraph that follows the heading in hub_content.
+  const hub = HUBS.find((h) => `/${h.slug}/` === p.path);
+  if (hub) {
+    const qa = [];
+    if (hub.introTitle && hub.introTitle.trim().endsWith('?')) qa.push([hub.introTitle, hub.intro]);
+    for (const sec of hub.sections || []) if (sec.h.trim().endsWith('?')) qa.push([sec.h, sec.p]);
+    if (qa.length) {
+      graph.push({
+        '@type': 'FAQPage', '@id': `${url}#faq`,
+        mainEntity: qa.map(([q, a]) => ({
+          '@type': 'Question', name: q,
+          acceptedAnswer: { '@type': 'Answer', text: a }
+        }))
+      });
+    }
+    // Breadcrumbs give search results a visible path instead of a bare URL.
+    const crumbs = [{ name: 'Home', item: `${SITE}/` }];
+    if (hub.parent) {
+      const up = HUBS.find((h) => h.slug === hub.parent);
+      if (up) crumbs.push({ name: up.title, item: `${SITE}/${up.slug}/` });
+    }
+    crumbs.push({ name: hub.title, item: url });
+    graph.push({
+      '@type': 'BreadcrumbList', '@id': `${url}#crumbs`,
+      itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.item }))
+    });
+  }
   if (p.faq) {
     graph.push({
       '@type': 'FAQPage', '@id': `${url}#faq`,

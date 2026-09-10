@@ -21,7 +21,8 @@ export const HUBS = [
     links: [
       { to: 'esign/sign-document-iphone', text: 'How to sign a document on an iPhone' },
       { to: 'esign/docusign-alternative', text: 'Coming from a subscription service' },
-      { to: 'esign/legally-binding', text: 'Are electronic signatures legally binding' }
+      { to: 'esign/legally-binding', text: 'Are electronic signatures legally binding' },
+      { to: 'faq', text: 'Short answers to the usual questions' }
     ]
   },
 
@@ -130,7 +131,8 @@ export const HUBS = [
       { to: 'for/tradesmen', text: 'Trades and site work' },
       { to: 'for/developers', text: 'Developers and IT contractors' },
       { to: 'for/designers', text: 'Designers and studios' },
-      { to: 'for/photographers', text: 'Photographers and videographers' }
+      { to: 'for/photographers', text: 'Photographers and videographers' },
+      { to: 'faq', text: 'Short answers to the usual questions' }
     ]
   },
 

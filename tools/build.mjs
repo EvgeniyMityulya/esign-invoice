@@ -2,10 +2,11 @@
 import { writeFileSync, readFileSync } from 'node:fs';
 import { SITE, PAGES, APP } from './site_config.mjs';
 
+const stamp = new Date().toISOString().slice(0, 10);
 const indexable = PAGES.filter((p) => !/noindex/.test(p.robots || ''));
 const urls = indexable.map((p) => {
   const loc = SITE + (p.path === '/' ? '/' : p.path);
-  return `  <url><loc>${loc}</loc>${p.priority ? `<priority>${p.priority}</priority>` : ''}</url>`;
+  return `  <url><loc>${loc}</loc><lastmod>${stamp}</lastmod>${p.priority ? `<priority>${p.priority}</priority>` : ''}</url>`;
 }).join('\n');
 writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 

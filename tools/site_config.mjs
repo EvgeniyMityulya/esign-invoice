@@ -64,7 +64,7 @@ export const PAGES = [
     description: 'Sign a PDF yourself with Markup for free, and see what to use when a client has to sign on your screen instead. Step by step, no account needed.' },
   { file: 'esign/docusign-alternative/index.html', path: '/esign/docusign-alternative/', priority: '0.8',
     title: 'DocuSign Alternative for a Few Documents a Year',
-    description: 'If you sign a few documents a year and the other person is standing next to you, a routing subscription is the wrong shape. Documents stay on your phone, no account for either side.' },
+    description: 'For a few documents a year with the other person standing next to you. Documents stay on your phone, no account for either side, no monthly fee.' },
   { file: 'esign/legally-binding/index.html', path: '/esign/legally-binding/', priority: '0.8',
     title: 'Are Electronic Signatures Legally Binding',
     description: 'Yes in most everyday cases, under ESIGN, UETA, UK eIDAS, the Australian ETA and Canadian UECA. What those laws require and what is still excluded.' },
