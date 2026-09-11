@@ -3,6 +3,7 @@
 // Run this right after a deploy goes live.
 import { readFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
+import { PAGES } from './site_config.mjs';
 
 const token = readFileSync(process.env.HOME + '/.config/cloudflare/token.txt', 'utf8').trim();
 // zone id is looked up by name, so this works the moment the token can see it
@@ -16,7 +17,10 @@ if (!zone) { console.log('inkoinvoice.com not visible to this token yet'); proce
 const hash = (f) => execSync(`md5 -q ${f}`).toString().trim().slice(0, 8);
 const urls = ['https://inkoinvoice.com/style.css'];
 try { urls.push(`https://inkoinvoice.com/style.css?v=${hash('style.css')}`); } catch (e) {}
-for (const p of ['/', '/faq/', '/support/', '/privacy/', '/terms/']) urls.push('https://inkoinvoice.com' + p);
+// every page the site config knows about, so a new hub is never left stale
+for (const p of PAGES) urls.push('https://inkoinvoice.com' + p.path);
+// plus anything passed on the command line, paths or full urls
+for (const a of process.argv.slice(2)) urls.push(a.startsWith('http') ? a : 'https://inkoinvoice.com' + a);
 
 const res = await fetch(`https://api.cloudflare.com/client/v4/zones/${zone}/purge_cache`, {
   method: 'POST',
