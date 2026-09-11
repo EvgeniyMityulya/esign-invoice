@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.png">
-<link rel="stylesheet" href="./style.css?v=8874586f">
+<link rel="stylesheet" href="./style.css?v=0a5333e7">
 <!-- seo:start -->
 <title>Inko — Invoice Maker &amp; eSign for iPhone</title>
 <meta name="description" content="Invoices, estimates and receipts built on your phone and signed by the client on the spot. No account, no commission, nothing leaves your device.">
@@ -112,32 +112,20 @@
 
 <section class="screens">
   <h2>See it in action</h2>
-  <p class="sub">Four taps, four parts of the job.</p>
-  <div class="showcase">
-    <div class="stabs" role="tablist" aria-label="App screens">
-      <button class="stab is-on" id="stab-invoice" role="tab" aria-selected="true" aria-controls="shot-invoice" tabindex="0" type="button">Invoice</button>
-      <button class="stab" id="stab-sign" role="tab" aria-selected="false" aria-controls="shot-sign" tabindex="-1" type="button">Sign</button>
-      <button class="stab" id="stab-paid" role="tab" aria-selected="false" aria-controls="shot-paid" tabindex="-1" type="button">Payment</button>
-      <button class="stab" id="stab-reports" role="tab" aria-selected="false" aria-controls="shot-reports" tabindex="-1" type="button">Reports</button>
+  <p class="sub">Real screens, straight from the app.</p>
+  <div class="carousel">
+    <button class="cbtn cprev" type="button" aria-label="Previous screens" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5L8 12l6.5 6.5"/></svg></button>
+    <div class="ctrack" role="group" aria-label="App screens" tabindex="0">
+      <img src="./slides/1.webp" alt="An invoice preview with the template picker open" width="660" height="1434">
+      <img src="./slides/2.webp" alt="Invoices, estimates, signing, QR payments and reports in one app" width="660" height="1434">
+      <img src="./slides/3.webp" alt="A signature being placed on an invoice inside the app" width="660" height="1434">
+      <img src="./slides/4.webp" alt="Sending or printing a finished invoice from the share sheet" width="660" height="1434" loading="lazy">
+      <img src="./slides/5.webp" alt="A payment QR code for PayPal, Stripe and Revolut" width="660" height="1434" loading="lazy">
+      <img src="./slides/6.webp" alt="An invoice list with unpaid, overdue and paid statuses" width="660" height="1434" loading="lazy">
+      <img src="./slides/7.webp" alt="A paper signature captured with the camera in one shot" width="660" height="1434" loading="lazy">
+      <img src="./slides/8.webp" alt="Income reports by quarter with a yearly chart" width="660" height="1434" loading="lazy">
     </div>
-    <div class="stage">
-      <figure class="shot" id="shot-invoice" role="tabpanel" aria-labelledby="stab-invoice">
-        <figcaption>Pick a template, fill in the lines, hand it over before you leave.</figcaption>
-        <img src="./slides/1.webp" alt="An invoice preview with the template picker open" width="660" height="1434">
-      </figure>
-      <figure class="shot" id="shot-sign" role="tabpanel" aria-labelledby="stab-sign" hidden>
-        <figcaption>The client signs on your screen with a finger and the copy is ready.</figcaption>
-        <img src="./slides/3.webp" alt="A signature being placed on an invoice inside the app" width="660" height="1434" loading="lazy">
-      </figure>
-      <figure class="shot" id="shot-paid" role="tabpanel" aria-labelledby="stab-paid" hidden>
-        <figcaption>Show a QR code and the money goes straight to your own account.</figcaption>
-        <img src="./slides/5.webp" alt="A payment QR code for PayPal, Stripe and Revolut" width="660" height="1434" loading="lazy">
-      </figure>
-      <figure class="shot" id="shot-reports" role="tabpanel" aria-labelledby="stab-reports" hidden>
-        <figcaption>See what came in this quarter without touching a spreadsheet.</figcaption>
-        <img src="./slides/8.webp" alt="Income reports by quarter with a yearly chart" width="660" height="1434" loading="lazy">
-      </figure>
-    </div>
+    <button class="cbtn cnext" type="button" aria-label="Next screens"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 5.5L16 12l-6.5 6.5"/></svg></button>
   </div>
 </section>
 
@@ -218,45 +206,47 @@
 </footer>
 <script>
 (function () {
-  var tabs = [].slice.call(document.querySelectorAll('.stab'));
-  var shots = [].slice.call(document.querySelectorAll('.shot'));
-  if (!tabs.length) return;
-  var cur = 0;
+  var track = document.querySelector('.ctrack');
+  if (!track) return;
+  var imgs = [].slice.call(track.querySelectorAll('img'));
+  var prev = document.querySelector('.cprev');
+  var next = document.querySelector('.cnext');
 
-  function select(i, focus) {
-    cur = (i + tabs.length) % tabs.length;
-    tabs.forEach(function (t, k) {
-      var on = k === cur;
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
-      t.classList.toggle('is-on', on);
-      shots[k].hidden = !on;
-    });
-    if (focus) tabs[cur].focus();
+  // Step by a whole row, so tapping an arrow brings in a fresh set of phones
+  function step() {
+    var first = imgs[0];
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    var card = first.getBoundingClientRect().width + gap;
+    var perView = Math.max(1, Math.round((track.clientWidth + gap) / card));
+    return card * perView;
   }
-
-  tabs.forEach(function (t, k) {
-    t.addEventListener('click', function () { select(k); });
-    t.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); select(cur + 1, true); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); select(cur - 1, true); }
-      if (e.key === 'Home') { e.preventDefault(); select(0, true); }
-      if (e.key === 'End') { e.preventDefault(); select(tabs.length - 1, true); }
-    });
-  });
+  function sync() {
+    var max = track.scrollWidth - track.clientWidth - 2;
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= max;
+  }
+  prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+  track.addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', sync);
+  imgs[imgs.length - 1].addEventListener('load', sync);
+  sync();
 
   var box = document.querySelector('.lightbox');
   if (!box) return;
   var boxImg = box.querySelector('img');
-  var imgs = shots.map(function (f) { return f.querySelector('img'); });
+  var cur = 0;
 
   function show(i) {
-    select(i);
+    cur = (i + imgs.length) % imgs.length;
     boxImg.src = imgs[cur].src;
     boxImg.alt = imgs[cur].alt || 'App screen, enlarged';
   }
   function open(i) { show(i); box.hidden = false; document.body.style.overflow = 'hidden'; }
-  function close() { box.hidden = true; document.body.style.overflow = ''; }
+  function close() {
+    box.hidden = true; document.body.style.overflow = '';
+    imgs[cur].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
 
   imgs.forEach(function (img, k) {
     img.addEventListener('click', function () { open(k); });

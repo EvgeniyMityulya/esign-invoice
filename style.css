@@ -203,49 +203,60 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 7px;
 }
 
-/* App screens on a dark band: one phone at a time, picked by a tab.
-   An endless belt showed eight phones at once on a wide monitor and the
-   duplicates read as noise, so the section now holds a single large shot. */
-.screens { background: #141819; margin-top: 64px; padding: 42px 0 46px; }
-.screens h2 { color: #fff; font-size: 24px; letter-spacing: -0.02em; margin: 0 0 4px; text-align: center; padding: 0 24px; }
-.screens .sub { color: #A2A4AB; margin: 0 0 24px; text-align: center; font-size: 14.5px; padding: 0 24px; }
-.showcase { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+/* App screens: three phones at a time on the page background, arrows move
+   the row along. Nothing spins on its own and nothing repeats. */
+.screens { margin-top: 70px; padding: 6px 0 4px; }
+.screens h2 { font-size: 27px; letter-spacing: -0.022em; margin: 0 0 8px; text-align: center; padding: 0 24px; }
+.screens .sub { color: var(--text-2); margin: 0 0 30px; text-align: center; padding: 0 24px; }
 
-.stabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
-.stab {
-  font: inherit; font-size: 14px; font-weight: 620; letter-spacing: -0.005em;
-  padding: 9px 19px; border-radius: 999px; cursor: pointer;
-  color: #C9CBD1; background: rgba(255, 255, 255, .05);
-  border: 1px solid rgba(255, 255, 255, .14);
-  transition: color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+.carousel { position: relative; max-width: 796px; margin: 0 auto; padding: 0 24px; }
+.ctrack {
+  display: grid; grid-auto-flow: column; gap: 18px;
+  grid-auto-columns: calc((100% - 36px) / 3);
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none; padding-bottom: 6px;
 }
-.stab:hover { color: #fff; border-color: rgba(255, 255, 255, .3); }
-.stab[aria-selected="true"] { background: #fff; color: #17181C; border-color: #fff; }
-.stab:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-
-.stage { margin-top: 22px; }
-.shot { margin: 0; display: flex; flex-direction: column; align-items: center; }
-.shot[hidden] { display: none; }
-.shot figcaption {
-  color: #A2A4AB; font-size: 15px; line-height: 1.5; text-align: center;
-  max-width: 44ch; min-height: 3em; margin-bottom: 4px;
-}
-.shot img {
-  display: block; width: clamp(238px, 25vw, 300px); height: auto;
-  border-radius: 26px; border: 1px solid rgba(255, 255, 255, .10);
-  box-shadow: 0 34px 78px rgba(0, 0, 0, .5);
+.ctrack::-webkit-scrollbar { display: none; }
+.ctrack:focus-visible { outline: 2px solid var(--ink); outline-offset: 8px; border-radius: 8px; }
+.ctrack img {
+  display: block; width: 100%; height: auto; scroll-snap-align: start;
+  border-radius: 20px; border: 1px solid rgba(23, 24, 28, .08);
+  box-shadow: 0 16px 38px rgba(20, 21, 24, .14);
   cursor: zoom-in;
+  transition: transform var(--dur-comp) var(--ease-out), box-shadow var(--dur-comp) var(--ease-out);
 }
-@keyframes shotin { from { opacity: 0; transform: translateY(10px); } }
-@media (prefers-reduced-motion: no-preference) {
-  .shot { animation: shotin var(--dur-comp) var(--ease-out) both; }
+@media (hover: hover) {
+  .ctrack img:hover { transform: translateY(-4px); box-shadow: 0 24px 52px rgba(20, 21, 24, .2); }
+}
+
+.cbtn {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 46px; height: 46px; border-radius: 999px; padding: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--card); color: var(--text); border: 1px solid var(--border);
+  box-shadow: 0 8px 20px rgba(20, 21, 24, .12);
+  transition: transform var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), opacity var(--dur-micro) var(--ease-out);
+}
+.cbtn svg { width: 21px; height: 21px; }
+.cbtn:hover { border-color: rgba(23, 24, 28, .32); }
+.cbtn:active { transform: translateY(-50%) scale(.93); }
+.cbtn:disabled { opacity: .28; box-shadow: none; cursor: default; }
+.cprev { left: -32px; }
+.cnext { right: -32px; }
+
+/* No room beside the row, so the arrows step aside and the row is swiped.
+   A sliver of the next phone shows that there is more to the right. */
+@media (max-width: 900px) {
+  .cbtn { display: none; }
+  .carousel { max-width: none; padding: 0; }
+  .ctrack { grid-auto-columns: calc((100% - 60px) / 2.6); padding: 0 24px 6px; scroll-padding-left: 24px; }
 }
 @media (max-width: 560px) {
-  .showcase { padding: 0 18px; }
-  .stabs { gap: 6px; }
-  .stab { padding: 8px 14px; font-size: 13.5px; }
-  .shot figcaption { font-size: 14.5px; min-height: 4.4em; }
-  .shot img { width: min(272px, 66vw); }
+  .ctrack { grid-auto-columns: calc((100% - 48px) / 1.55); gap: 14px; padding: 0 20px 6px; scroll-padding-left: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ctrack { scroll-behavior: auto; }
 }
 
 /* Lightbox for a closer look at one slide */
