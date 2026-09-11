@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.png">
-<link rel="stylesheet" href="./style.css?v=29bc354c">
+<link rel="stylesheet" href="./style.css?v=8874586f">
 <!-- seo:start -->
 <title>Inko — Invoice Maker &amp; eSign for iPhone</title>
 <meta name="description" content="Invoices, estimates and receipts built on your phone and signed by the client on the spot. No account, no commission, nothing leaves your device.">
@@ -112,29 +112,31 @@
 
 <section class="screens">
   <h2>See it in action</h2>
-  <p class="sub">Real screens, straight from the app.</p>
-  <div class="srail">
-    <div class="strack">
-      <div class="sgroup">
-        <img src="./slides/1.jpg" alt="Invoice maker and estimates, an invoice preview with template picker" width="720" height="1564">
-        <img src="./slides/2.jpg" alt="Your business in one app, invoices, estimates, signing, QR payments, reports" width="720" height="1564">
-        <img src="./slides/3.jpg" alt="eSign any document in one tap, placing a signature on an invoice" width="720" height="1564">
-        <img src="./slides/4.jpg" alt="Send or print right away from the share sheet" width="720" height="1564">
-        <img src="./slides/5.jpg" alt="Get paid by QR codes for PayPal, Stripe and Revolut" width="720" height="1564">
-        <img src="./slides/6.jpg" alt="Invoice list with unpaid, overdue and paid statuses" width="720" height="1564">
-        <img src="./slides/7.jpg" alt="Scan a paper signature with the camera in one shot" width="720" height="1564">
-        <img src="./slides/8.jpg" alt="Income reports by quarter with a yearly chart" width="720" height="1564">
-      </div>
-      <div class="sgroup" aria-hidden="true">
-        <img src="./slides/1.jpg" alt="" width="720" height="1564" loading="lazy">
-        <img src="./slides/2.jpg" alt="" width="720" height="1564" loading="lazy">
-        <img src="./slides/3.jpg" alt="" width="720" height="1564" loading="lazy">
-        <img src="./slides/4.jpg" alt="" width="720" height="1564" loading="lazy">
-        <img src="./slides/5.jpg" alt="" width="720" height="1564" loading="lazy">
-        <img src="./slides/6.jpg" alt="" width="720" height="1564" loading="lazy">
-        <img src="./slides/7.jpg" alt="" width="720" height="1564" loading="lazy">
-        <img src="./slides/8.jpg" alt="" width="720" height="1564" loading="lazy">
-      </div>
+  <p class="sub">Four taps, four parts of the job.</p>
+  <div class="showcase">
+    <div class="stabs" role="tablist" aria-label="App screens">
+      <button class="stab is-on" id="stab-invoice" role="tab" aria-selected="true" aria-controls="shot-invoice" tabindex="0" type="button">Invoice</button>
+      <button class="stab" id="stab-sign" role="tab" aria-selected="false" aria-controls="shot-sign" tabindex="-1" type="button">Sign</button>
+      <button class="stab" id="stab-paid" role="tab" aria-selected="false" aria-controls="shot-paid" tabindex="-1" type="button">Payment</button>
+      <button class="stab" id="stab-reports" role="tab" aria-selected="false" aria-controls="shot-reports" tabindex="-1" type="button">Reports</button>
+    </div>
+    <div class="stage">
+      <figure class="shot" id="shot-invoice" role="tabpanel" aria-labelledby="stab-invoice">
+        <figcaption>Pick a template, fill in the lines, hand it over before you leave.</figcaption>
+        <img src="./slides/1.webp" alt="An invoice preview with the template picker open" width="660" height="1434">
+      </figure>
+      <figure class="shot" id="shot-sign" role="tabpanel" aria-labelledby="stab-sign" hidden>
+        <figcaption>The client signs on your screen with a finger and the copy is ready.</figcaption>
+        <img src="./slides/3.webp" alt="A signature being placed on an invoice inside the app" width="660" height="1434" loading="lazy">
+      </figure>
+      <figure class="shot" id="shot-paid" role="tabpanel" aria-labelledby="stab-paid" hidden>
+        <figcaption>Show a QR code and the money goes straight to your own account.</figcaption>
+        <img src="./slides/5.webp" alt="A payment QR code for PayPal, Stripe and Revolut" width="660" height="1434" loading="lazy">
+      </figure>
+      <figure class="shot" id="shot-reports" role="tabpanel" aria-labelledby="stab-reports" hidden>
+        <figcaption>See what came in this quarter without touching a spreadsheet.</figcaption>
+        <img src="./slides/8.webp" alt="Income reports by quarter with a yearly chart" width="660" height="1434" loading="lazy">
+      </figure>
     </div>
   </div>
 </section>
@@ -216,17 +218,48 @@
 </footer>
 <script>
 (function () {
+  var tabs = [].slice.call(document.querySelectorAll('.stab'));
+  var shots = [].slice.call(document.querySelectorAll('.shot'));
+  if (!tabs.length) return;
+  var cur = 0;
+
+  function select(i, focus) {
+    cur = (i + tabs.length) % tabs.length;
+    tabs.forEach(function (t, k) {
+      var on = k === cur;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      t.classList.toggle('is-on', on);
+      shots[k].hidden = !on;
+    });
+    if (focus) tabs[cur].focus();
+  }
+
+  tabs.forEach(function (t, k) {
+    t.addEventListener('click', function () { select(k); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); select(cur + 1, true); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); select(cur - 1, true); }
+      if (e.key === 'Home') { e.preventDefault(); select(0, true); }
+      if (e.key === 'End') { e.preventDefault(); select(tabs.length - 1, true); }
+    });
+  });
+
   var box = document.querySelector('.lightbox');
   if (!box) return;
   var boxImg = box.querySelector('img');
-  var uniq = [].slice.call(document.querySelectorAll('.sgroup:not([aria-hidden]) img'));
-  var all = [].slice.call(document.querySelectorAll('.sgroup img'));
-  var cur = 0, n = uniq.length;
-  function show(i) { cur = (i + n) % n; boxImg.src = uniq[cur].src; boxImg.alt = uniq[cur].alt || 'App screen, enlarged'; }
+  var imgs = shots.map(function (f) { return f.querySelector('img'); });
+
+  function show(i) {
+    select(i);
+    boxImg.src = imgs[cur].src;
+    boxImg.alt = imgs[cur].alt || 'App screen, enlarged';
+  }
   function open(i) { show(i); box.hidden = false; document.body.style.overflow = 'hidden'; }
   function close() { box.hidden = true; document.body.style.overflow = ''; }
-  all.forEach(function (img, k) {
-    img.addEventListener('click', function () { open(k % n); });
+
+  imgs.forEach(function (img, k) {
+    img.addEventListener('click', function () { open(k); });
   });
   box.addEventListener('click', close);
   [['.lb-x', close], ['.lb-prev', function () { show(cur - 1); }], ['.lb-next', function () { show(cur + 1); }]].forEach(function (pair) {

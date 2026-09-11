@@ -203,41 +203,49 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 7px;
 }
 
-/* App screens on a dark band: a compact full-bleed slide belt */
-.screens { background: #141819; margin-top: 64px; padding: 38px 0 36px; overflow: hidden; }
+/* App screens on a dark band: one phone at a time, picked by a tab.
+   An endless belt showed eight phones at once on a wide monitor and the
+   duplicates read as noise, so the section now holds a single large shot. */
+.screens { background: #141819; margin-top: 64px; padding: 42px 0 46px; }
 .screens h2 { color: #fff; font-size: 24px; letter-spacing: -0.02em; margin: 0 0 4px; text-align: center; padding: 0 24px; }
-.screens .sub { color: #A2A4AB; margin: 0 0 22px; text-align: center; font-size: 14.5px; padding: 0 24px; }
+.screens .sub { color: #A2A4AB; margin: 0 0 24px; text-align: center; font-size: 14.5px; padding: 0 24px; }
+.showcase { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
-/* Slow endless belt across the full viewport. The rail carries the same
-   vertical gradient as the slide artwork (#2C2C34 → #212226 → #141819), so
-   the slides melt into one continuous strip instead of reading as boxes.
-   Hover pauses the belt and spotlights one slide, click opens it large. */
-.srail {
-  overflow: hidden; padding: 18px 0;
-  background: linear-gradient(180deg, #2C2C34, #212226 50%, #141819);
+.stabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.stab {
+  font: inherit; font-size: 14px; font-weight: 620; letter-spacing: -0.005em;
+  padding: 9px 19px; border-radius: 999px; cursor: pointer;
+  color: #C9CBD1; background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .14);
+  transition: color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
 }
-.strack { display: flex; width: max-content; }
-.sgroup { display: flex; gap: 14px; padding-right: 14px; }
-.srail img {
-  width: clamp(190px, 13.5vw, 250px); height: auto; border-radius: 20px;
-  border: 1px solid rgba(255,255,255,.10);
-  transition: transform var(--dur-comp) var(--ease-out), opacity var(--dur-comp) var(--ease-out), box-shadow var(--dur-comp) var(--ease-out);
+.stab:hover { color: #fff; border-color: rgba(255, 255, 255, .3); }
+.stab[aria-selected="true"] { background: #fff; color: #17181C; border-color: #fff; }
+.stab:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+.stage { margin-top: 22px; }
+.shot { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.shot[hidden] { display: none; }
+.shot figcaption {
+  color: #A2A4AB; font-size: 15px; line-height: 1.5; text-align: center;
+  max-width: 44ch; min-height: 3em; margin-bottom: 4px;
+}
+.shot img {
+  display: block; width: clamp(238px, 25vw, 300px); height: auto;
+  border-radius: 26px; border: 1px solid rgba(255, 255, 255, .10);
+  box-shadow: 0 34px 78px rgba(0, 0, 0, .5);
   cursor: zoom-in;
 }
-@keyframes beltscroll { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  .strack { animation: beltscroll 80s linear infinite; }
-  .srail:hover .strack { animation-play-state: paused; }
-  .srail:hover img { opacity: .35; }
-  .srail img:hover { opacity: 1; transform: scale(1.05); box-shadow: 0 26px 70px rgba(0,0,0,.55); }
+@keyframes shotin { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .shot { animation: shotin var(--dur-comp) var(--ease-out) both; }
 }
-/* Touch or reduced motion: a plain swipeable rail, single set of slides */
-@media (hover: none), (prefers-reduced-motion: reduce) {
-  .srail { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-  .srail::-webkit-scrollbar { display: none; }
-  .sgroup { padding: 0 24px 0 24px; }
-  .sgroup[aria-hidden="true"] { display: none; }
-  .srail img { width: min(230px, 56vw); scroll-snap-align: center; }
+@media (max-width: 560px) {
+  .showcase { padding: 0 18px; }
+  .stabs { gap: 6px; }
+  .stab { padding: 8px 14px; font-size: 13.5px; }
+  .shot figcaption { font-size: 14.5px; min-height: 4.4em; }
+  .shot img { width: min(272px, 66vw); }
 }
 
 /* Lightbox for a closer look at one slide */
