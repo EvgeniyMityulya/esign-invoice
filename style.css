@@ -209,51 +209,49 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .screens h2 { font-size: 27px; letter-spacing: -0.022em; margin: 0 0 8px; text-align: center; padding: 0 24px; }
 .screens .sub { color: var(--text-2); margin: 0 0 30px; text-align: center; padding: 0 24px; }
 
-.carousel { position: relative; max-width: 796px; margin: 0 auto; padding: 0 24px; }
+/* Same 880px column as the feature rows above, so the phones line up with them */
+.carousel { position: relative; max-width: 928px; margin: 0 auto; padding: 0 24px; }
 .ctrack {
   display: grid; grid-auto-flow: column; gap: 18px;
   grid-auto-columns: calc((100% - 36px) / 3);
   overflow-x: auto; overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory; scroll-behavior: smooth;
-  scrollbar-width: none; padding-bottom: 6px;
+  scrollbar-width: none;
 }
 .ctrack::-webkit-scrollbar { display: none; }
 .ctrack:focus-visible { outline: 2px solid var(--ink); outline-offset: 8px; border-radius: 8px; }
+/* No drop shadow and no lift on hover: the row clips its own overflow, so a
+   raised phone lost its top edge, and neighbouring shadows pooled in the gaps. */
 .ctrack img {
   display: block; width: 100%; height: auto; scroll-snap-align: start;
   border-radius: 20px; border: 1px solid rgba(23, 24, 28, .08);
-  box-shadow: 0 16px 38px rgba(20, 21, 24, .14);
   cursor: zoom-in;
-  transition: transform var(--dur-comp) var(--ease-out), box-shadow var(--dur-comp) var(--ease-out);
-}
-@media (hover: hover) {
-  .ctrack img:hover { transform: translateY(-4px); box-shadow: 0 24px 52px rgba(20, 21, 24, .2); }
 }
 
 .cbtn {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
-  width: 46px; height: 46px; border-radius: 999px; padding: 0; cursor: pointer;
+  width: 48px; height: 48px; border-radius: 999px; padding: 0; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  background: var(--card); color: var(--text); border: 1px solid var(--border);
-  box-shadow: 0 8px 20px rgba(20, 21, 24, .12);
-  transition: transform var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), opacity var(--dur-micro) var(--ease-out);
+  background: var(--ink); color: #fff; border: none;
+  box-shadow: 0 10px 24px rgba(20, 21, 24, .26);
+  transition: transform var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out), opacity var(--dur-micro) var(--ease-out);
 }
-.cbtn svg { width: 21px; height: 21px; }
-.cbtn:hover { border-color: rgba(23, 24, 28, .32); }
+.cbtn svg { width: 22px; height: 22px; }
+.cbtn:hover { background: #000; }
 .cbtn:active { transform: translateY(-50%) scale(.93); }
-.cbtn:disabled { opacity: .28; box-shadow: none; cursor: default; }
-.cprev { left: -32px; }
-.cnext { right: -32px; }
+.cbtn:disabled { opacity: .2; box-shadow: none; cursor: default; }
+.cprev { left: -30px; }
+.cnext { right: -30px; }
 
 /* No room beside the row, so the arrows step aside and the row is swiped.
    A sliver of the next phone shows that there is more to the right. */
-@media (max-width: 900px) {
+@media (max-width: 1010px) {
   .cbtn { display: none; }
   .carousel { max-width: none; padding: 0; }
-  .ctrack { grid-auto-columns: calc((100% - 60px) / 2.6); padding: 0 24px 6px; scroll-padding-left: 24px; }
+  .ctrack { grid-auto-columns: calc((100% - 60px) / 2.6); padding: 0 24px; scroll-padding-left: 24px; }
 }
 @media (max-width: 560px) {
-  .ctrack { grid-auto-columns: calc((100% - 48px) / 1.55); gap: 14px; padding: 0 20px 6px; scroll-padding-left: 20px; }
+  .ctrack { grid-auto-columns: calc((100% - 48px) / 1.55); gap: 14px; padding: 0 20px; scroll-padding-left: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ctrack { scroll-behavior: auto; }

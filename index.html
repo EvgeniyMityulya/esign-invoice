@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.png">
-<link rel="stylesheet" href="./style.css?v=0a5333e7">
+<link rel="stylesheet" href="./style.css?v=a02c0af4">
 <!-- seo:start -->
 <title>Inko — Invoice Maker &amp; eSign for iPhone</title>
 <meta name="description" content="Invoices, estimates and receipts built on your phone and signed by the client on the spot. No account, no commission, nothing leaves your device.">
@@ -211,6 +211,12 @@
   var imgs = [].slice.call(track.querySelectorAll('img'));
   var prev = document.querySelector('.cprev');
   var next = document.querySelector('.cnext');
+
+  // A browser restores the scroll offset of inner containers on reload and on
+  // back, which would open the section halfway along. Always start on one.
+  function rewind() { track.scrollTo({ left: 0, behavior: 'instant' }); }
+  rewind();
+  addEventListener('pageshow', rewind);
 
   // Step by a whole row, so tapping an arrow brings in a fresh set of phones
   function step() {
