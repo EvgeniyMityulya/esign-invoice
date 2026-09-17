@@ -46,7 +46,9 @@ export const HUBS = [
     sections: [
       { h: 'Where does Markup run out?', p: 'Markup has no idea what a document is. It cannot record who signed, it cannot stamp a date next to the mark, and it treats a signature as a drawing on top of a picture. For your own paperwork that is fine. For anything you might have to defend later, it is thin.' },
       { h: 'What if someone else has to sign?', p: 'This is the real reason people look for an app. Inko keeps the document on your phone, you turn the screen around, and the client draws with a finger. No app for them, no account, no email round trip. The signed PDF and its record land back on your device.' },
-      { h: 'What about a photo of a paper signature?', p: 'It works and it is legal, but it is the weakest option. A pasted image carries no timestamp and no link to the document it sits on, so it is the easiest thing to dispute and the easiest to reuse without permission.' }
+      { h: 'How do you create a signature on iPhone?', p: 'Inko uses your real signature. Draw it once with your finger, or sign a sheet of paper and photograph it, and the app lifts the ink off the background. It is saved to your library alongside your initials and stamp, and from then on you place any of them on a document with one tap.' },
+      { h: 'Can you sign a Word document on iPhone?', p: 'Yes. Inko turns a Word file into a PDF the moment you open it, and the same goes for Excel sheets, PowerPoint decks, photos and camera scans. PDFs open as they are. Either way you sign right on top of the page and send the signed PDF back from the phone.' },
+      { h: 'Where do your signature and documents go?', p: 'They stay on your iPhone. You never create an account, and Inko does not upload your documents or signatures to a server, so the signed files and your client details live inside the app. On an iPhone protected by a passcode, iOS encrypts them as well.' }
     ],
     links: [
       { to: 'esign/legally-binding', text: 'Whether that signature holds up' },
