@@ -3,8 +3,8 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { ABOUT, AUTHOR_LINKS } from './about_content.mjs';
 import { BRAND_ICONS } from './brand_icons_data.mjs';
+import { esc, safeUrl } from './html.mjs';
 
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const rich = (s) => esc(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 const lines = (s) => esc(s).split('\n').join('<br>');
 const shell = readFileSync('support/index.html', 'utf8');
@@ -22,17 +22,17 @@ const rows = ABOUT.blocks.map((b, i) => `  <div class="zrow${i % 2 ? ' flip' : '
       <h2>${esc(b.title)}</h2>
       <p>${rich(b.body)}</p>
     </div>
-    <div class="zart"><img src="/${b.art}" alt="${esc(b.alt)}" width="600" height="600" loading="lazy"></div>
+    <div class="zart"><img src="${safeUrl(`/${b.art}`)}" alt="${esc(b.alt)}" width="600" height="600" loading="lazy"></div>
   </div>`).join('\n');
 
 // brand mark inside a coloured chip, so it stays legible on the dark card
 const MARK_SIZE = { telegram: 20, linkedin: 14, x: 13 };
 const mark = (l) => {
   const size = MARK_SIZE[l.icon] || 14;
-  return `<span class="brand-chip" style="background:${l.chip}"><svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${l.mark}" aria-hidden="true"><path d="${BRAND_ICONS[l.icon]}"/></svg></span>`;
+  return `<span class="brand-chip" style="background:${esc(l.chip)}"><svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${esc(l.mark)}" aria-hidden="true"><path d="${esc(BRAND_ICONS[l.icon])}"/></svg></span>`;
 };
 const links = AUTHOR_LINKS.map((l) =>
-  `        <a class="author-link" href="${l.href}" rel="me noopener" target="_blank" aria-label="${esc(l.handle)}, ${esc(l.label)}">${mark(l)}${esc(l.handle)}</a>`
+  `        <a class="author-link" href="${safeUrl(l.href)}" rel="me noopener" target="_blank" aria-label="${esc(l.handle)}, ${esc(l.label)}">${mark(l)}${esc(l.handle)}</a>`
 ).join('\n');
 
 mkdirSync('about', { recursive: true });
@@ -61,7 +61,7 @@ ${rows}
   <section class="dev-wrap">
     <div class="dev-card">
       <div class="dev-side">
-        <img class="dev-photo" src="/${ABOUT.photo}" alt="${esc(ABOUT.name)}" width="132" height="132" loading="lazy">
+        <img class="dev-photo" src="${safeUrl(`/${ABOUT.photo}`)}" alt="${esc(ABOUT.name)}" width="132" height="132" loading="lazy">
         <div class="dev-name">${esc(ABOUT.name)}</div>
         <div class="dev-role">${lines(ABOUT.role)}</div>
       </div>

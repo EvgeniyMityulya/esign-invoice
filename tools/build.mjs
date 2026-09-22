@@ -12,7 +12,9 @@ writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xm
 
 writeFileSync('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 
-// GitHub Pages serves 404.html for unknown paths; keep it out of the index
+// GitHub Pages serves 404.html for unknown paths; keep it out of the index.
+// It answers at any depth, so the shell's ../ links become absolute site paths,
+// and no nav item is current on it.
 const shell = readFileSync('support/index.html', 'utf8');
 const head = shell.slice(0, shell.indexOf('</head>'));
 const nav = (shell.match(/<div class="bar">[\s\S]*?<\/div>\s*<\/div>/) || [''])[0];
@@ -27,7 +29,7 @@ writeFileSync('404.html', `<!doctype html>
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-${nav.replace(/href="\.\//g, 'href="/').replace(/src="\.\//g, 'src="/')}
+${nav.replace(/(href|src)="(\.\.?\/)+/g, '$1="/').replace(/ class="active"/g, '')}
 <section class="hero">
   <h1>This page moved or never existed</h1>
   <p class="lede">Nothing here. The invoice maker is still where you left it.</p>

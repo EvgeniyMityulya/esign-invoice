@@ -6,8 +6,8 @@ import { createHash } from 'node:crypto';
 import { SITE, APP, AUTHOR, PAGES } from './site_config.mjs';
 import { FAQ } from './faq_content.mjs';
 import { HUBS } from './hub_content.mjs';
+import { esc } from './html.mjs';
 
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const cssVer = createHash('md5').update(readFileSync('style.css')).digest('hex').slice(0, 8);
 
 function schemaFor(p) {
@@ -74,7 +74,9 @@ function schemaFor(p) {
       author: { '@id': `${SITE}/#author` }, publisher: { '@id': `${SITE}/#org` }
     });
   }
-  return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+  // The JSON lands inside <script>, where a "</script>" in any answer would end
+  // the element early. \u003c parses back to the same "<".
+  return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
 }
 
 function block(p) {
@@ -106,8 +108,10 @@ for (const p of PAGES) {
   if (!existsSync(p.file)) { console.log('skip (missing)', p.file); continue; }
   let html = readFileSync(p.file, 'utf8');
 
+  // Replacements go in as functions: a string would expand any $& or $' that
+  // the content happens to contain.
   if (/<!-- seo:start -->[\s\S]*?<!-- seo:end -->/.test(html)) {
-    html = html.replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->/, block(p));
+    html = html.replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->/, () => block(p));
   } else {
     // drop the hand-written tags this block now owns, then insert before </head>
     html = html
@@ -115,11 +119,11 @@ for (const p of PAGES) {
       .replace(/[ \t]*<meta name="(description|robots|apple-itunes-app|twitter:[a-z:]+)"[^>]*>\s*\n?/g, '')
       .replace(/[ \t]*<meta property="og:[a-z_:]+"[^>]*>\s*\n?/g, '')
       .replace(/[ \t]*<link rel="canonical"[^>]*>\s*\n?/g, '')
-      .replace('</head>', block(p) + '\n</head>');
+      .replace('</head>', () => block(p) + '\n</head>');
     touched++;
   }
 
-  html = html.replace(/(href="[^"]*style\.css)(\?v=[a-z0-9]+)?"/g, `$1?v=${cssVer}"`);
+  html = html.replace(/(href="[^"]*style\.css)(\?v=[a-z0-9]+)?"/g, (_, href) => `${href}?v=${cssVer}"`);
   writeFileSync(p.file, html);
 }
 console.log(`patched ${PAGES.filter((p) => existsSync(p.file)).length} pages (${touched} first-time), css v=${cssVer}`);

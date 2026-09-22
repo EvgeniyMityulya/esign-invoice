@@ -2,8 +2,8 @@
 // shell so the header, footer and styles never drift between pages.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { FAQ } from './faq_content.mjs';
+import { esc, safeUrl } from './html.mjs';
 
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const shell = readFileSync('support/index.html', 'utf8');
 const bar = (shell.match(/<div class="bar">[\s\S]*?\n<\/div>/) || shell.match(/<div class="bar">[\s\S]*?<\/div>\s*<\/div>/) || [''])[0];
 const footer = (shell.match(/<footer>[\s\S]*?<\/footer>/) || [''])[0];
@@ -18,7 +18,7 @@ const TOPICS = [
   { key: 'money', title: 'Price and privacy', blurb: 'What the free tier covers and where your documents live', to: '#money', cta: 'Jump to answers' }
 ];
 
-const cards = TOPICS.map((t) => `        <a class="tile is-dark" href="${t.to}">
+const cards = TOPICS.map((t) => `        <a class="tile is-dark" href="${safeUrl(t.to)}">
           <span class="tile-h">${esc(t.title)}</span>
           <span class="tile-p">${esc(t.blurb)}</span>
           <span class="tile-go">${esc(t.cta)}</span>
@@ -31,7 +31,7 @@ const items = TOPICS.map((t) => {
           <summary>${esc(f.q)}${chev}</summary>
           <p class="a">${esc(f.a)}</p>
         </details>`).join('\n');
-  return `      <section class="faq-group" id="${t.key}">
+  return `      <section class="faq-group" id="${esc(t.key)}">
         <h2>${esc(t.title)}</h2>
 ${rows}
       </section>`;

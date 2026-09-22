@@ -14,8 +14,9 @@ for (const [file, tag] of Object.entries(CAMPAIGNS)) {
   if (!existsSync(file)) { console.log('skip (missing)', file); continue; }
   let html = readFileSync(file, 'utf8');
   const before = html;
-  // the official badge keeps itsct/itscg, other links stay clean
-  html = html.replace(/https:\/\/apps\.apple\.com\/[^"']*id6788092513[^"']*/g, (m) =>
+  // the official badge keeps itsct/itscg, other links stay clean; a link that
+  // sits in text ends at whitespace or a tag, never at the next quote
+  html = html.replace(/https:\/\/apps\.apple\.com\/[^"'\s<>]*id6788092513[^"'\s<>]*/g, (m) =>
     link(tag, /itsct/.test(m)).replace(/&/g, '&amp;'));
   if (html !== before) { writeFileSync(file, html); changed++; }
   console.log(file.padEnd(22), '->', tag);

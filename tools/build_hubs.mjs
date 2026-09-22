@@ -3,8 +3,8 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { HUBS } from './hub_content.mjs';
 import { APP } from './site_config.mjs';
+import { esc, safeUrl } from './html.mjs';
 
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const shell = readFileSync('support/index.html', 'utf8');
 const bar = (shell.match(/<div class="bar">[\s\S]*?\n<\/div>/) || [''])[0]
   .replace(/href="\.\.\//g, 'href="/').replace(/href="\.\//g, 'href="/')
@@ -21,7 +21,7 @@ function body(h) {
   // one-line thesis, then the paragraph that frames the sections below.
   const up = h.parent ? byline(h) : null;
   out.push('      <header class="hub-head">');
-  out.push(`        <p class="hub-eyebrow">${up ? `<a href="/${up.slug}/">${esc(up.title)}</a>` : esc(h.title)}</p>`);
+  out.push(`        <p class="hub-eyebrow">${up ? `<a href="${safeUrl(`/${up.slug}/`)}">${esc(up.title)}</a>` : esc(h.title)}</p>`);
   out.push(`        <h1>${esc(h.h1)}</h1>`);
   out.push(`        <p class="hub-lead">${esc(h.lead)}</p>`);
   out.push('      </header>');
@@ -62,24 +62,31 @@ function body(h) {
   if (h.links?.length) {
     out.push(`      <h2>${esc(h.kind === 'hub' ? 'Pick your situation' : 'Read next')}</h2>`);
     out.push('      <ul class="hub-links">');
-    for (const l of h.links) out.push(`        <li><a href="/${l.to}/">${esc(l.text)}</a></li>`);
+    for (const l of h.links) out.push(`        <li><a href="${safeUrl(`/${l.to}/`)}">${esc(l.text)}</a></li>`);
     out.push('      </ul>');
   }
 
   // Same App Store badge the home page and the FAQ use, centred under the page.
   out.push(`      <div class="hub-foot">
-        <a class="store-badge" href="${APP.storeUrl}" aria-label="Download on the App Store">
+        <a class="store-badge" href="${safeUrl(APP.storeUrl)}" aria-label="Download on the App Store">
           <img src="/appstore-badge.svg" alt="Download on the App Store" width="168" height="56">
         </a>
       </div>`);
   return out.join('\n');
 }
 
+// A slug becomes a directory on disk, so a "..", an absolute path or a stray
+// character must stop the build before anything is written.
+const SLUG = /^[a-z0-9-]+(\/[a-z0-9-]+)*$/;
+for (const h of HUBS) {
+  if (typeof h.slug !== 'string' || !SLUG.test(h.slug)) throw new Error(`hub slug ${JSON.stringify(h.slug)} must match ${SLUG}`);
+}
+
 let written = 0;
 for (const h of HUBS) {
   mkdirSync(h.slug, { recursive: true });
   const nav = bar.replace('<a href="/">Home</a>', '<a href="/">Home</a>')
-    .replace(`<a href="/${h.slug.split('/')[0]}/">`, `<a href="/${h.slug.split('/')[0]}/" class="active">`);
+    .replace(`<a href="/${h.slug.split('/')[0]}/">`, () => `<a href="/${h.slug.split('/')[0]}/" class="active">`);
   writeFileSync(`${h.slug}/index.html`, `<!doctype html>
 <html lang="en">
 <head>

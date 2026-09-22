@@ -12,9 +12,10 @@ if (!dns) {
 }
 
 const cfg = readFileSync('tools/site_config.mjs', 'utf8');
+// function replacements, so a $ in either URL is written as is
 writeFileSync('tools/site_config.mjs', cfg
-  .replace(`export const SITE = '${SITE}';`, `export const SITE = '${SITE_NEXT}';`)
-  .replace(`export const SITE_NEXT = '${SITE_NEXT}';`, `export const SITE_NEXT = '${SITE_NEXT}'; // live`));
+  .replace(`export const SITE = '${SITE}';`, () => `export const SITE = '${SITE_NEXT}';`)
+  .replace(`export const SITE_NEXT = '${SITE_NEXT}';`, () => `export const SITE_NEXT = '${SITE_NEXT}'; // live`));
 writeFileSync('CNAME', host + '\n');
 
 for (const step of ['build_faq.mjs', 'patch_meta.mjs', 'build.mjs']) {
