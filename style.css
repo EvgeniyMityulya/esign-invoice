@@ -490,7 +490,8 @@ footer .spacer { flex: 1; }
 .faq-eyebrow { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--text-2); margin-bottom: 12px; }
 .faq-head h1 { margin: 0 0 10px; }
 .faq-head .lede { margin: 0 auto; max-width: 30em; }
-.faq-foot { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--border); text-align: center; }
+/* the last question already draws a line, a second rule under it read as a stray divider */
+.faq-foot { margin-top: 44px; text-align: center; }
 .faq-foot .support-line { margin: 0 0 20px; font-size: 15px; color: var(--text-2); }
 .faq-foot .store-badge { display: inline-block; }
 
