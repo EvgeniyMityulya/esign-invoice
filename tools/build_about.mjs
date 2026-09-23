@@ -26,15 +26,13 @@ const rows = ABOUT.blocks.map((b, i) => `  <div class="zrow${i % 2 ? ' flip' : '
   </div>`).join('\n');
 
 // brand mark inside a coloured chip, so it stays legible on the dark card
-const MARK_SIZE = { telegram: 20, linkedin: 14, x: 13, mail: 15 };
-// the personal email is not a brand, so its envelope lives here rather than in the icon data
-const ICONS = { ...BRAND_ICONS, mail: 'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z' };
+const MARK_SIZE = { telegram: 20, linkedin: 14, x: 13 };
 const mark = (l) => {
   const size = MARK_SIZE[l.icon] || 14;
-  return `<span class="brand-chip" style="background:${esc(l.chip)}"><svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${esc(l.mark)}" aria-hidden="true"><path d="${esc(ICONS[l.icon])}"/></svg></span>`;
+  return `<span class="brand-chip" style="background:${esc(l.chip)}"><svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${esc(l.mark)}" aria-hidden="true"><path d="${esc(BRAND_ICONS[l.icon])}"/></svg></span>`;
 };
 const links = AUTHOR_LINKS.map((l) =>
-  `        <a class="author-link" href="${safeUrl(l.href)}" ${l.href.startsWith('mailto:') ? 'rel="me"' : 'rel="me noopener" target="_blank"'} aria-label="${esc(l.handle)}, ${esc(l.label)}">${mark(l)}${esc(l.handle)}</a>`
+  `        <a class="author-link" href="${safeUrl(l.href)}" rel="me noopener" target="_blank" aria-label="${esc(l.handle)}, ${esc(l.label)}">${mark(l)}${esc(l.handle)}</a>`
 ).join('\n');
 
 mkdirSync('about', { recursive: true });
@@ -77,7 +75,7 @@ ${links}
     </div>
 
     <div class="faq-foot">
-      <p class="support-line">Something to ask before you install? <a href="/support/">Write to support</a>.</p>
+      <p class="support-line">Want to talk to me directly or work on something together? <a href="${safeUrl('mailto:evgeniymityulya@gmail.com')}">Write to me</a>.</p>
       <a class="store-badge" href="https://apps.apple.com/app/id6788092513" aria-label="Download on the App Store">
         <img src="/appstore-badge.svg" alt="Download on the App Store" width="168" height="56">
       </a>
