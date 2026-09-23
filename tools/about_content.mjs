@@ -42,5 +42,6 @@ export const ABOUT = {
 export const AUTHOR_LINKS = [
   { label: 'LinkedIn', handle: 'Evgeniy Mityulya', href: 'https://www.linkedin.com/in/evgeniy-mityulya/', icon: 'linkedin', chip: '#FFFFFF', mark: '#0A66C2' },
   { label: 'Telegram', handle: '@evgeniymityulya', href: 'https://t.me/evgeniymityulya', icon: 'telegram', chip: '#FFFFFF', mark: '#26A5E4' },
-  { label: 'X', handle: '@Evgeniy_iOS', href: 'https://x.com/Evgeniy_iOS', icon: 'x', chip: '#FFFFFF', mark: '#111111' }
+  { label: 'X', handle: '@Evgeniy_iOS', href: 'https://x.com/Evgeniy_iOS', icon: 'x', chip: '#FFFFFF', mark: '#111111' },
+  { label: 'Email', handle: 'evgeniymityulya@gmail.com', href: 'mailto:evgeniymityulya@gmail.com', icon: 'mail', chip: '#FFFFFF', mark: '#111111' }
 ];

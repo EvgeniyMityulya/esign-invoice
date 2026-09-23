@@ -69,7 +69,7 @@ ${cards}
 ${items}
     </div>
     <div class="faq-foot">
-      <p class="support-line">Question not here? <a href="/support/">Write to the developer</a> and you will usually get an answer the same day.</p>
+      <p class="support-line">Question not here? <a href="/support/">Write to support</a> and you will usually get an answer the same day.</p>
       <a class="store-badge" href="https://apps.apple.com/app/id6788092513" aria-label="Download on the App Store">
         <img src="/appstore-badge.svg" alt="Download on the App Store" width="168" height="56">
       </a>
