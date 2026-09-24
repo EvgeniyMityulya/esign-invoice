@@ -30,13 +30,17 @@
   if (!visitSent) track('visit', { lp: location.pathname, s: source, ref: document.referrer || '' });
   track('page', {});
 
-  // Where on the page a link sits: the nearest element with an id, else the section's first class.
+  // Where on the page a link sits: the first meaningful class up the tree (hero, cta, hub-foot…),
+  // skipping layout wrappers; nav and footer are named by tag.
+  var LAYOUT = /^(wrap|narrow|tiles|inner|container|row|col|store-badge|cta-row)$/;
   function placement(el) {
-    var withId = el.closest('[id]');
-    if (withId) return withId.id;
-    var box = el.closest('header, nav, footer, section, aside, main');
-    if (!box) return 'page';
-    return (box.className && String(box.className).split(/\s+/)[0]) || box.tagName.toLowerCase();
+    var box = el.closest('nav, footer');
+    if (box) return box.tagName.toLowerCase();
+    for (var n = el.parentElement; n && n !== document.body; n = n.parentElement) {
+      var cls = String(n.className || '').split(/\s+/);
+      for (var i = 0; i < cls.length; i++) if (cls[i] && !LAYOUT.test(cls[i])) return cls[i];
+    }
+    return 'page';
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
@@ -63,13 +67,15 @@
   }
   window.addEventListener('scroll', measureDepth, { passive: true });
   measureDepth();
+  // pagehide and visibilitychange both fire on close; only the first one while visible sends.
   function sendLeave() {
-    if (visibleSince) { activeMs += Date.now() - visibleSince; visibleSince = 0; }
+    if (!visibleSince) return;
+    activeMs += Date.now() - visibleSince; visibleSince = 0;
     measureDepth();
     track('leave', { v: Math.round(activeMs / 1000), r: depth });
   }
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) sendLeave(); else visibleSince = Date.now();
   });
-  window.addEventListener('pagehide', function () { if (visibleSince) sendLeave(); });
+  window.addEventListener('pagehide', sendLeave);
 })();
