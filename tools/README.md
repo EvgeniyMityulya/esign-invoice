@@ -10,6 +10,7 @@ node tools/store_links.mjs    # App Store links get the campaign tag for their p
 node tools/patch_meta.mjs     # per-page title/description/canonical/OG/JSON-LD + css cache-buster
 node tools/build.mjs          # sitemap.xml, robots.txt, 404.html
 node tools/seo_baseline.mjs   # diff the live pages against snapshots/seo-baseline.json
+node tools/stats.mjs 7        # visits, sources, time on page, App Store clicks (last 7 days)
 ```
 
 Run them in that order: `build_faq.mjs` first (it copies the header from
@@ -28,3 +29,11 @@ when a high-severity field (status, canonical, robots, title, h1) moved.
 3. Swap `SITE` in `site_config.mjs` for `SITE_NEXT`, re-run both generators, commit.
 4. Update the support and privacy URLs in App Store Connect.
 5. Add the domain to Search Console and Bing, then submit the sitemap.
+
+## Visit statistics
+
+`t.js` (added to every page by `patch_meta.mjs`) sends anonymous events to
+`/api/event`, a Worker in `tools/events/` (`node tools/events/deploy.mjs`), which
+stores them in the Analytics Engine dataset `inko_events`. A random id per tab,
+no cookies, no IP. `node tools/stats.mjs [days]` reads it back. The CSP header on the
+zone allows it through `connect-src 'self'`; a new third-party script would need a CSP change.

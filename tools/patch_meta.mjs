@@ -9,6 +9,7 @@ import { HUBS } from './hub_content.mjs';
 import { esc } from './html.mjs';
 
 const cssVer = createHash('md5').update(readFileSync('style.css')).digest('hex').slice(0, 8);
+const trackTag = `<script src="/t.js?v=${createHash('md5').update(readFileSync('t.js')).digest('hex').slice(0, 8)}" defer></script>`;
 
 function schemaFor(p) {
   const url = SITE + (p.path === '/' ? '/' : p.path);
@@ -124,6 +125,7 @@ for (const p of PAGES) {
   }
 
   html = html.replace(/(href="[^"]*style\.css)(\?v=[a-z0-9]+)?"/g, (_, href) => `${href}?v=${cssVer}"`);
+  html = html.replace(/[ \t]*<script src="\/t\.js[^"]*" defer><\/script>\n?/g, '').replace('</body>', () => trackTag + '\n</body>');
   writeFileSync(p.file, html);
 }
 console.log(`patched ${PAGES.filter((p) => existsSync(p.file)).length} pages (${touched} first-time), css v=${cssVer}`);

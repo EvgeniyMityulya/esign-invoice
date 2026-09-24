@@ -35,6 +35,7 @@ ${nav.replace(/(href|src)="(\.\.?\/)+/g, '$1="/').replace(/ class="active"/g, ''
   <p class="lede">Nothing here. The invoice maker is still where you left it.</p>
   <p><a class="cta" href="/">Back to the home page</a></p>
 </section>
+<script src="/t.js" defer></script>
 </body>
 </html>
 `);
