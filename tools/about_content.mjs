@@ -28,7 +28,7 @@ export const ABOUT = {
       alt: 'A shield'
     }
   ],
-  whoTitle: 'Founder',
+  whoTitle: 'From the author',
   name: 'Evgeniy Mityulya',
   role: 'iOS Engineer\nFounder of Inko',
   who: [
