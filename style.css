@@ -1,4 +1,6 @@
 :root {
+  /* one column for every page: header, content and footer share these edges (872px inside the padding) */
+  --page-w: 920px;
   --bg: #FFFFFF;
   --bg-soft: #F6F6F5;
   --card: #FFFFFF;
@@ -52,7 +54,7 @@ body {
   border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10;
   background: rgba(255,255,255,.82); backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px);
 }
-.bar .wrap { max-width: 920px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 11px; }
+.bar .wrap { max-width: var(--page-w); margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 11px; }
 .bar .logo { width: 30px; height: 30px; border-radius: 8px; }
 .bar .brand { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin: 0; }
 /* Icon and wordmark are one target back to the home page. */
@@ -209,8 +211,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .screens h2 { font-size: 27px; letter-spacing: -0.022em; margin: 0 0 8px; text-align: center; padding: 0 24px; }
 .screens .sub { color: var(--text-2); margin: 0 0 30px; text-align: center; padding: 0 24px; }
 
-/* Same 880px column as the feature rows above, so the phones line up with them */
-.carousel { position: relative; max-width: 928px; margin: 0 auto; padding: 0 24px; }
+/* Same column as the header and the feature rows, so the phones line up with them */
+.carousel { position: relative; max-width: var(--page-w); margin: 0 auto; padding: 0 24px; }
 .ctrack {
   display: grid; grid-auto-flow: column; gap: 18px;
   grid-auto-columns: calc((100% - 36px) / 3);
@@ -290,7 +292,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 }
 
 /* Alternating feature rows on dark panels */
-.zig { max-width: 928px; margin: 58px auto 0; padding: 0 24px; display: grid; gap: 18px; }
+.zig { max-width: var(--page-w); margin: 58px auto 0; padding: 0 24px; display: grid; gap: 18px; }
 .zrow {
   display: grid; grid-template-columns: 1.05fr .95fr; align-items: center;
   background: linear-gradient(160deg, #1E1F24, #141819); color: #fff;
@@ -358,7 +360,7 @@ main.page.about .ztext h2 { font-size: 27px; font-weight: 800; letter-spacing: -
 .closing { max-width: 720px; margin: 52px auto 0; padding: 0 24px; text-align: center; color: var(--text-2); font-size: 15px; }
 
 /* Content pages */
-main.page { max-width: 700px; margin: 0 auto; padding: 44px 24px 80px; }
+main.page { max-width: var(--page-w); margin: 0 auto; padding: 44px 24px 80px; }
 main.page h1 { font-size: clamp(1.8rem, 4.5vw, 2.4rem); margin-bottom: 6px; letter-spacing: -0.025em; text-wrap: balance; }
 .updated { color: var(--text-2); font-size: 14px; margin: 0 0 26px; }
 main.page h2 { font-size: 18.5px; font-weight: 700; margin: 30px 0 6px; letter-spacing: -0.015em; }
@@ -376,7 +378,7 @@ main.center .lead { max-width: 460px; margin-left: auto; margin-right: auto; }
 main.center .form { margin-left: auto; margin-right: auto; text-align: left; }
 main.center .form button { display: block; margin: 4px auto 0; }
 main.center .form .note { text-align: center; }
-main.center .faq { text-align: left; max-width: 580px; margin: 10px auto 0; }
+main.center .faq { text-align: left; margin: 10px 0 0; }
 main.center h2 { text-align: center; }
 
 /* FAQ accordion */
@@ -423,10 +425,10 @@ main.center h2 { text-align: center; }
 body.fill { min-height: 100dvh; display: flex; flex-direction: column; }
 body.fill main.page { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 40px; padding-bottom: 40px; }
 body.fill main.page .lead { max-width: 460px; }
-body.fill footer { margin-top: 0; flex: none; }
+body.fill footer { margin-top: 0; flex: none; width: 100%; }
 
 /* Footer */
-footer { border-top: 1px solid var(--border); max-width: 920px; margin: 60px auto 0; padding: 24px; color: var(--text-2); font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+footer { border-top: 1px solid var(--border); max-width: var(--page-w); margin: 60px auto 0; padding: 24px; color: var(--text-2); font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
 footer .fnav a { color: var(--text-2); text-decoration: none; margin-right: 16px; }
 footer .fnav a:hover { color: var(--text); }
 footer .spacer { flex: 1; }
@@ -480,7 +482,7 @@ footer .spacer { flex: 1; }
   .zart img { transition: transform var(--dur-comp) var(--ease-out); }
 }
 
-.page .wrap.narrow { max-width: 760px; }
+.page .wrap.narrow { max-width: none; }
 .faq-more { margin-top: 26px; font-size: 15px; color: var(--text-2); }
 .faq-more a { color: var(--text); }
 .faq-cta { margin-top: 30px; }
@@ -515,9 +517,6 @@ footer .spacer { flex: 1; }
 .about-hero .app-icon { width: 78px; height: 78px; border-radius: 20px; display: block; margin: 0 auto 20px; box-shadow: 0 18px 34px -16px rgba(23,24,28,.45); }
 .about-hero h1 { margin: 0 0 12px; }
 .about-hero .lead { margin: 0 auto; max-width: 34em; }
-/* the feature rows need the same width they get on the home page */
-main.page.about { max-width: 892px; }
-main.page.about .wrap.narrow { max-width: 720px; margin: 0 auto; }
 main.page.about .zig { margin-top: 42px; padding-left: 0; padding-right: 0; gap: 14px; }
 .about-h2 { margin-top: 56px !important; margin-bottom: 14px !important; }
 .author-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
@@ -530,7 +529,7 @@ main.page.about .zig { margin-top: 42px; padding-left: 0; padding-right: 0; gap:
 .about-hero .lead { line-height: 1.55; }
 
 /* Developer: same dark card as the rows above, photo on the right */
-.dev-wrap { max-width: 844px; margin: 14px auto 0; padding: 0; }
+.dev-wrap { max-width: none; margin: 14px auto 0; padding: 0; }
 .dev-card {
   position: relative; color: #fff; padding: 32px 34px; display: grid;
   grid-template-columns: 168px 1fr; gap: 30px; align-items: start; overflow: hidden;
@@ -670,7 +669,7 @@ main.page.about .faq-foot { border-top: 0; margin-top: 30px; padding-top: 0; }
    heading, no tinted band. The bare .wrap has no max-width of its own, which
    is why this needs its own. */
 .tile-band { padding: 64px 0 8px; }
-.tile-band .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+.tile-band .wrap { max-width: var(--page-w); margin: 0 auto; padding: 0 24px; }
 .tile-band h2 { font-size: 27px; letter-spacing: -0.022em; margin: 0 0 8px; text-align: center; }
 .tile-band .sub { color: var(--text-2); margin: 0 auto 30px; max-width: 52ch; text-align: center; }
 
