@@ -39,7 +39,7 @@ export const CAMPAIGNS = {
 
 export const PAGES = [
   { file: 'index.html', path: '/', priority: '1.0',
-    title: 'Inko — Invoice Maker & eSign for iPhone',
+    title: 'Inko: Invoice Maker & eSign for iPhone',
     description: 'Invoices, estimates and receipts built on your phone and signed by the client on the spot. No account, no commission, nothing leaves your device.' },
   { file: 'support/index.html', path: '/support/', priority: '0.6',
     title: 'Support — Inko',
