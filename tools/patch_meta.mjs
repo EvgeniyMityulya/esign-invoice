@@ -2,6 +2,7 @@
 // absolute OG/Twitter tags, JSON-LD and the stylesheet cache-buster.
 // Idempotent, so run it after every content edit.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { SITE, APP, AUTHOR, PAGES } from './site_config.mjs';
 import { FAQ } from './faq_content.mjs';
@@ -15,7 +16,9 @@ function schemaFor(p) {
   const url = SITE + (p.path === '/' ? '/' : p.path);
   const org = {
     '@type': 'Organization', '@id': `${SITE}/#org`, name: APP.shortName, url: `${SITE}/`,
-    logo: `${SITE}/icon.png`, founder: { '@id': `${SITE}/#author` }
+    logo: `${SITE}/icon.png`, founder: { '@id': `${SITE}/#author` },
+    sameAs: [APP.storeUrl],
+    contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'support@inkoinvoice.com', availableLanguage: ['en'] }
   };
   const author = {
     '@type': 'Person', '@id': `${SITE}/#author`, name: AUTHOR.name,
@@ -44,6 +47,15 @@ function schemaFor(p) {
         }))
       });
     }
+    // Hubs are written guides: Article says who wrote them and since when
+    let published = '';
+    try { published = execSync(`git log --diff-filter=A --follow --format=%as -- "${p.file}" | tail -1`).toString().trim(); } catch {}
+    graph.push({
+      '@type': 'Article', '@id': `${url}#article`, headline: hub.title, description: p.description,
+      inLanguage: 'en', url, mainEntityOfPage: { '@id': url }, image: `${SITE}/og.jpg`,
+      author: { '@id': `${SITE}/#author` }, publisher: { '@id': `${SITE}/#org` },
+      ...(published ? { datePublished: published } : {})
+    });
     // Breadcrumbs give search results a visible path instead of a bare URL.
     const crumbs = [{ name: 'Home', item: `${SITE}/` }];
     if (hub.parent) {

@@ -45,6 +45,7 @@ writeFileSync('about/index.html', `<!doctype html>
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<!--email_off-->
 ${bar}
 
 <main class="page about">
@@ -84,6 +85,7 @@ ${links}
 </main>
 
 ${footer}
+<!--/email_off-->
 </body>
 </html>
 `);
